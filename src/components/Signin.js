@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import config from '../config/development'
+import { postData } from '../utils/request'
 const { api } = config
 
 class Signin extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isSignedin: false
+            isSignedin: false,
+            errorMessage: ''
         }
     }
     submit = async (e) => {
@@ -23,21 +25,24 @@ class Signin extends Component {
         localStorage.setItem('jwt', token)
         this.setState({ isSignedin: true })
     }
-    fetchToken(data) {
-        const init = {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache", 
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        }
+    async fetchToken(data) {
+        const res = await postData(api.auth, data)
 
-        return fetch(api.auth, init)
-            .then((res) => res.text())
+        if (!res.ok) {
+            const errorMessage = await res.text()
+            this.setState({ errorMessage})
+            return null
+        }
+        
+        return res.text()   
     }
     render(){
+        const errorMessage = this.state.errorMessage ? 
+            <div>{this.state.errorMessage}</div> : null
+
         return (
             <div>
+                {errorMessage}
                 <form onSubmit={this.submit}>
                     <label>
                         email:
