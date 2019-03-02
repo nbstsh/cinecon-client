@@ -8,19 +8,45 @@ const init = {
     body: null
 }
 
-const postData = (url, data) => {
+const initToken = () => {
+    const token = localStorage.getItem('jwt')
+    if (!token) return 
+
+    init.headers['x-auth-token'] = token
+    console.log(init.headers)
+}
+
+const initBody = (data) => {
     init.body = JSON.stringify(data)
+}
+
+
+// POST request to given url with body embeded with given data.
+// if needsToken is true, x-auth-token is set with jwt in localStorage
+const postData = (url, data, needsToken = false) => {
+    initBody(data)
+    console.log({needsToken})
+    if (needsToken) initToken()
+
     return fetch(url, init)
 }
 
-const putData = (url, data) => {
+// PUT request to given url with body embeded with given data
+// if needsToken is true, x-auth-token is set with jwt in localStorage
+const putData = (url, data, needsToken = false) => {
     init.method = "PUT"
-    init.body = JSON.stringify(data)
+    initBody(data)
+    if (needsToken) initToken()
+
     return fetch(url, init)
 }
 
-const deleteData = (url) => {
+// PUT request to given url
+// if needsToken is true, x-auth-token is set with jwt in localStorage
+const deleteData = (url, needsToken = false) => {
     init.method = "DELETE"
+    if (needsToken) initToken()
+
     return fetch(url, init)
 }
 
