@@ -37,6 +37,7 @@ class MovieForm extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault()
+        event.persist()
         let movie = this.state.movie
 
         const data = _.pick(movie,
@@ -56,7 +57,11 @@ class MovieForm extends Component {
         this.setState({ errorMessage: '' })
         this.setState({ movie })
 
-        this.props.handleAfterSubmit()
+        //to move to MovieDetailBox when it's first time
+        event.target.dataset.id = movie._id
+        this.props.handleAfterSubmit(event)
+
+        this.props.updateMovie && this.props.updateMovie(movie)
     }
 
     handleChange = (e) => {
