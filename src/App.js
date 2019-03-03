@@ -5,6 +5,8 @@ import MovieList from './components/MovieList'
 import Signin from './components/Signin'
 import MovieForm from './components/MovieForm'
 
+import Test from './components/Test'
+
 class App extends Component {
   render() {
     return (
@@ -12,6 +14,7 @@ class App extends Component {
         {/* <MovieList /> */}
         <Signin />
         <MovieForm />
+        <Test />
       </div>
     )
   }

@@ -8,9 +8,22 @@ class MovieForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            movie: props.movie,
+            movie: null,
+            movieId: props.movieId,
             errorMessage: ''
         }
+    }
+    componentDidMount() {
+        if (!this.state.movieId) return 
+
+        // TODO create api module & error handling
+        fetch(`${api.movies}/${this.state.movieId}`)
+            .then(res => {
+                if (res.ok) return res.json()
+                throw new Error(res)
+            })
+            .then(movie => this.setState({ movie }))
+            .catch(err => console.log(err))
     }
     submitEvent = async (event) => {
         event.preventDefault()
