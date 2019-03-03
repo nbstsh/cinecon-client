@@ -28,7 +28,7 @@ class Test extends Component {
         return (
             // <MovieForm movieId='5c77cb08c12e7318548d8b48' />
 
-            <MovieDetailBox movieId='5c77cb08c12e7318548d8b48'/>
+            <MovieDetailBox movieId='5c79190020de9027d3d2f207'/>
         )
     }
 }

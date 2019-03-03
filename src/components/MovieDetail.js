@@ -7,7 +7,7 @@ class MovieDetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            movie: null
+            movie: {}
         }
     }
     componentDidMount() {
@@ -23,7 +23,7 @@ class MovieDetail extends Component {
             .catch(err => console.log(err))
     }
     render() {
-        const {_id, title, director, releaseYear, genre, runningTime, starring, country} = this.state.movie || {}
+        const {title, director, releaseYear, genre, runningTime, starring, country} = this.state.movie
         
         return (
             <div>
@@ -36,10 +36,6 @@ class MovieDetail extends Component {
                     <li>starring: {starring}</li>
                     <li>country: {country}</li> 
                 </ul>
-
-                {/* <ul>
-                    {Object.keys(movie).map(k => <li>{k}: {movie[k]}</li>)}
-                </ul> */}
             </div>
         ) 
     }

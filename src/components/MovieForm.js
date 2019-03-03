@@ -37,10 +37,10 @@ class MovieForm extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault()
-        const movie = this.state.movie
+        let movie = this.state.movie
 
-        const data = _.pick(movie, [
-            'title', 'director', 'releaseYear', 'genre', 'runningTime', 'starring', 'country'])
+        const data = _.pick(movie,
+            ['title', 'director', 'releaseYear', 'genre', 'runningTime', 'starring', 'country'])
 
         const res = movie._id ? 
             await putRequest(`${api.movies}/${movie._id}`, data, true) :
@@ -52,7 +52,11 @@ class MovieForm extends Component {
             return 
         }
 
+        movie = await res.json()
         this.setState({ errorMessage: '' })
+        this.setState({ movie })
+
+        this.props.handleAfterSubmit()
     }
 
     handleChange = (e) => {
