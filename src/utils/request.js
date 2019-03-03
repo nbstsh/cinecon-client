@@ -1,7 +1,7 @@
 
 
 const init = {
-    method: "POST",
+    method: "GET",
     mode: "cors",
     cache: "no-cache", 
     headers: { "Content-Type": "application/json" },
@@ -13,7 +13,6 @@ const initToken = () => {
     if (!token) return 
 
     init.headers['x-auth-token'] = token
-    console.log(init.headers)
 }
 
 const initBody = (data) => {
@@ -21,11 +20,19 @@ const initBody = (data) => {
 }
 
 
+// GET request to given url with body embeded with given data.
+// if needsToken is true, x-auth-token is set with jwt in localStorage
+const getRequest = (url, needsToken = false) => {
+    if (needsToken) initToken()
+
+    return fetch(url, init)
+}
+
 // POST request to given url with body embeded with given data.
 // if needsToken is true, x-auth-token is set with jwt in localStorage
-const postData = (url, data, needsToken = false) => {
+const postRequest = (url, data, needsToken = false) => {
+    init.method = "POST"
     initBody(data)
-    console.log({needsToken})
     if (needsToken) initToken()
 
     return fetch(url, init)
@@ -33,7 +40,7 @@ const postData = (url, data, needsToken = false) => {
 
 // PUT request to given url with body embeded with given data
 // if needsToken is true, x-auth-token is set with jwt in localStorage
-const putData = (url, data, needsToken = false) => {
+const putRequest = (url, data, needsToken = false) => {
     init.method = "PUT"
     initBody(data)
     if (needsToken) initToken()
@@ -43,7 +50,7 @@ const putData = (url, data, needsToken = false) => {
 
 // PUT request to given url
 // if needsToken is true, x-auth-token is set with jwt in localStorage
-const deleteData = (url, needsToken = false) => {
+const deleteRequest = (url, needsToken = false) => {
     init.method = "DELETE"
     if (needsToken) initToken()
 
@@ -52,8 +59,8 @@ const deleteData = (url, needsToken = false) => {
 
 
 module.exports = {
-    postData,
-    putData,
-    deleteData
+    postRequest,
+    putRequest,
+    deleteRequest
 }
 

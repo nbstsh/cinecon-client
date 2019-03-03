@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import config from '../config/development'
-import { postData } from '../utils/request'
+import { postRequest } from '../utils/request'
+import ErrorMessage from './ErrorMessage'
+import config from '../config/index'
 const { api } = config
 
 class Signin extends Component {
@@ -13,7 +14,6 @@ class Signin extends Component {
     }
     submit = async (e) => {
         e.preventDefault()
-        if (this.state.isSignedin) return 
 
         const token = await this.fetchToken({
             email: e.target.email.value,
@@ -23,10 +23,13 @@ class Signin extends Component {
         if (!token) return 
 
         localStorage.setItem('jwt', token)
-        this.setState({ isSignedin: true })
+        this.setState({ 
+            isSignedin: true,
+            errorMessage: ''
+        })
     }
     async fetchToken(data) {
-        const res = await postData(api.auth, data)
+        const res = await postRequest(api.auth, data)
 
         if (!res.ok) {
             const errorMessage = await res.text()
@@ -42,7 +45,7 @@ class Signin extends Component {
 
         return (
             <div>
-                {errorMessage}
+                <ErrorMessage message={this.state.errorMessage} /> 
                 <form onSubmit={this.submit}>
                     <label>
                         email:
