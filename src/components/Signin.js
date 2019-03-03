@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import config from '../config/development'
+import config from '../config/index'
 import { postRequest } from '../utils/request'
 const { api } = config
 
@@ -26,7 +26,7 @@ class Signin extends Component {
         this.setState({ isSignedin: true })
     }
     async fetchToken(data) {
-        const res = await postRequest(api.auth, JSON.stringify(data))
+        const res = await postRequest(api.auth, data)
 
         if (!res.ok) {
             const errorMessage = await res.text()

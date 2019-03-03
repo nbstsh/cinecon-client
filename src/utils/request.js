@@ -13,11 +13,10 @@ const initToken = () => {
     if (!token) return 
 
     init.headers['x-auth-token'] = token
-    console.log(init.headers)
 }
 
 const initBody = (data) => {
-    init.body = data
+    init.body = JSON.stringify(data)
 }
 
 
@@ -25,7 +24,6 @@ const initBody = (data) => {
 // if needsToken is true, x-auth-token is set with jwt in localStorage
 const postRequest = (url, data, needsToken = false) => {
     initBody(data)
-    console.log({needsToken})
     if (needsToken) initToken()
 
     return fetch(url, init)
