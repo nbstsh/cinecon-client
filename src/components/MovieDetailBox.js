@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import MovieDetail from './MovieDetail'
+import { deleteRequest } from '../utils/request'
+import config from '../config/index'
+const { api } = config
 
-
-function DeleteButton() {
-    return <button>DELETE</button>
+function DeleteButton(props) {
+    console.log(props)
+    return <button onClick={props.deleteMovie}>DELETE</button>
 }
 
 function EditButton() {
@@ -15,12 +18,18 @@ class MovieDetailBox extends Component {
         super(props)
         this.state = {}
     }
+
+    deleteMovie = async () => {
+        console.log('clicked')
+        const res = await deleteRequest(`${api.movies}/${this.props.movieId}`, true)
+        console.log('is Deleted?', res.ok)
+    }
     render() {
         return (
             <div>
                 <MovieDetail movieId={this.props.movieId} />
                 <EditButton />
-                <DeleteButton />
+                <DeleteButton deleteMovie={this.deleteMovie} />
             </div>
         )
     }
