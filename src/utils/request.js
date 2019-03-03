@@ -17,13 +17,13 @@ const initToken = () => {
 }
 
 const initBody = (data) => {
-    init.body = JSON.stringify(data)
+    init.body = data
 }
 
 
 // POST request to given url with body embeded with given data.
 // if needsToken is true, x-auth-token is set with jwt in localStorage
-const postData = (url, data, needsToken = false) => {
+const postRequest = (url, data, needsToken = false) => {
     initBody(data)
     console.log({needsToken})
     if (needsToken) initToken()
@@ -33,7 +33,7 @@ const postData = (url, data, needsToken = false) => {
 
 // PUT request to given url with body embeded with given data
 // if needsToken is true, x-auth-token is set with jwt in localStorage
-const putData = (url, data, needsToken = false) => {
+const putRequest = (url, data, needsToken = false) => {
     init.method = "PUT"
     initBody(data)
     if (needsToken) initToken()
@@ -43,7 +43,7 @@ const putData = (url, data, needsToken = false) => {
 
 // PUT request to given url
 // if needsToken is true, x-auth-token is set with jwt in localStorage
-const deleteData = (url, needsToken = false) => {
+const deleteRequest = (url, needsToken = false) => {
     init.method = "DELETE"
     if (needsToken) initToken()
 
@@ -52,8 +52,8 @@ const deleteData = (url, needsToken = false) => {
 
 
 module.exports = {
-    postData,
-    putData,
-    deleteData
+    postRequest,
+    putRequest,
+    deleteRequest
 }
 
