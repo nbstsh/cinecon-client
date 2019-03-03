@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { postRequest } from '../utils/request'
+import _ from 'lodash'
+import { postRequest, putRequest } from '../utils/request'
 import ErrorMessage from './ErrorMessage'
 import config from '../config/development'
 const { api } = config
@@ -8,10 +9,19 @@ class MovieForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            movie: null,
+            movie: { 
+                title: '',
+                director: '', 
+                releaseYear: '', 
+                genre: '',
+                runningTime: '', 
+                starring: '', 
+                country: ''
+            },
             errorMessage: ''
         }
     } 
+
     componentDidMount() {
         if (!this.props.movieId) return 
 
@@ -24,15 +34,18 @@ class MovieForm extends Component {
             .then(movie => this.setState({ movie }))
             .catch(err => console.log(err))
     }
-    submitEvent = async (event) => {
-        event.preventDefault()
 
-        const data = {}
-        for(let p of new FormData(event.target)) {
-            data[p[0]] = p[1]
-        }
-        
-        const res = await postRequest(api.movies, data, true)
+    handleSubmit = async (event) => {
+        event.preventDefault()
+        const movie = this.state.movie
+
+        const data = _.pick(movie, [
+            'title', 'director', 'releaseYear', 'genre', 'runningTime', 'starring', 'country'])
+
+        const res = movie._id ? 
+            await putRequest(`${api.movies}/${movie._id}`, data, true) :
+            await postRequest(api.movies, data, true)
+
         if (!res.ok) {
             const errorMessage = await res.text()
             this.setState({ errorMessage })
@@ -40,43 +53,47 @@ class MovieForm extends Component {
         }
 
         this.setState({ errorMessage: '' })
-
-       const movie = await res.json()
-       this.setState({ movie })
     }
+
+    handleChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        this.setState((state) => state.movie[name] = value)
+    }
+
     render() {
-        const {_id, title, director, releaseYear, genre, runningTime, starring, country} = this.state.movie || {}
+        const { title, director, releaseYear, genre, runningTime, starring, country } = this.state.movie
         return (
             <div>
                 <ErrorMessage message={this.state.errorMessage} />
-                <form id="moiveForm" onSubmit={this.submitEvent}>
+                <form id="moiveForm" onSubmit={this.handleSubmit}>
                     <label>
                         title: 
-                        <input type="text" name="title" value={title}/> 
+                        <input type="text" name="title" value={title} onChange={this.handleChange}/> 
                     </label>
                     <label>
                         director: 
-                        <input type="text" name="director" value={director}/> 
+                        <input type="text" name="director" value={director} onChange={this.handleChange}/> 
                     </label>
                     <label>
                         releaseYear: 
-                        <input type="number" name="releaseYear" value={releaseYear}/> 
+                        <input type="number" name="releaseYear" value={releaseYear} onChange={this.handleChange}/> 
                     </label>
                     <label>
                         genre: 
-                        <input type="text" name="genre" value={genre}/> 
+                        <input type="text" name="genre" value={genre} onChange={this.handleChange}/> 
                     </label>
                     <label>
                         runningTime: 
-                        <input type="number" name="runningTime" value={runningTime}/> 
+                        <input type="number" name="runningTime" value={runningTime} onChange={this.handleChange}/> 
                     </label>
                     <label>
                         starring:
-                        <input type="text" name="starring" value={starring}/> 
+                        <input type="text" name="starring" value={starring} onChange={this.handleChange}/> 
                     </label>
                     <label>
                         country:
-                        <input type="text" name="country" value={country}/> 
+                        <input type="text" name="country" value={country} onChange={this.handleChange}/> 
                     </label>
                     <button>submit</button>
                 </form>
