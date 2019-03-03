@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Movie from './Movie'
+import MovieDetail from './MovieDetail'
 import config from '../config/index'
 const { api } = config
 
@@ -16,7 +16,7 @@ class MovieList extends Component {
             .then(movies => this.setState({ movies }))
     }
     generateMovie = () => {
-        return this.state.movies.map(m => <Movie
+        return this.state.movies.map(m => <MovieDetail
             key={m._id} 
             _id={m._id}
             title={m.title}

@@ -4,6 +4,7 @@ import './App.css';
 import MovieList from './components/MovieList'
 import Signin from './components/Signin'
 import MovieForm from './components/MovieForm'
+import MovieDetailBox from './components/MovieDetailBox'
 
 import Test from './components/Test'
 
@@ -12,8 +13,8 @@ class App extends Component {
     return (
       <div>
         {/* <MovieList /> */}
-        <Signin />
-        <MovieForm />
+        {/* <Signin /> */}
+        {/* <MovieForm /> */}
         <Test />
       </div>
     )

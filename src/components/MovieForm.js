@@ -9,15 +9,14 @@ class MovieForm extends Component {
         super(props)
         this.state = {
             movie: null,
-            movieId: props.movieId,
             errorMessage: ''
         }
-    }
+    } 
     componentDidMount() {
-        if (!this.state.movieId) return 
+        if (!this.props.movieId) return 
 
         // TODO create api module & error handling
-        fetch(`${api.movies}/${this.state.movieId}`)
+        fetch(`${api.movies}/${this.props.movieId}`)
             .then(res => {
                 if (res.ok) return res.json()
                 throw new Error(res)

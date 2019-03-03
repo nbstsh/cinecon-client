@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import MovieForm from './MovieForm'
+import MovieDetailBox from './MovieDetailBox'
 import config from '../config/index'
 const { api } = config
 
@@ -25,7 +26,9 @@ class Test extends Component {
     
     render() {
         return (
-            <MovieForm movieId='5c77cb08c12e7318548d8b48' />
+            // <MovieForm movieId='5c77cb08c12e7318548d8b48' />
+
+            <MovieDetailBox movieId='5c77cb08c12e7318548d8b48'/>
         )
     }
 }
