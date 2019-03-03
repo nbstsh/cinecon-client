@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import config from '../config/index'
 import { postRequest } from '../utils/request'
+import ErrorMessage from './ErrorMessage'
+import config from '../config/index'
 const { api } = config
 
 class Signin extends Component {
@@ -44,7 +45,7 @@ class Signin extends Component {
 
         return (
             <div>
-                {errorMessage}
+                <ErrorMessage message={this.state.errorMessage} /> 
                 <form onSubmit={this.submit}>
                     <label>
                         email:

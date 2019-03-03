@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import { postRequest } from '../utils/request'
+import ErrorMessage from './ErrorMessage'
 import config from '../config/development'
 const { api } = config
-
-const ErrorMessage = ({ message }) => {
-    return message ? <div>{message}</div> : null
-}
 
 class MovieForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            movie: props.movie,
             errorMessage: ''
         }
     }
@@ -32,40 +30,41 @@ class MovieForm extends Component {
         this.setState({ errorMessage: '' })
 
        const movie = await res.json()
-       console.log(movie)
+       this.setState({ movie })
     }
     render() {
+        const {_id, title, director, releaseYear, genre, runningTime, starring, country} = this.state.movie || {}
         return (
             <div>
                 <ErrorMessage message={this.state.errorMessage} />
                 <form id="moiveForm" onSubmit={this.submitEvent}>
                     <label>
                         title: 
-                        <input type="text" name="title"/> 
+                        <input type="text" name="title" value={title}/> 
                     </label>
                     <label>
                         director: 
-                        <input type="text" name="director"/> 
+                        <input type="text" name="director" value={director}/> 
                     </label>
                     <label>
                         releaseYear: 
-                        <input type="number" name="releaseYear"/> 
+                        <input type="number" name="releaseYear" value={releaseYear}/> 
                     </label>
                     <label>
                         genre: 
-                        <input type="text" name="genre"/> 
+                        <input type="text" name="genre" value={genre}/> 
                     </label>
                     <label>
                         runningTime: 
-                        <input type="number" name="runningTime"/> 
+                        <input type="number" name="runningTime" value={runningTime}/> 
                     </label>
                     <label>
                         starring:
-                        <input type="text" name="starring"/> 
+                        <input type="text" name="starring" value={starring}/> 
                     </label>
                     <label>
                         country:
-                        <input type="text" name="country"/> 
+                        <input type="text" name="country" value={country}/> 
                     </label>
                     <button>submit</button>
                 </form>
