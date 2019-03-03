@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import Movie from './Movie'
-
-const MOVIES_API_URL = 'https://cinecon.herokuapp.com/api/movies'
-// const MOVIES_API_URL = 'http://localhost:3001/api/movies'
-
+import config from '../config/index'
+const { api } = config
 
 class MovieList extends Component {
     constructor(props) {
@@ -13,7 +11,7 @@ class MovieList extends Component {
         }
     }
     componentDidMount() {
-        fetch(MOVIES_API_URL)
+        fetch(api.movies)
             .then(response => response.json())
             .then(movies => this.setState({ movies }))
     }

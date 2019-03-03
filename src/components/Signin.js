@@ -13,7 +13,6 @@ class Signin extends Component {
     }
     submit = async (e) => {
         e.preventDefault()
-        if (this.state.isSignedin) return 
 
         const token = await this.fetchToken({
             email: e.target.email.value,
@@ -23,7 +22,10 @@ class Signin extends Component {
         if (!token) return 
 
         localStorage.setItem('jwt', token)
-        this.setState({ isSignedin: true })
+        this.setState({ 
+            isSignedin: true,
+            errorMessage: ''
+        })
     }
     async fetchToken(data) {
         const res = await postRequest(api.auth, data)

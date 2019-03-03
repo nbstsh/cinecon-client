@@ -1,7 +1,7 @@
 
 
 const init = {
-    method: "POST",
+    method: "GET",
     mode: "cors",
     cache: "no-cache", 
     headers: { "Content-Type": "application/json" },
@@ -20,9 +20,18 @@ const initBody = (data) => {
 }
 
 
+// GET request to given url with body embeded with given data.
+// if needsToken is true, x-auth-token is set with jwt in localStorage
+const getRequest = (url, needsToken = false) => {
+    if (needsToken) initToken()
+
+    return fetch(url, init)
+}
+
 // POST request to given url with body embeded with given data.
 // if needsToken is true, x-auth-token is set with jwt in localStorage
 const postRequest = (url, data, needsToken = false) => {
+    init.method = "POST"
     initBody(data)
     if (needsToken) initToken()
 
