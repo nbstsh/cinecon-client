@@ -13,12 +13,10 @@
     justify-content: center;
 }
 
-.close-btn {
+.MovieDetailBox .CloseBtn {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 4rem;
-    height: 4rem;
+    top: 2rem;
+    right: 2rem;
     color: var(--color-grey-dark-2);
     border-radius: 50%;
     display: flex;
@@ -29,7 +27,7 @@
     font-weight: bold;
 }
 
-.close-btn:hover {
+.MovieDetailBox .CloseBtn:hover {
     color: var(--color-grey-dark-1);
 }
 

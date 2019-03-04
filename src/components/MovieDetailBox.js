@@ -3,6 +3,7 @@ import MovieDetail from './MovieDetail'
 import { deleteRequest } from '../utils/request'
 import config from '../config/index'
 import MovieForm from './MovieForm';
+import CloseBtn from './parts/CloseBtn'
 import './MovieDetailBox.css'
 const { api } = config
 
@@ -32,7 +33,7 @@ class MovieDetailBox extends Component {
                     updateMovie={this.props.updateMovie}
                     handleToggleFormClick={this.handleToggleFormClick}
                 />
-                <span id="MovieDetailcloseBtn" class="close-btn" onClick={this.props.handleShowDetail}>x</span>
+                <CloseBtn handleClick={this.props.handleShowDetail} />
             </div>
         ) : (
             <div className="MovieDetailBox">
@@ -41,7 +42,7 @@ class MovieDetailBox extends Component {
                     <button onClick={this.handleToggleFormClick}>EDIT</button>
                     <button onClick={this.handleDeleteMovie}>DELETE</button>
                 </div>
-                <span id="MovieDetailcloseBtn" class="close-btn" onClick={this.props.handleShowDetail}>x</span>
+                <CloseBtn handleClick={this.props.handleShowDetail} />
             </div>
         )
     }

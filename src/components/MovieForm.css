@@ -1,22 +1,49 @@
 .MovieForm {
-    display: flex;
-    justify-content: center;
-
-    font-size: 2rem;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    /* font-size: 2rem; */
 }
 
-.MovieForm form {    
+.MovieForm h2 {
+    display: block;
+    padding: 2rem 0;
+} 
+
+.MovieForm form { 
+    max-width: 50rem;
+    width: 100%;
     flex: 0 0 50rem;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
 }
 
 
-.MovieForm form > * {
-    margin-bottom: 1rem;
+.MovieForm input {
+    width: 100%;
 }
 
-.MovieForm .btn-box {
-    margin-top: 1.8rem;
+.MovieForm label {
+    align-self: flex-start;
+    transform: translateY(-5.6rem);
+    margin-left: 1rem;
+    font-size: 1.6rem;
+    background-color: #fff;
+    color: var(--color-grey-dark-2);
+    padding-left: 0.2rem;
+    padding-right: .5rem;
+    opacity: 1;
+    transition: all .2s;
+}
+
+.MovieForm input:placeholder-shown + label {
+    opacity: 0;
+    transform: translateY(-4rem);
+}
+
+.MovieForm-btn-box {
+    /* padding: 3rem; */
 }

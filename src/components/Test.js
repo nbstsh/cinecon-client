@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MovieForm from './MovieForm'
 import MovieDetailBox from './MovieDetailBox'
+import CloseBtn from './parts/CloseBtn'
 import config from '../config/index'
 const { api } = config
 
@@ -28,7 +29,8 @@ class Test extends Component {
         return (
             // <MovieForm movieId='5c77cb08c12e7318548d8b48' />
 
-            <MovieDetailBox movieId='5c79190020de9027d3d2f207'/>
+            // <MovieDetailBox movieId='5c79190020de9027d3d2f207'/>
+            <CloseBtn />
         )
     }
 }
