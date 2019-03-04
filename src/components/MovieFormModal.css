@@ -3,7 +3,7 @@
     position:sticky;
     bottom: 0;
     right: 0;
-    text-align: end;
+    justify-self: end;
 }
 
 .MovieFormModal button {
