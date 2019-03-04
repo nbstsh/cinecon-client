@@ -4,8 +4,11 @@
 
     padding: 3rem;
     background-color: #fff;
+    border: 1px solid var(--color-grey-light-4);
+    box-shadow: 1px 2px 2px 2px #0000000d;
 
     position: relative;
+    animation: showMovieDetailBox 1s;
 }
 
 .btn-box {
@@ -38,4 +41,17 @@
 
 .MovieDetailBox button:not(:last-child) {
     margin-right: 2rem;
+}
+
+@keyframes showMovieDetailBox {
+    0% {
+        opacity: 0;
+        transform: scale(.8);
+    }
+    20% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+    }
 }
