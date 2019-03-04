@@ -3,7 +3,7 @@ import MovieDetail from './MovieDetail'
 import { deleteRequest } from '../utils/request'
 import config from '../config/index'
 import MovieForm from './MovieForm';
-import CloseBtn from './parts/CloseBtn'
+import CloseBtn from './common/CloseBtn'
 import './MovieDetailBox.css'
 const { api } = config
 

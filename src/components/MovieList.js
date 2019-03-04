@@ -36,7 +36,7 @@ class MovieList extends Component {
     }
     render() {
         return (
-            <div class="MovieList">
+            <div className="MovieList">
                 {this.state.movies.map(m => {
                     return this.state.showingMovieId === m._id ? (
                         <MovieDetailBox 
@@ -57,7 +57,6 @@ class MovieList extends Component {
                         />
                     )
                 })}
-                <button onClick={this.handleShowForm}>create new movie</button>
             </div>
         )
     }

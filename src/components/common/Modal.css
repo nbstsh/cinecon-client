@@ -1,0 +1,51 @@
+
+.modal-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    /* for animation */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .1s
+                opacity .3s;
+}
+
+.modal-trigger:checked + .modal-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+
+    /* for animation */
+    opacity: 1;
+    visibility: visible; 
+}
+
+.modal-bg {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000002a;
+    z-index: -1;
+}
+
+.modal {
+    background-color: white;
+    width: 60%;
+    min-height: 20vw;
+    border-radius: 3px;
+
+    opacity: 0;
+    transform: scale(.8);
+    transition: all .3s;
+}
+
+
+.modal-trigger:checked + .modal-wrap .modal {
+    opacity: 1;
+    transform: scale(1);
+}
