@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MovieItem from './MovieItem'
 import MovieDetailBox from './MovieDetailBox'
 import config from '../config/index'
+import './MovieList.css'
 const { api } = config
 
 class MovieList extends Component {
@@ -35,7 +36,7 @@ class MovieList extends Component {
     }
     render() {
         return (
-            <div>
+            <div class="MovieList">
                 {this.state.movies.map(m => {
                     return this.state.showingMovieId === m._id ? (
                         <MovieDetailBox 

@@ -1,0 +1,43 @@
+.MovieDetailBox {
+    grid-row: 1;
+    grid-column: 1 / -1;
+
+    padding: 3rem;
+    background-color: #fff;
+
+    position: relative;
+}
+
+.btn-box {
+    display: flex;
+    justify-content: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 4rem;
+    height: 4rem;
+    color: var(--color-grey-dark-2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.close-btn:hover {
+    color: var(--color-grey-dark-1);
+}
+
+.MovieDetailBox button {
+    width: 10rem;
+    border-radius: 3rem;
+}
+
+.MovieDetailBox button:not(:last-child) {
+    margin-right: 2rem;
+}

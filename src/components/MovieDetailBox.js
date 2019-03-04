@@ -3,6 +3,7 @@ import MovieDetail from './MovieDetail'
 import { deleteRequest } from '../utils/request'
 import config from '../config/index'
 import MovieForm from './MovieForm';
+import './MovieDetailBox.css'
 const { api } = config
 
 class MovieDetailBox extends Component {
@@ -24,20 +25,23 @@ class MovieDetailBox extends Component {
     }
     render() {
        return  this.state.needsMovieForm ? (
-            <div>
+            <div className="MovieDetailBox">
                 <MovieForm 
                     movieId={this.props.movieId} 
                     handleAfterSubmit={this.handleToggleFormClick}
                     updateMovie={this.props.updateMovie}
+                    handleToggleFormClick={this.handleToggleFormClick}
                 />
-                <button onClick={this.handleToggleFormClick}>Back</button>
+                <span id="MovieDetailcloseBtn" class="close-btn" onClick={this.props.handleShowDetail}>x</span>
             </div>
         ) : (
-            <div>
+            <div className="MovieDetailBox">
                 <MovieDetail movieId={this.props.movieId} />
-                <button onClick={this.handleToggleFormClick}>EDIT</button>
-                <button onClick={this.handleDeleteMovie}>DELETE</button>
-                <button id="MovieDetailcloseBtn" onClick={this.props.handleShowDetail}>close</button>
+                <div className="btn-box">
+                    <button onClick={this.handleToggleFormClick}>EDIT</button>
+                    <button onClick={this.handleDeleteMovie}>DELETE</button>
+                </div>
+                <span id="MovieDetailcloseBtn" class="close-btn" onClick={this.props.handleShowDetail}>x</span>
             </div>
         )
     }

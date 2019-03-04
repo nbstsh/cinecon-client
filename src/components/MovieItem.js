@@ -1,10 +1,11 @@
 import React from 'react'
+import './MovieItem.css'
 
 
 const MovieItem = ({_id, title, releaseYear, genre, handleShowDetail}) => {
     return (
-        <div>
-            <ul>
+        <div className="MovieItem">
+            <ul className="">
                 <li>title: {title}</li>
                 <li>releaseYear: {releaseYear}</li>
                 <li>genre: {genre}</li>
