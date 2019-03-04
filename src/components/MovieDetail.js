@@ -27,7 +27,7 @@ class MovieDetail extends Component {
         const {title, director, releaseYear, genre, runningTime, starring, country} = this.state.movie
         
         return (
-            <div class="MovieDetail">
+            <div className="MovieDetail">
                 <h1>{title}</h1>
                 <ul>
                     <li>director: {director}</li>

@@ -44,7 +44,9 @@
     transform: translateY(-4rem);
 }
 
-.MovieForm-btn-box button{
+.MovieForm-btn-box .btn{
+    text-align: center;
+    display: inline-block;
     margin: 0 1rem;
     width: 10rem;
     border-radius: 3rem;

@@ -21,17 +21,24 @@ class MovieDetailBox extends Component {
             document.querySelector('#MovieDetailcloseBtn').click()
         }
     }
-    handleToggleFormClick = (event) => {
+    toggleNeedsMovieForm = () => {
         this.setState({ needsMovieForm: !this.state.needsMovieForm })
     }
     render() {
-       return  this.state.needsMovieForm ? (
+        const handleAfterSubmit = function(movie){
+            this.toggleNeedsMovieForm()
+            this.updateMovie(movie)
+        }
+
+        return  this.state.needsMovieForm ? (
             <div className="MovieDetailBox">
                 <MovieForm 
                     movieId={this.props.movieId} 
-                    handleAfterSubmit={this.handleToggleFormClick}
-                    updateMovie={this.props.updateMovie}
-                    handleToggleFormClick={this.handleToggleFormClick}
+                    handleAfterSubmit={((movie) => {
+                        this.toggleNeedsMovieForm()
+                        this.props.updateMovie(movie)
+                    })}
+                    handleCancelClick={this.toggleNeedsMovieForm}
                 />
                 <CloseBtn handleClick={this.props.handleShowDetail} />
             </div>
@@ -39,7 +46,7 @@ class MovieDetailBox extends Component {
             <div className="MovieDetailBox">
                 <MovieDetail movieId={this.props.movieId} />
                 <div className="btn-box">
-                    <button onClick={this.handleToggleFormClick}>EDIT</button>
+                    <button onClick={this.toggleNeedsMovieForm}>EDIT</button>
                     <button onClick={this.handleDeleteMovie}>DELETE</button>
                 </div>
                 <CloseBtn handleClick={this.props.handleShowDetail} />

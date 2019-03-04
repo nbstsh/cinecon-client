@@ -56,10 +56,12 @@ class MovieForm extends Component {
 
         movie = await res.json()
         this.setState({ errorMessage: '' })
-        this.setState({ movie })
+        this.setState(({ movie }) => {
+            for(let key in movie)
+                movie[key] = ''
+        })
 
-        this.props.handleAfterSubmit(event)
-        this.props.updateMovie && this.props.updateMovie(movie)
+        this.props.handleAfterSubmit(movie)
     }
 
     handleChange = (e) => {
@@ -71,7 +73,7 @@ class MovieForm extends Component {
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country } = this.state.movie
         return (
-            <div class="MovieForm">
+            <div className="MovieForm">
                 <h2>Movie Form</h2>
                 <ErrorMessage message={this.state.errorMessage} />
                 <form id="moiveForm" onSubmit={this.handleSubmit}>
@@ -97,9 +99,9 @@ class MovieForm extends Component {
                     <input type="text" name="country" value={country} onChange={this.handleChange} placeholder="country"/> 
                     <label>country</label>
 
-                    <div class="MovieForm-btn-box">
-                        <button onClick={this.props.handleToggleFormClick} class="cancel">Cancel</button>
-                        <button class="submit">Submit</button>
+                    <div className="MovieForm-btn-box">
+                        <span onClick={this.props.handleCancelClick} className="cancel btn">Cancel</span>
+                        <input type="submit" className="submit btn" value="submit" />
                     </div>
                 </form>
             </div>

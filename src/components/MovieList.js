@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MovieItem from './MovieItem'
 import MovieDetailBox from './MovieDetailBox'
+import MovieFormModal from './MovieFormModal'
 import config from '../config/index'
 import './MovieList.css'
 const { api } = config
@@ -29,10 +30,13 @@ class MovieList extends Component {
         this.state.movies.splice(index, 1)
     }
     updateMovie = (update) => {
-        let movie = this.state.movies.find(m => m._id === update._id)
-        if (!movie) return
-
-        movie = update
+        this.setState(({movies}) => {
+            let index = movies.findIndex(m => m._id === update._id)
+            if (index > -1) movies[index] = update
+        })
+    }
+    pushMovie = (movie) => {
+        this.setState(({ movies }) => movies.push(movie))
     }
     render() {
         return (
@@ -57,6 +61,7 @@ class MovieList extends Component {
                         />
                     )
                 })}
+                <MovieFormModal pushMovie={this.pushMovie}/>
             </div>
         )
     }
