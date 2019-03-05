@@ -6,15 +6,28 @@
     justify-self: end;
 }
 
-.MovieFormModal button {
-    height: 10rem;
-    width: 10rem;
-    margin: 3rem;
-    border-radius: 10rem;
-    background-color: var(--color-grey-light-2);
-    color: var(--color-grey-dark-1);
-    border: 1px solid var(--color-grey-light-4);
+.MovieFormModal .CreateBtn {
+    max-width: 7rem;
+    max-height: 7rem;
+    width: 10vw;
+    height: 10vw;
+    color: var(--color-grey-light-1);
+    background-color: var(--color-grey-dark-2);
+    border-radius: 50%;
+    padding: 2vw;
+    transition: all .3s;
 }
+
+.MovieFormModal .CreateBtn:hover {
+    transform: translateY(-10%);
+    box-shadow: 0 1rem 1rem #00000f1f;
+}
+
+.MovieFormModal .CreateBtn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
 
 
 

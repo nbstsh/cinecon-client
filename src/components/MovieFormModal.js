@@ -2,6 +2,7 @@ import React from 'react'
 import Modal from './common/Modal'
 import './MovieFormModal.css'
 import MovieForm from './MovieForm'
+import CreateBtn from './common/CreateBtn'
 
 class MovieFormModal extends Modal {
     constructor(props) {
@@ -10,7 +11,7 @@ class MovieFormModal extends Modal {
     render() {
         return (
             <div className="MovieFormModal">
-                <button onClick={this.openModal}>create new movie</button>
+                <CreateBtn handleClick={this.openModal} />
                 {this.generateModalBoilerplate(
                     <MovieForm 
                         handleCancelClick={this.closeModal}
