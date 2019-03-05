@@ -3,9 +3,5 @@
     grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
     grid-gap: 3rem;
 
-    max-width: 120rem;
-    margin: 3rem auto;
-    padding: 3rem;
-    
-    background-color: var(--color-grey-light-1);
+    padding: 5rem 3rem;
 }

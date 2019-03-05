@@ -1,23 +1,35 @@
 .MovieItem {
     padding: 2rem;
     background-color: #fff;
-    transition: all .2s;
-    animation: MovieItemShow 1s;
+    color: var(--color-grey-dark-1);
+
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-column-gap: 1rem;
 }
 
-/* .MovieItem:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--box-shadow-1);
-} */
+.MovieItem h3 {
+    grid-column: 1 / -1;
 
-.MovieItem ul {
-    list-style: none;
-    padding-bottom: 2rem;
+    margin-bottom: .7rem;
+    font-weight: normal;
+}
+
+.MovieItem label {
+    /* padding-left: 1rem; */
+    color: var(--color-grey-dark-2);
+}
+
+.MovieItem p {
+    color: var(--color-grey-dark-2);
 }
 
 .MovieItem button {
-    width: 100%;
+    grid-column: 1 / -1;
+
+    margin-top: 1rem;
 }
+
 
 @keyframes MovieItemShow {
     0% {

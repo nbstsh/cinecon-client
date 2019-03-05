@@ -1,0 +1,7 @@
+.container {
+    max-width: 120rem;
+    min-height: 100vh;
+    margin: 0 auto;
+
+    background-color: var(--color-grey-light-1);
+} 
