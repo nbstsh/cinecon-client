@@ -1,0 +1,6 @@
+.SearchField {
+    grid-column: 1 / -1;
+
+    background-color: var(--color-grey-light-3);
+    padding: 1.5rem;
+}

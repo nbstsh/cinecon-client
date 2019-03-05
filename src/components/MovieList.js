@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MovieItem from './MovieItem'
 import MovieDetailBox from './MovieDetailBox'
 import MovieFormModal from './MovieFormModal'
+import SearchField from './SearchField'
 import config from '../config/index'
 import './MovieList.css'
 const { api } = config
@@ -41,6 +42,7 @@ class MovieList extends Component {
     render() {
         return (
             <div className="MovieList">
+                <SearchField />
                 {this.state.movies.map(m => {
                     return this.state.showingMovieId === m._id ? (
                         <MovieDetailBox 
