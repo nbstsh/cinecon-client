@@ -21,6 +21,14 @@ class SearchField extends Component {
         this.setState((state) => state[name] = value)
     }
 
+    handleNumberChange = (e) => {
+        const name = e.target.name
+        let num = Number(e.target.value)
+        num = num > 0 ? num : ''
+
+        this.setState((state) => state[name] = num)
+    }
+
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country } = this.state
         return (
@@ -31,13 +39,13 @@ class SearchField extends Component {
                 <input type="text" name="director" value={director} onChange={this.handleChange} placeholder="director"/>
                 <label>director</label>
 
-                <input type="number" name="releaseYear" value={releaseYear} onChange={this.handleChange} placeholder="releaseYear"/> 
+                <input type="number" name="releaseYear" value={releaseYear} onChange={this.handleNumberChange} placeholder="releaseYear"/> 
                 <label>releaseYear</label>
 
                 <input type="text" name="genre" value={genre} onChange={this.handleChange} placeholder="genre"/> 
                 <label>genre</label>
 
-                <input type="number" name="runningTime" value={runningTime} onChange={this.handleChange} placeholder="runningTime"/> 
+                <input type="number" name="runningTime" value={runningTime} onChange={this.handleNumberChange} placeholder="runningTime"/> 
                 <label>runningTime</label>
 
                 <input type="text" name="starring" value={starring} onChange={this.handleChange} placeholder="starring"/> 

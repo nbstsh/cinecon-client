@@ -12,6 +12,15 @@ class MovieList extends Component {
         super(props)
         this.state = {
             movies: [],
+            filter: { // always lowercase
+                title: '',
+                director: '', 
+                releaseYear: '', // '' or number
+                genre: '',
+                runningTime: '', 
+                starring: '', 
+                country: ''
+            },
             showingMovieId: null
         }
     }
@@ -39,11 +48,31 @@ class MovieList extends Component {
     pushMovie = (movie) => {
         this.setState(({ movies }) => movies.push(movie))
     }
+    filterMovies = () => {
+        const { movies, filter } = this.state
+
+        return movies.filter(m => {
+            const judgeValue = (key) => {
+                if (typeof m[key] === 'number') {
+                    return m[key] === filter[key] || filter[key] === ''
+                }
+                if (typeof m[key] === 'string') {
+                    return m[key].toLowerCase().includes(filter[key])
+                }
+                return false
+            }
+
+            const results = Object.keys(filter).map(judgeValue)
+            if (results.every(r => r)) return true
+            return false
+        })
+    }
     render() {
+        const movies = this.filterMovies()
         return (
             <div className="MovieList">
                 <SearchField />
-                {this.state.movies.map(m => {
+                {movies.map(m => {
                     return this.state.showingMovieId === m._id ? (
                         <MovieDetailBox 
                             key={m._id}
