@@ -68,6 +68,9 @@ class MovieList extends Component {
         })
     }
     updateFilter = ({ key, value }) => {
+        if (typeof value === 'string') {
+            value = value.toLowerCase()
+        }
         this.setState(({ filter }) => filter[key] = value)
     }
     render() {

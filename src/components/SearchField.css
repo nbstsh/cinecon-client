@@ -39,6 +39,7 @@
 }
 
 .SearchField input:placeholder-shown + label {
+    visibility: hidden;
     opacity: 0;
     transform: translateY(1rem);
 }
