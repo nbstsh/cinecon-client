@@ -38,26 +38,35 @@ class SearchField extends Component {
 
         return (
             <div className="SearchField">
-                <input type="text" name="title" value={title} onChange={this.handleChange} placeholder="title"/>
-                <label>title</label>
-
-                <input type="text" name="director" value={director} onChange={this.handleChange} placeholder="director"/>
-                <label>director</label>
-
-                <input type="number" name="releaseYear" value={releaseYear} onChange={this.handleNumberChange} placeholder="releaseYear"/> 
-                <label>releaseYear</label>
-
-                <input type="text" name="genre" value={genre} onChange={this.handleChange} placeholder="genre"/> 
-                <label>genre</label>
-
-                <input type="number" name="runningTime" value={runningTime} onChange={this.handleNumberChange} placeholder="runningTime"/> 
-                <label>runningTime</label>
-
-                <input type="text" name="starring" value={starring} onChange={this.handleChange} placeholder="starring"/> 
-                <label>starring</label>
-
-                <input type="text" name="country" value={country} onChange={this.handleChange} placeholder="country"/> 
-                <label>country</label>
+                
+                <div>
+                    <input type="text" name="title" value={title} onChange={this.handleChange} placeholder="title"/>
+                    <label>title</label>
+                </div>
+                <div>
+                    <input type="text" name="director" value={director} onChange={this.handleChange} placeholder="director"/>
+                    <label>director</label>
+                </div>
+                <div>
+                    <input type="number" name="releaseYear" value={releaseYear} onChange={this.handleNumberChange} placeholder="releaseYear"/> 
+                    <label>releaseYear</label>
+                </div>
+                <div>
+                    <input type="text" name="genre" value={genre} onChange={this.handleChange} placeholder="genre"/> 
+                    <label>genre</label>
+                </div>
+                <div>
+                    <input type="number" name="runningTime" value={runningTime} onChange={this.handleNumberChange} placeholder="runningTime"/> 
+                    <label>runningTime</label>
+                </div>
+                <div>
+                    <input type="text" name="starring" value={starring} onChange={this.handleChange} placeholder="starring"/> 
+                    <label>starring</label>
+                </div>
+                <div>
+                    <input type="text" name="country" value={country} onChange={this.handleChange} placeholder="country"/> 
+                    <label>country</label>
+                </div>
             </div>
         )
     }
