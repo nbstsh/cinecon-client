@@ -67,11 +67,14 @@ class MovieList extends Component {
             return false
         })
     }
+    updateFilter = ({ key, value }) => {
+        this.setState(({ filter }) => filter[key] = value)
+    }
     render() {
         const movies = this.filterMovies()
         return (
             <div className="MovieList">
-                <SearchField />
+                <SearchField updateFilter={this.updateFilter}/>
                 {movies.map(m => {
                     return this.state.showingMovieId === m._id ? (
                         <MovieDetailBox 

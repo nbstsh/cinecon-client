@@ -16,21 +16,26 @@ class SearchField extends Component {
     }
 
     handleChange = (e) => {
-        const name = e.target.name
+        const key = e.target.name
         const value = e.target.value
-        this.setState((state) => state[name] = value)
+        this.setState((state) => state[key] = value)
+
+        this.props.updateFilter({ key, value })
     }
 
     handleNumberChange = (e) => {
-        const name = e.target.name
-        let num = Number(e.target.value)
-        num = num > 0 ? num : ''
+        const key = e.target.name
+        const num = Number(e.target.value)
+        const value  = num > 0 ? num : ''
 
-        this.setState((state) => state[name] = num)
+        this.setState((state) => state[key] = value)
+
+        this.props.updateFilter({ key, value })
     }
 
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country } = this.state
+
         return (
             <div className="SearchField">
                 <input type="text" name="title" value={title} onChange={this.handleChange} placeholder="title"/>
