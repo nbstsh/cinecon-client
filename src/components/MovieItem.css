@@ -1,0 +1,34 @@
+.MovieItem {
+    padding: 2rem;
+    background-color: #fff;
+    transition: all .2s;
+    animation: MovieItemShow 1s;
+}
+
+/* .MovieItem:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-1);
+} */
+
+.MovieItem ul {
+    list-style: none;
+    padding-bottom: 2rem;
+}
+
+.MovieItem button {
+    width: 100%;
+}
+
+@keyframes MovieItemShow {
+    0% {
+        opacity: 0;
+        transform: translateY(10%);
+    }
+    70% {
+        transform: translateY(-1%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}

@@ -1,0 +1,22 @@
+.MovieDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 2rem;
+}
+
+.MovieDetail h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.MovieDetail ul {
+    list-style: none;
+    font-size: 1.8rem;
+}
+
+.MovieDetail li {
+    margin-bottom: 1rem;
+}
+

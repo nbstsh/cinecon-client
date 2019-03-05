@@ -1,0 +1,67 @@
+.MovieForm {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    animation: MovieFormShow 1s;
+}
+
+.MovieForm h2 {
+    display: block;
+    padding: 2rem 0;
+} 
+
+.MovieForm form { 
+    max-width: 50rem;
+    width: 100%;
+    flex: 0 0 50rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.MovieForm input {
+    width: 100%;
+}
+
+.MovieForm label {
+    align-self: flex-start;
+    transform: translateY(-5.6rem);
+    margin-left: 1rem;
+    font-size: 1.6rem;
+    background-color: #fff;
+    color: var(--color-grey-dark-2);
+    padding-left: 0.2rem;
+    padding-right: .5rem;
+    opacity: 1;
+    transition: all .2s;
+}
+
+.MovieForm input:placeholder-shown + label {
+    opacity: 0;
+    transform: translateY(-4rem);
+}
+
+.MovieForm-btn-box .btn{
+    text-align: center;
+    display: inline-block;
+    margin: 0 1rem;
+    width: 10rem;
+    border-radius: 3rem;
+}
+
+@keyframes MovieFormShow {
+    0% {
+        /* opacity: 0; */
+        transform: translateX(10%);
+    }
+    30% {
+        transform: translateX(-3%);
+    }
+    100% {
+        /* opacity: 1; */
+        transform: translateX(0);
+    }
+}

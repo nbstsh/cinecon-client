@@ -1,0 +1,20 @@
+.MovieFormModal {
+    grid-column: 1 / -1;
+    position:sticky;
+    bottom: 0;
+    right: 0;
+    justify-self: end;
+}
+
+.MovieFormModal button {
+    height: 10rem;
+    width: 10rem;
+    margin: 3rem;
+    border-radius: 10rem;
+    background-color: var(--color-grey-light-2);
+    color: var(--color-grey-dark-1);
+    border: 1px solid var(--color-grey-light-4);
+}
+
+
+
