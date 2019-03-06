@@ -1,10 +1,10 @@
 import React from 'react'
-import Modal from './common/Modal'
+import ModalControll from './common/ModalControll'
 import './MovieFormModal.css'
 import MovieForm from './MovieForm'
 import CreateBtn from './common/CreateBtn'
 
-class MovieFormModal extends Modal {
+class MovieFormModal extends ModalControll {
     constructor(props) {
         super(props)
     }

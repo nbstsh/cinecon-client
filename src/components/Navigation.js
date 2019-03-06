@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import LoginControll from './common/LoginControll'
+import SigninControll from './common/SigninControll'
 import './Navigation.css'
 
 
@@ -11,13 +11,13 @@ class Navigation extends Component {
 
     render() {
         return (
-            <nav class="Navigation">
-                <div class="wrap">
-                    <div class="left">
-                        <h2>Cinekoya Bookshelf</h2>
+            <nav className="Navigation">
+                <div className="wrap">
+                    <div className="left">
+                        <h2>Cinecoya Bookshelf</h2>
                     </div>
-                    <div class="right">
-                        <LoginControll />
+                    <div className="right">
+                        <SigninControll />
                     </div>
                 </div>
             </nav>

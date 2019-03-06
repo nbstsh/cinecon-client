@@ -24,7 +24,7 @@
     align-self: stretch;
 }
 
-.Navigation .right > * {
+.Navigation .right button {
     height: 100%;
     padding: 1rem;
     display: flex;
@@ -33,10 +33,10 @@
     transition: all .2s;
 }
 
-.Navigation .right > *:hover {
+.Navigation .right button:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.Navigation .right > *:active {
+.Navigation .right button:active {
     background-color: var(--color-grey-dark-1);
 }
