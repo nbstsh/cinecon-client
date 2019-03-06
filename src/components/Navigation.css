@@ -1,0 +1,42 @@
+.Navigation {
+    width: 100%;
+    background-color: var(--color-grey-dark-1);
+    color: var(--color-grey-light-1);
+    font-size: 2rem;
+}
+
+.Navigation .wrap {
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Navigation h2 {
+    padding: 1.5rem 0;
+}
+
+.Navigation .right {
+    margin-right: 2vw;
+    align-self: stretch;
+}
+
+.Navigation .right > * {
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.Navigation .right > *:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.Navigation .right > *:active {
+    background-color: var(--color-grey-dark-1);
+}
