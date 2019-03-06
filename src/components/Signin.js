@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { postRequest } from '../modules/request'
 import ErrorMessage from './ErrorMessage'
 import './Signin.css'
-import config from '../config/index'
-const { api } = config
+import { fetchToken, saveToken } from '../modules/token'
+
 
 class Signin extends Component {
     constructor(props) {
@@ -15,28 +14,19 @@ class Signin extends Component {
     submit = async (e) => {
         e.preventDefault()
 
-        const token = await this.fetchToken({
+        const data = {
             email: e.target.email.value,
             password: e.target.password.value
-        })
-
-        if (!token) return 
-
-        localStorage.setItem('jwt', token)
-        this.setState({ errorMessage: '' })
-
-        this.props.handleAfterSingin()
-    }
-    async fetchToken(data) {
-        const res = await postRequest(api.auth, data)
-
-        if (!res.ok) {
-            const errorMessage = await res.text()
-            this.setState({ errorMessage})
-            return null
         }
-        
-        return res.text()   
+        const successHandler = (token) => {
+            saveToken(token)
+            this.setState({ errorMessage: '' })
+            this.props.handleAfterSingin()
+        }
+
+        fetchToken(data)
+            .then(successHandler)
+            .catch(err => this.setState({ errorMessage: err.message }))
     }
     render(){
         return (

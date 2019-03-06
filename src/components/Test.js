@@ -27,7 +27,9 @@ class Test extends Component {
         //     })
         //     .catch(err => console.log(err))
 
-        fetchUser().then(u => console.log(u))
+        fetchUser()
+            .then(u => console.log(u))
+            .catch(ex => console.error(ex))
     }
     
     render() {
