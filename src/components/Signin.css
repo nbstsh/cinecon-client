@@ -1,0 +1,31 @@
+.Signin {
+    color: var(--color-grey-dark-1);
+}
+.Signin h2 {
+    text-align: center;
+    padding: 0;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+}
+
+.Signin form {
+    display: grid;
+    grid-template-columns: max-content minmax(min-content, 40rem);
+    grid-gap: 1.5rem;
+
+    justify-content: center;
+    align-items: center;
+    padding: 0 3vw;
+}
+
+.Signin label {
+    font-size: 1.5rem;
+}
+
+.Signin button {
+    grid-column: 1 / -1;
+    justify-self: center;
+
+    width: 20rem;
+    margin-top: 1rem;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './Modal.css'
+import './ModalControll.css'
 
-class Modal extends Component {
+class ModalControll extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -14,33 +14,17 @@ class Modal extends Component {
     closeModal = () => {
         this.setState({ isModalOpen: false })
     }
-    generateModalWrap(content){
+    generateModalBoilerplate({ id, content }) {
+        const className = `modal-wrap ${this.state.isModalOpen ? '' : 'd-none'}`;
+
         return (
-            <div className="modal-wrap">
+            <div id={id} className={className}>
                 <div className="modal-bg" onClick={this.closeModal}></div>
                 <div className="modal">
                     <div className="modal-body">
                         {content}
                     </div>
                 </div>
-            </div>
-        )
-    }
-    generateModalHiddenTrigger() {
-        return (
-            <input 
-                type="checkbox" 
-                className="modal-trigger"  
-                checked={this.state.isModalOpen} 
-                onChange={this.openModal}
-            />
-        )
-    }
-    generateModalBoilerplate(content) {
-        return (
-            <div>
-                {this.generateModalHiddenTrigger()}
-                {this.generateModalWrap(content)}
             </div>
         )
     }
@@ -55,4 +39,4 @@ class Modal extends Component {
 }
 
 
-export default Modal
+export default ModalControll

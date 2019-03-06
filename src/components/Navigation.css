@@ -1,0 +1,42 @@
+.Navigation {
+    width: 100%;
+    background-color: var(--color-grey-dark-1);
+    color: var(--color-grey-light-1);
+    font-size: 2rem;
+}
+
+.Navigation .wrap {
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Navigation .title {
+    padding: 1.5rem 0;
+}
+
+.Navigation .right {
+    margin-right: 2vw;
+    align-self: stretch;
+}
+
+.nav-item {
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item:active {
+    background-color: var(--color-grey-dark-1);
+}

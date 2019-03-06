@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import { postRequest, putRequest } from '../utils/request'
 import ErrorMessage from './ErrorMessage'
-import config from '../config/development'
+import config from '../config/index'
 import './MovieForm.css'
 const { api } = config
 

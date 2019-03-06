@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import MovieForm from './MovieForm'
 import MovieDetailBox from './MovieDetailBox'
 import MovieFormModal from './MovieFormModal'
-import Modal from './common/Modal'
+import ModalControll from './common/ModalControll'
 import config from '../config/index'
 const { api } = config
 
@@ -33,7 +33,7 @@ class Test extends Component {
             // <MovieDetailBox movieId='5c79190020de9027d3d2f207'/>
             // <CloseBtn />
             // <MovieFormModal />
-            <Modal />
+            <ModalControll />
         )
     }
 }
