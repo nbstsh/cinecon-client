@@ -14,7 +14,7 @@ class Navigation extends Component {
             <nav className="Navigation">
                 <div className="wrap">
                     <div className="left">
-                        <h2>Cinecoya Bookshelf</h2>
+                        <h2 className="title">Cinecoya Bookshelf</h2>
                     </div>
                     <div className="right">
                         <SigninControll />

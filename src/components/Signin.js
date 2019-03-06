@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { postRequest } from '../utils/request'
 import ErrorMessage from './ErrorMessage'
+import './Signin.css'
 import config from '../config/index'
 const { api } = config
 
@@ -44,17 +45,14 @@ class Signin extends Component {
             <div>{this.state.errorMessage}</div> : null
 
         return (
-            <div>
+            <div className="Signin">
+                <h2>Signin Form</h2>
                 <ErrorMessage message={this.state.errorMessage} /> 
                 <form onSubmit={this.submit}>
-                    <label>
-                        email:
-                        <input name="email" type="text" />
-                    </label>
-                    <label>
-                        password: 
-                        <input name="password" type="password" />
-                    </label>
+                    <label>email</label>
+                    <input name="email" type="text" placeholder="email"/>
+                    <label>password</label>
+                    <input name="password" type="password" placeholder="password"/>
                     <button>submit</button>
                 </form>
             </div>
