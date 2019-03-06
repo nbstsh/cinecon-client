@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { postRequest } from '../utils/request'
+import { postRequest } from '../modules/request'
 import ErrorMessage from './ErrorMessage'
 import './Signin.css'
 import config from '../config/index'

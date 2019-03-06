@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import MovieDetail from './MovieDetail'
-import { deleteRequest } from '../utils/request'
+import { deleteRequest } from '../modules/request'
 import config from '../config/index'
 import MovieForm from './MovieForm';
 import CloseBtn from './common/CloseBtn'
