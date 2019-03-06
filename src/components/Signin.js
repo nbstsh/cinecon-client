@@ -9,7 +9,6 @@ class Signin extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isSignedin: false,
             errorMessage: ''
         }
     }
@@ -24,10 +23,9 @@ class Signin extends Component {
         if (!token) return 
 
         localStorage.setItem('jwt', token)
-        this.setState({ 
-            isSignedin: true,
-            errorMessage: ''
-        })
+        this.setState({ errorMessage: '' })
+
+        this.props.handleAfterSingin()
     }
     async fetchToken(data) {
         const res = await postRequest(api.auth, data)
@@ -41,9 +39,6 @@ class Signin extends Component {
         return res.text()   
     }
     render(){
-        const errorMessage = this.state.errorMessage ? 
-            <div>{this.state.errorMessage}</div> : null
-
         return (
             <div className="Signin">
                 <h2>Signin Form</h2>

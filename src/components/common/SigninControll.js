@@ -10,11 +10,20 @@ class SigninControll extends ModalControll {
             isSignedIn: false
         }
     }
+    componentDidMount() {
+        const token = localStorage.getItem('jwt')
+        this.setState({ isSignedIn: token !== null })
+    }
     handleSigninClick = () => {
         this.openModal()
     }
     handleSignoutClick = () => {
-        alert('Signout')
+        localStorage.removeItem('jwt')
+        this.setState({ isSignedIn: false })
+    }
+    handleAfterSingin = () => {
+        this.closeModal()
+        this.setState({ isSignedIn: true })
     }
     render() {
         const isSignedIn = this.state.isSignedIn
@@ -26,7 +35,7 @@ class SigninControll extends ModalControll {
 
         const modal =  this.generateModalBoilerplate({
             id: 'signin-form-modal',
-            content: <Signin />
+            content: <Signin handleAfterSingin={this.handleAfterSingin}/>
         })
 
         return (
