@@ -1,8 +1,9 @@
 import { getRequest } from './request'
+import { saveToken, clearToken } from './token'
 import config from '../config/index'
 
 
-let user
+let user = null
 
 const fetchUser = async () => {
     const res = await getRequest(config.api.user, true)
@@ -17,8 +18,28 @@ const fetchUser = async () => {
 
 const getUser = () => user
 
+const signinUser = (token) => {
+    saveToken(token)
+    fetchUser()
+        .then(u => user = u)
+        .catch((err) => {
+            console.error(err)
+            user = null})
+}
+
+const signoutUser = () => {
+    clearToken()
+    user = null
+}
+
+//TODO: 
+// token が存在するがuser はfetchされていないときに falseになる
+const isSignedIn = () => user !== null
+
+const isAdminUser = () => user && user.isAdmin 
 
 fetchUser().catch(() => user = null)
 
-export { fetchUser, getUser }
+
+export { fetchUser, getUser, signinUser, signoutUser, isSignedIn, isAdminUser }
 

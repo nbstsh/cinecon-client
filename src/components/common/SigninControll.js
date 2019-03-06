@@ -2,8 +2,7 @@ import React from 'react'
 import ModalControll from './ModalControll'
 import './SigninControll.css'
 import Signin from '../Signin'
-import { clearToken } from '../../modules/token'
-import { getUser } from '../../modules/user'
+import { fetchUser, signoutUser, isSignedIn } from '../../modules/user'
 
 
 class SigninControll extends ModalControll {
@@ -14,14 +13,15 @@ class SigninControll extends ModalControll {
         }
     }
     componentDidMount() {
-        const user = getUser()
-        this.setState({ isSignedIn: user !== null })
+        // make sure that user info has been fetched
+        fetchUser()
+            .then(() => this.setState({ isSignedIn: isSignedIn() }))
     }
     handleSigninClick = () => {
         this.openModal()
     }
     handleSignoutClick = () => {
-        clearToken()
+        signoutUser()
         this.setState({ isSignedIn: false })
     }
     handleAfterSingin = () => {
