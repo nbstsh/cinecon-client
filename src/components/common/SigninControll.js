@@ -2,6 +2,8 @@ import React from 'react'
 import ModalControll from './ModalControll'
 import './SigninControll.css'
 import Signin from '../Signin'
+import { clearToken } from '../../modules/token'
+import { getUser } from '../../modules/user'
 
 
 class SigninControll extends ModalControll {
@@ -12,14 +14,14 @@ class SigninControll extends ModalControll {
         }
     }
     componentDidMount() {
-        const token = localStorage.getItem('jwt')
-        this.setState({ isSignedIn: token !== null })
+        const user = getUser()
+        this.setState({ isSignedIn: user !== null })
     }
     handleSigninClick = () => {
         this.openModal()
     }
     handleSignoutClick = () => {
-        localStorage.removeItem('jwt')
+        clearToken()
         this.setState({ isSignedIn: false })
     }
     handleAfterSingin = () => {
@@ -28,8 +30,10 @@ class SigninControll extends ModalControll {
     }
     render() {
         const isSignedIn = this.state.isSignedIn
+        const onClickHandler = isSignedIn ? this.handleSignoutClick : this.handleSigninClick
+        
         const button = (
-            <button className="nav-item" onClick={isSignedIn ? this.handleSignoutClick : this.handleSigninClick}>
+            <button className="nav-item" onClick={onClickHandler}>
                 {isSignedIn ? 'Signout' : 'Signin'}
             </button>
         )

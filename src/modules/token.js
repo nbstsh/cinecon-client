@@ -17,6 +17,10 @@ const saveToken = (token) => {
     localStorage.setItem(TOKEN_KEY, token)
 }
 
+const clearToken = () => {
+    localStorage.removeItem(TOKEN_KEY)
+}
+
 /**
  * data = { email, password }
  */
@@ -33,4 +37,4 @@ const fetchToken = async (data) => {
 
 loadToken()
 
-export { getToken, setToken, saveToken, fetchToken }
+export { getToken, setToken, saveToken, fetchToken, clearToken }
