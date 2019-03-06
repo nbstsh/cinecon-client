@@ -21,7 +21,10 @@ class SigninControll extends ModalControll {
             <SignoutButton onClick={this.openModal} /> :
             <SigninButton onClick={this.handleSigninClick}/>
 
-        const modal =  this.generateModalBoilerplate(<Signin />)
+        const modal =  this.generateModalBoilerplate({
+            id: 'signin-form-modal',
+            content: <Signin />
+        })
 
         return (
             <div style={{ height: '100%'}}> 

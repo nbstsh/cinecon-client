@@ -1,23 +1,17 @@
 
-.modal-trigger {
-    visibility: hidden;
-}
-
 .modal-wrap {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
 
-    animation: fadeIn .2s;
-}
-
-.modal-trigger:checked + .modal-wrap {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     min-height: 100vh;
+
+    animation: fadeIn .2s;
 }
 
 .modal-bg {

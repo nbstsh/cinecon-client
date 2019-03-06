@@ -9,40 +9,22 @@ class ModalControll extends Component {
         }
     }
     openModal = () => {
-        document.querySelector('.modal-trigger').setAttribute('checked', true);
         this.setState({ isModalOpen: true })
     }
     closeModal = () => {
-        document.querySelector('.modal-trigger').setAttribute('checked', false);
         this.setState({ isModalOpen: false })
     }
-    generateModalWrap(content){
+    generateModalBoilerplate({ id, content }) {
+        const className = `modal-wrap ${this.state.isModalOpen ? '' : 'd-none'}`;
+
         return (
-            <div className="modal-wrap">
+            <div id={id} className={className}>
                 <div className="modal-bg" onClick={this.closeModal}></div>
                 <div className="modal">
                     <div className="modal-body">
                         {content}
                     </div>
                 </div>
-            </div>
-        )
-    }
-    generateModalHiddenTrigger() {
-        return (
-            <input 
-                type="checkbox" 
-                className="modal-trigger hidden"  
-                onChange={this.openModal}
-            />
-        )
-    }
-    generateModalBoilerplate(content) {
-        const className = this.state.isModalOpen ? "" : "d-none";
-        return (
-            <div className={className}>
-                {this.generateModalHiddenTrigger()}
-                {this.generateModalWrap(content)}
             </div>
         )
     }

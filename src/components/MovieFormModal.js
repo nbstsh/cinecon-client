@@ -9,18 +9,21 @@ class MovieFormModal extends ModalControll {
         super(props)
     }
     render() {
-        return (
-            <div className="MovieFormModal">
-                <CreateBtn handleClick={this.openModal} />
-                {this.generateModalBoilerplate(
-                    <MovieForm 
+        const modal = this.generateModalBoilerplate({
+            id: 'movie-form-model',
+            content: <MovieForm 
                         handleCancelClick={this.closeModal}
                         handleAfterSubmit={(movie) => {
                             this.props.pushMovie(movie)
                             this.closeModal()
                         }}
                     />
-                )}
+        })
+
+        return (
+            <div className="MovieFormModal">
+                <CreateBtn handleClick={this.openModal} />
+                {modal}
             </div>
         )
     }
