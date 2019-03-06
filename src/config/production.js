@@ -1,4 +1,4 @@
-const API_ROOT = 'https://cinecon.herokuapp.com/'
+const API_ROOT = 'https://cinecon.herokuapp.com'
 
 
 const config = {
