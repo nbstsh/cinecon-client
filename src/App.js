@@ -19,7 +19,7 @@ class App extends Component {
           <MovieList />
           {/* <Signin /> */}
           {/* <MovieForm /> */}
-          {/* <Test /> */}
+          <Test />
           
         </div>
       </div>

@@ -40,7 +40,7 @@ class SigninControll extends ModalControll {
         })
 
         return (
-            <div class="SigninControll"> 
+            <div className="SigninControll"> 
                 {button}
                 {modal}
             </div>

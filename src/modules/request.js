@@ -1,4 +1,4 @@
-
+import { getToken } from './token'
 
 const init = {
     method: "GET",
@@ -9,7 +9,7 @@ const init = {
 }
 
 const initToken = () => {
-    const token = localStorage.getItem('jwt')
+    const token = getToken()
     if (!token) return 
 
     init.headers['x-auth-token'] = token
@@ -58,9 +58,5 @@ const deleteRequest = (url, needsToken = false) => {
 }
 
 
-module.exports = {
-    postRequest,
-    putRequest,
-    deleteRequest
-}
+export  { getRequest, postRequest, putRequest, deleteRequest }
 
