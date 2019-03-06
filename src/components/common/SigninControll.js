@@ -1,5 +1,6 @@
 import React from 'react'
 import ModalControll from './ModalControll'
+import './SigninControll.css'
 import Signin from '../Signin'
 
 
@@ -39,7 +40,7 @@ class SigninControll extends ModalControll {
         })
 
         return (
-            <div style={{ height: '100%'}}> 
+            <div class="SigninControll"> 
                 {button}
                 {modal}
             </div>

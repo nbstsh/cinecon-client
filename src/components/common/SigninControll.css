@@ -1,0 +1,8 @@
+.SigninControll {
+    height: 100%;
+}
+
+.SigninControll .modal {
+    max-width: 60rem;
+    min-width: 30rem;
+}

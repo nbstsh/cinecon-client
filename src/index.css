@@ -87,4 +87,5 @@ input {
   outline: none;
   padding: 1rem;
   font-size: 1.6rem;
+  border: 1px solid var(--color-grey-light-4);
 }
