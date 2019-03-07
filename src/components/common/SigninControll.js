@@ -2,7 +2,7 @@ import React from 'react'
 import ModalControll from './ModalControll'
 import './SigninControll.css'
 import Signin from '../Signin'
-import { fetchUser, signoutUser, isSignedIn } from '../../modules/user'
+import userManager from '../../modules/user-manager'
 
 
 class SigninControll extends ModalControll {
@@ -13,20 +13,22 @@ class SigninControll extends ModalControll {
         }
     }
     componentDidMount() {
-        // make sure that user info has been fetched
-        fetchUser()
-            .then(() => this.setState({ isSignedIn: isSignedIn() }))
+        userManager.on('userUpdated', () => {
+            this.setState({ isSignedIn: userManager.isSignedIn() })
+        })
+        
     }
     handleSigninClick = () => {
         this.openModal()
     }
     handleSignoutClick = () => {
-        signoutUser()
-        this.setState({ isSignedIn: false })
+        // signoutUser()
+        userManager.signoutUser()
+        // this.setState({ isSignedIn: false })
     }
     handleAfterSingin = () => {
         this.closeModal()
-        this.setState({ isSignedIn: true })
+        // this.setState({ isSignedIn: true })
     }
     render() {
         const isSignedIn = this.state.isSignedIn

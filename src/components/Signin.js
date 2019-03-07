@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ErrorMessage from './ErrorMessage'
 import './Signin.css'
 import { fetchToken } from '../modules/token'
-import { signinUser } from '../modules/user'
+import userManager from '../modules/user-manager'
 
 
 class Signin extends Component {
@@ -20,7 +20,8 @@ class Signin extends Component {
             password: e.target.password.value
         }
         const successHandler = (token) => {
-            signinUser(token)
+            // signinUser(token)
+            userManager.signinUser(token)
             this.setState({ errorMessage: '' })
             this.props.handleAfterSingin()
         }

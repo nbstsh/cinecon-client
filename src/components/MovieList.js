@@ -5,7 +5,7 @@ import MovieFormModal from './MovieFormModal'
 import SearchField from './SearchField'
 import config from '../config/index'
 import './MovieList.css'
-import { isAdminUser } from '../modules/user'
+import userManager from '../modules/user-manager'
 const { api } = config
 
 class MovieList extends Component {
@@ -22,7 +22,8 @@ class MovieList extends Component {
                 starring: '', 
                 country: ''
             },
-            showingMovieId: null
+            showingMovieId: null,
+            isAdminUser: false
         }
     }
     componentDidMount() {
@@ -30,6 +31,11 @@ class MovieList extends Component {
         fetch(api.movies)
             .then(response => response.json())
             .then(movies => this.setState({ movies }))
+
+        // render MovieFormModal if user is admin after having done fetching user info
+        userManager.on('userUpdated', () => {
+            this.setState({ isAdminUser: userManager.isAdminUser()})
+        })
     }
     handleShowDetail = (event) => {
         this.setState({ showingMovieId: event.target.dataset.id})
@@ -100,7 +106,7 @@ class MovieList extends Component {
                         />
                     )
                 })}
-                {isAdminUser() && <MovieFormModal pushMovie={this.pushMovie}/>}
+                {this.state.isAdminUser && <MovieFormModal pushMovie={this.pushMovie}/>}
             </div>
         )
     }

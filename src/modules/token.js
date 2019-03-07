@@ -13,11 +13,12 @@ const loadToken = () => {
     token = localStorage.getItem(TOKEN_KEY)
 }
 
-const saveToken = (token) => {
+const saveToken = () => {
     localStorage.setItem(TOKEN_KEY, token)
 }
 
 const clearToken = () => {
+    token = null
     localStorage.removeItem(TOKEN_KEY)
 }
 
