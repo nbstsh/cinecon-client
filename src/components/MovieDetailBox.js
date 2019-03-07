@@ -5,15 +5,22 @@ import config from '../config/index'
 import MovieForm from './MovieForm';
 import CloseBtn from './common/CloseBtn'
 import './MovieDetailBox.css'
-import { isAdminUser } from '../modules/user'
+import userManager from '../modules/user-manager'
 const { api } = config
 
 class MovieDetailBox extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            needsMovieForm: false
+            needsMovieForm: false,
+            isAdminUser: false
         }
+    }
+    componentDidMount() {
+        this.setState({ isAdminUser: userManager.isAdminUser() })
+        userManager.on('userUpdated', () => {
+            this.setState({ isAdminUser: userManager.isAdminUser() })
+        })
     }
     handleDeleteMovie = async (event) => {
         const res = await deleteRequest(`${api.movies}/${this.props.movieId}`, true)
@@ -46,7 +53,7 @@ class MovieDetailBox extends Component {
         ) : (
             <div className="MovieDetailBox">
                 <MovieDetail movieId={this.props.movieId} />
-                {isAdminUser() && (
+                {this.state.isAdminUser && (
                     <div className="btn-box">
                         <button onClick={this.toggleNeedsMovieForm}>EDIT</button>
                         <button onClick={this.handleDeleteMovie}>DELETE</button>

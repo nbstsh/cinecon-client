@@ -1,18 +1,14 @@
 import { getToken } from './token'
 
-const INIT_TEMPLATE = {
-    method: "GET",
-    mode: "cors",
-    cache: "no-cache", 
-    headers: { "Content-Type": "application/json" },
-    body: null
-}
 
 const presetInit = (method, data = null) => {
-    const init = { ...INIT_TEMPLATE }
-    init.method = method
-    init.body = data && JSON.stringify(data)
-    return init
+     return {
+        method,
+        mode: "cors",
+        cache: "no-cache", 
+        headers: { "Content-Type": "application/json" },
+        body: data && JSON.stringify(data)
+    }
 }
 
 const initToken = (init) => {
@@ -25,7 +21,7 @@ const initToken = (init) => {
 // GET request to given url with body embeded with given data.
 // if needsToken is true, x-auth-token is set with jwt in localStorage
 const getRequest = (url, needsToken = false) => {
-    const init = presetInit("GET", null)
+    const init = presetInit("GET")
     if (needsToken) initToken(init)
 
     return fetch(url, init)

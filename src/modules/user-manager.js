@@ -1,6 +1,6 @@
 import EventEmitter from 'events'
 import { getRequest } from './request'
-import { saveToken, clearToken } from './token'
+import { setToken, saveToken, clearToken } from './token'
 import config from '../config/index'
 
 
@@ -21,11 +21,12 @@ class UserManager extends EventEmitter {
         return this.user
     }
     setUser(u) {
-        this.emit('userUpdated', { user: u })
         this.user = u
+        this.emit('userUpdated', { user: u })
     }
     signinUser(token){
-        saveToken(token)
+        setToken(token)
+        saveToken()
         this.fetchUser()
             .then(u => this.setUser(u))
             .catch(() => this.setUser(null))
@@ -46,7 +47,7 @@ class UserManager extends EventEmitter {
 const userManager = new UserManager()
 userManager.fetchUser()
     .then(user => userManager.setUser(user))
-    .catch(() => userManager.setUser(null))
+    .catch((err) => userManager.setUser(null))
 
 
 export default userManager
