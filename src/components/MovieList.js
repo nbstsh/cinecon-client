@@ -5,6 +5,7 @@ import MovieFormModal from './MovieFormModal'
 import SearchField from './SearchField'
 import config from '../config/index'
 import './MovieList.css'
+import { isAdminUser } from '../modules/user'
 const { api } = config
 
 class MovieList extends Component {
@@ -25,6 +26,7 @@ class MovieList extends Component {
         }
     }
     componentDidMount() {
+        // TODO: replace with movie module
         fetch(api.movies)
             .then(response => response.json())
             .then(movies => this.setState({ movies }))
@@ -98,7 +100,7 @@ class MovieList extends Component {
                         />
                     )
                 })}
-                <MovieFormModal pushMovie={this.pushMovie}/>
+                {isAdminUser() && <MovieFormModal pushMovie={this.pushMovie}/>}
             </div>
         )
     }

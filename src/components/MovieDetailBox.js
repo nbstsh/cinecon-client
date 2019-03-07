@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import MovieDetail from './MovieDetail'
-import { deleteRequest } from '../utils/request'
+import { deleteRequest } from '../modules/request'
 import config from '../config/index'
 import MovieForm from './MovieForm';
 import CloseBtn from './common/CloseBtn'
 import './MovieDetailBox.css'
+import { isAdminUser } from '../modules/user'
 const { api } = config
 
 class MovieDetailBox extends Component {
@@ -45,10 +46,12 @@ class MovieDetailBox extends Component {
         ) : (
             <div className="MovieDetailBox">
                 <MovieDetail movieId={this.props.movieId} />
-                <div className="btn-box">
-                    <button onClick={this.toggleNeedsMovieForm}>EDIT</button>
-                    <button onClick={this.handleDeleteMovie}>DELETE</button>
-                </div>
+                {isAdminUser() && (
+                    <div className="btn-box">
+                        <button onClick={this.toggleNeedsMovieForm}>EDIT</button>
+                        <button onClick={this.handleDeleteMovie}>DELETE</button>
+                    </div>
+                )}
                 <CloseBtn handleClick={this.props.handleShowDetail} />
             </div>
         )

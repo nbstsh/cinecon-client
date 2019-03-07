@@ -7,7 +7,6 @@ import MovieForm from './components/MovieForm'
 import MovieDetailBox from './components/MovieDetailBox'
 import Navigation from './components/Navigation'
 
-
 import Test from './components/Test'
 
 class App extends Component {
