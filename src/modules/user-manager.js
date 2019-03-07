@@ -6,6 +6,7 @@ import config from '../config/index'
 
 class UserManager extends EventEmitter {
     constructor() {
+        super()
         this.user = null
     }
     async fetchUser() {
