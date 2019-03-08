@@ -22,6 +22,8 @@
 .Navigation .right {
     margin-right: 2vw;
     align-self: stretch;
+
+    display: flex;
 }
 
 .nav-item {

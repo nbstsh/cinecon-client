@@ -5,7 +5,7 @@ import MovieList from './components/MovieList'
 import Signin from './components/Signin'
 import MovieForm from './components/MovieForm'
 import MovieDetailBox from './components/MovieDetailBox'
-import Navigation from './components/Navigation'
+import Navigation from './components/navigation/Navigation'
 
 import Test from './components/Test'
 

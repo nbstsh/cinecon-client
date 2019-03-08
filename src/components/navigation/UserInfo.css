@@ -1,0 +1,8 @@
+.UserInfo {
+    display: flex;
+    align-items: center;
+
+    animation: fadeIn .2s;
+}
+
+

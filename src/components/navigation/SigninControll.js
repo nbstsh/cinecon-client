@@ -1,5 +1,5 @@
 import React from 'react'
-import ModalControll from './ModalControll'
+import ModalControll from '../common/ModalControll'
 import './SigninControll.css'
 import Signin from '../Signin'
 import userManager from '../../modules/user-manager'
