@@ -31,6 +31,9 @@
     border-radius: 3px;
     padding: 5rem 3rem;
     box-shadow: 2px 2px 10px 10px #00000014;
+    /* make the modal content scrollable  */
+    max-height: 100vh;
+    overflow-y: scroll;
 
     animation: scaleIn .2s;
 }
