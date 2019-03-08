@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import './SearchField.css'
+import TextInput from './common/TextInput'
+import NumberInput from './common/NumberInput'
+
 
 class SearchField extends Component {
     constructor(props) {
@@ -7,9 +10,17 @@ class SearchField extends Component {
         this.state = {
             title: '',
             director: '', 
-            releaseYear: '', 
+            // releaseYear: '', 
+            releaseYear: {
+                min: '',
+                max: ''
+            }, 
             genre: '',
-            runningTime: '', 
+            // runningTime: '', 
+            runningTime: {
+                min: '',
+                max: ''
+            },
             starring: '', 
             country: ''
         }
@@ -33,40 +44,111 @@ class SearchField extends Component {
         this.props.updateFilter({ key, value })
     }
 
+    handleRangeChange = (e) => {
+        const key = e.target.name
+        const num = Number(e.target.value)
+        const value  = num > 0 ? num : ''
+
+        const keys = key.split('.')
+        this.setState((state) => state[keys[0]][keys[1]] = value)
+
+        this.props.updateFilter({ key, value })
+    }
+
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country } = this.state
+
+
+        const temp = (
+            <div>
+                <input 
+                    type="number" 
+                    name="releaseYear.min" 
+                    value={releaseYear.min} 
+                    onChange={this.handleRangeChange} 
+                    placeholder="releaseYear min"/> 
+                <label>releaseYear min</label>
+            </div>
+        )
+
+        const generateTextInput = (name, value, onChange, placeholder,label) => (
+            <div>
+                <input 
+                    type="number" 
+                    name={name}
+                    value={value} 
+                    onChange={onChange} 
+                    placeholder={placeholder}
+                />
+                <label>{label}</label>
+            </div>
+        )
 
         return (
             <div className="SearchField">
                 
-                <div>
-                    <input type="text" name="title" value={title} onChange={this.handleChange} placeholder="title"/>
-                    <label>title</label>
-                </div>
-                <div>
-                    <input type="text" name="director" value={director} onChange={this.handleChange} placeholder="director"/>
-                    <label>director</label>
-                </div>
-                <div>
-                    <input type="number" name="releaseYear" value={releaseYear} onChange={this.handleNumberChange} placeholder="releaseYear"/> 
-                    <label>releaseYear</label>
-                </div>
-                <div>
-                    <input type="text" name="genre" value={genre} onChange={this.handleChange} placeholder="genre"/> 
-                    <label>genre</label>
-                </div>
-                <div>
-                    <input type="number" name="runningTime" value={runningTime} onChange={this.handleNumberChange} placeholder="runningTime"/> 
-                    <label>runningTime</label>
-                </div>
-                <div>
-                    <input type="text" name="starring" value={starring} onChange={this.handleChange} placeholder="starring"/> 
-                    <label>starring</label>
-                </div>
-                <div>
-                    <input type="text" name="country" value={country} onChange={this.handleChange} placeholder="country"/> 
-                    <label>country</label>
-                </div>
+                <TextInput 
+                    name="title" 
+                    value={title} 
+                    onChange={this.handleChange} 
+                    placeholder="title" 
+                />
+                <TextInput 
+                    name="director" 
+                    value={director} 
+                    onChange={this.handleChange} 
+                    placeholder="director" 
+                />
+
+                <NumberInput 
+                    name="releaseYear.min" 
+                    value={releaseYear.min} 
+                    onChange={this.handleRangeChange} 
+                    placeholder="releaseYear min" 
+                />
+
+                <NumberInput 
+                    name="releaseYear.max" 
+                    value={releaseYear.max} 
+                    onChange={this.handleRangeChange} 
+                    placeholder="releaseYear max" 
+                />
+
+                <TextInput 
+                    name="genre" 
+                    value={genre} 
+                    onChange={this.handleChange} 
+                    placeholder="genre" 
+                />
+
+
+                <NumberInput 
+                    name="runningTime.min" 
+                    value={runningTime.min} 
+                    onChange={this.handleRangeChange} 
+                    placeholder="runningTime min" 
+                />
+
+                <NumberInput 
+                    name="runningTime.max" 
+                    value={runningTime.max} 
+                    onChange={this.handleRangeChange} 
+                    placeholder="runningTime max" 
+                />
+
+                <TextInput 
+                    name="starring" 
+                    value={starring} 
+                    onChange={this.handleChange} 
+                    placeholder="starring" 
+                />
+
+                <TextInput 
+                    name="country" 
+                    value={country} 
+                    onChange={this.handleChange} 
+                    placeholder="country" 
+                />
             </div>
         )
     }

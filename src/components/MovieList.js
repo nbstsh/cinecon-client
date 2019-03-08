@@ -16,9 +16,9 @@ class MovieList extends Component {
             filter: { // always lowercase
                 title: '',
                 director: '', 
-                releaseYear: '', // '' or number
+                releaseYear: { min: '', max: '' },
                 genre: '',
-                runningTime: '', 
+                runningTime: { min: '' , max: '' },
                 starring: '', 
                 country: ''
             },
@@ -59,13 +59,15 @@ class MovieList extends Component {
     filterMovies = () => {
         const { movies, filter } = this.state
 
-        return movies.filter(m => {
+        return movies.filter(movie => {
             const judgeValue = (key) => {
-                if (typeof m[key] === 'number') {
-                    return m[key] === filter[key] || filter[key] === ''
+                // check whether or not target value is between min and max
+                if (['releaseYear', 'runningTime'].includes(key)){
+                    return isBetweenMinMax(movie[key], filter[key].min, filter[key].max)
                 }
-                if (typeof m[key] === 'string') {
-                    return m[key].toLowerCase().includes(filter[key])
+                // check whether or not target value contains filtering value
+                if (typeof movie[key] === 'string') {
+                    return movie[key].toLowerCase().includes(filter[key])
                 }
                 return false
             }
@@ -79,7 +81,15 @@ class MovieList extends Component {
         if (typeof value === 'string') {
             value = value.toLowerCase()
         }
-        this.setState(({ filter }) => filter[key] = value)
+
+        this.setState(({ filter }) => {
+            const res = key.split('.').reduce((a, c, index, array) => {
+                return (index === array.length - 1)
+                    ? { targetProp: a, targetKey: c } : a[c]
+            }, filter)
+
+            return res.targetProp[res.targetKey] = value
+        })
     }
     render() {
         const movies = this.filterMovies()
@@ -110,6 +120,15 @@ class MovieList extends Component {
             </div>
         )
     }
+}
+
+
+// helper function for filtering movie
+function isBetweenMinMax(value, min, max) {
+    if (!min && !max) return true
+    if (!min) return value <= max
+    if (!max) return value >= min
+    return value <= max && value >= min
 }
 
 export default MovieList 
