@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import SigninControll from './common/SigninControll'
+import SigninControll from './SigninControll'
 import './Navigation.css'
+import UserInfo from './UserInfo'
 
 
 class Navigation extends Component {    
@@ -17,6 +18,7 @@ class Navigation extends Component {
                         <h2 className="title">Cinecoya Bookshelf</h2>
                     </div>
                     <div className="right">
+                        <UserInfo />
                         <SigninControll />
                     </div>
                 </div>
