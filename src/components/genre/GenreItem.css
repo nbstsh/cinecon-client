@@ -10,6 +10,7 @@
     padding: 1rem;
 
     cursor: pointer;
+    animation: fadeIn 1s;
 }
 
 .GenreItem h2 {

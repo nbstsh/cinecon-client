@@ -83,12 +83,10 @@ class MovieList extends Component {
         }
 
         this.setState(({ filter }) => {
-            const res = key.split('.').reduce((a, c, index, array) => {
-                return (index === array.length - 1)
-                    ? { targetProp: a, targetKey: c } : a[c]
-            }, filter)
+            const keys = key.split('.')
+            const target = keys.splice(0, keys.length -1).reduce((a, c) => a[c], filter)
 
-            return res.targetProp[res.targetKey] = value
+            return target[keys[0]] = value
         })
     }
     render() {

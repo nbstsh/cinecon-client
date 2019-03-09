@@ -37,14 +37,17 @@ class GenreForm extends Component {
         const requestPromise = genre ? putGenre(genre._id, update) : postGenre(update)
 
         requestPromise
-            .then(res => handleResponse(res))
-            .then(() => handleAfterSubmit && handleAfterSubmit())
+            .then(res => { 
+                handleResponse(res)
+                handleAfterSubmit && handleAfterSubmit()
+                this.setState({ name: '', color: '#ffffff', errorMessage: '' })
+            })
+            // .then(res => handleResponse(res))
+            // .then(() => handleAfterSubmit && handleAfterSubmit())
             .catch(err => this.setState({ errorMessage: err.message }))
+
     }
     render() {
-        const hiddenBgStyle = {
-            
-        }
         return (
             <form className='GenreForm' onSubmit={this.handleSubmit}>
                 <ErrorMessage 

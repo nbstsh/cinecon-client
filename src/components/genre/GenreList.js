@@ -50,8 +50,7 @@ class GenreList extends Component {
                         removeGenre={this.removeGenre}
                     />
                 ))}
-                <GenreForm handleResponse={this.pushGenre}/>
-                <GenreForm genre={{ _id: '5c83871445049ab6b9d61e0a', name: 'drama', color: '#ffffff'}} handleResponse={this.updateGenre}/>
+                <GenreForm handleResponse={this.pushGenre} />
             </div>
         )
     }
