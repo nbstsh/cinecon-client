@@ -121,7 +121,6 @@ class SearchField extends Component {
                     placeholder="genre" 
                 />
 
-
                 <NumberInput 
                     name="runningTime.min" 
                     value={runningTime.min} 
