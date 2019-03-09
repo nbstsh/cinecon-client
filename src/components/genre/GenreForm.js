@@ -27,7 +27,7 @@ class GenreForm extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-        const { genre, successHandler } = this.props
+        const { genre, handleResponse, handleAfterSubmit } = this.props
 
         const update = {
             name: e.target.name.value,
@@ -37,10 +37,14 @@ class GenreForm extends Component {
         const requestPromise = genre ? putGenre(genre._id, update) : postGenre(update)
 
         requestPromise
-            .then(res => successHandler(res))
+            .then(res => handleResponse(res))
+            .then(() => handleAfterSubmit && handleAfterSubmit())
             .catch(err => this.setState({ errorMessage: err.message }))
     }
     render() {
+        const hiddenBgStyle = {
+            
+        }
         return (
             <form className='GenreForm' onSubmit={this.handleSubmit}>
                 <ErrorMessage 
@@ -59,7 +63,7 @@ class GenreForm extends Component {
                     onChange={this.handleChange}
                 />
 
-                <button>submit</button>
+                <button></button>
             </form>
         )
     }

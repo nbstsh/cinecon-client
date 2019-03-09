@@ -1,19 +1,33 @@
 .GenreItem {
     /* TEST */
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
 
-    padding: 2rem;
     display: flex;
-    justify-content: center;
     align-items: center;
+
+    width: 100%;
+    min-height: 6.5rem;
+    padding: 1rem;
+
+    cursor: pointer;
+}
+
+.GenreItem h2 {
+    flex: 0 0 60%;
+    font-size: 1.6rem;
+    text-align: center;
 }
 
 .color-panel {
+    margin-right: auto;
+
     display: block;
-    width: 10rem;
-    height: 3rem;
+    width: 7rem;
+    height: 4rem;
     border-radius: 3px;
-    border: 1px solid var(--color-grey-dark-1);
+
+    border: 1px solid var(--color-grey-light-1);
+    box-shadow: 0px 5px 5px #0000000f;
 }
 
 .GenreItem .DeleteBtn {

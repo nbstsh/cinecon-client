@@ -2,6 +2,7 @@ import React, { Component} from 'react'
 import './GenreList.css'
 import GenreItem from './GenreItem'
 import GenreForm from './GenreForm'
+import GenreItemBox from './GenreItemBox'
 import { fetchGenres } from '../../modules/genres'
 
 
@@ -42,14 +43,15 @@ class GenreList extends Component {
         return (
             <div className="GenreList">
                 {this.state.genres.map(genre => (
-                    <GenreItem 
+                    <GenreItemBox 
                         key={genre._id} 
                         genre={genre} 
+                        updateGenre={this.updateGenre}
                         removeGenre={this.removeGenre}
                     />
                 ))}
-                <GenreForm successHandler={this.pushGenre}/>
-                <GenreForm genre={{ _id: '5c83871445049ab6b9d61e0a', name: 'drama', color: '#ffffff'}} successHandler={this.updateGenre}/>
+                <GenreForm handleResponse={this.pushGenre}/>
+                <GenreForm genre={{ _id: '5c83871445049ab6b9d61e0a', name: 'drama', color: '#ffffff'}} handleResponse={this.updateGenre}/>
             </div>
         )
     }
