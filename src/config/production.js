@@ -6,7 +6,8 @@ const config = {
         root: API_ROOT,
         movies : `${API_ROOT}/api/movies`,
         auth:`${API_ROOT}/api/auth`,
-        user: `${API_ROOT}/api/users/me`
+        user: `${API_ROOT}/api/users/me`,
+        genres: `${API_ROOT}/api/genres`
     }
 }
 

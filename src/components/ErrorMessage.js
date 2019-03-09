@@ -7,7 +7,7 @@ const ErrorMessage = ({ message }) => {
         marginBottom: '2rem'
     }
 
-    return message ? <div style={style}>{message}</div> : null
+    return message ? <div className="ErrorMessage" style={style}>{message}</div> : null
 }
 
 export default ErrorMessage

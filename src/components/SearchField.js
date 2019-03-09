@@ -58,32 +58,6 @@ class SearchField extends Component {
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country } = this.state
 
-
-        const temp = (
-            <div>
-                <input 
-                    type="number" 
-                    name="releaseYear.min" 
-                    value={releaseYear.min} 
-                    onChange={this.handleRangeChange} 
-                    placeholder="releaseYear min"/> 
-                <label>releaseYear min</label>
-            </div>
-        )
-
-        const generateTextInput = (name, value, onChange, placeholder,label) => (
-            <div>
-                <input 
-                    type="number" 
-                    name={name}
-                    value={value} 
-                    onChange={onChange} 
-                    placeholder={placeholder}
-                />
-                <label>{label}</label>
-            </div>
-        )
-
         return (
             <div className="SearchField">
                 

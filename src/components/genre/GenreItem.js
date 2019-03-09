@@ -1,10 +1,13 @@
 import React from 'react'
 import './GenreItem.css'
 
-const GenreItem = (props) => {
+const GenreItem = ({ genre }) => {
+    console.log(genre)
+    const color = { backgroundColor: genre.color }
     return (
         <div className='GenreItem' >
-            Genre item
+            <h2>{genre.name}</h2>
+            <span className="color-panel" style={color}>{genre.color}</span>
         </div>
     )
 } 

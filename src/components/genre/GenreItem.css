@@ -1,2 +1,16 @@
 .GenreItem {
+    /* TEST */
+    border: 1px solid blue;
+
+    padding: 2rem;
+    display: flex;
+    
+}
+
+.color-panel {
+    display: block;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 3px;
+    border: 1px solid var(--color-grey-dark-1);
 }

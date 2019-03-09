@@ -1,0 +1,15 @@
+.GenreForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+    padding:  1rem 2rem;
+    box-shadow: 0 1rem 1rem #0000000f;
+
+}
+
+.GenreForm > .ErrorMessage {
+    flex: 0 0 100%;
+    margin-bottom: 1rem !important;
+}
