@@ -29,11 +29,25 @@ class GenreList extends Component {
             return state.genres[index] = genre
         })
     }
+    removeGenre = (id) => {
+        this.setState(state => {
+            const index = state.genres.findIndex(g => g._id === id)
+            if (index < 0) return 
+
+            return state.genres.splice(index, 1)
+        })
+    }
     render() {
         console.log('test', this.state.genres[0])
         return (
             <div className="GenreList">
-                {this.state.genres.map(genre => <GenreItem key={genre._id} genre={genre} />)}
+                {this.state.genres.map(genre => (
+                    <GenreItem 
+                        key={genre._id} 
+                        genre={genre} 
+                        removeGenre={this.removeGenre}
+                    />
+                ))}
                 <GenreForm successHandler={this.pushGenre}/>
                 <GenreForm genre={{ _id: '5c83871445049ab6b9d61e0a', name: 'drama', color: '#ffffff'}} successHandler={this.updateGenre}/>
             </div>

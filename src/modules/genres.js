@@ -30,5 +30,13 @@ const putGenre = async (id, data) => {
     return await res.json()
 }
 
+const deleteGenre = async (id) => {
+    const res = await deleteRequest(`${api.genres}/${id}`, true)
+    if (!res.ok) {
+        const err = await res.text()
+        throw new Error(err || 'Fail to delete genre.')
+    }
+    return await res.json()
+}
 
-export { fetchGenres, postGenre, putGenre }
+export { fetchGenres, postGenre, putGenre, deleteGenre }
