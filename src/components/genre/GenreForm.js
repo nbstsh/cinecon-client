@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TextInput from '../common/TextInput'
 import ErrorMessage from '../ErrorMessage'
 import './GenreForm.css'
-import { postGenre } from '../../modules/genres'
+import { postGenre, putGenre } from '../../modules/genres'
 
 
 class GenreForm extends Component {
@@ -14,6 +14,12 @@ class GenreForm extends Component {
             errorMessage: ''
         }
     }
+    componentDidMount() {
+        const { genre } = this.props
+        if (!genre) return 
+
+        this.setState({ name: genre.name, color: genre.color })
+    }
     handleChange = (e) => {
         const key = e.target.name
         const value = e.target.value
@@ -21,15 +27,18 @@ class GenreForm extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-        const data = {
+        const { genre, successHandler } = this.props
+
+        const update = {
             name: e.target.name.value,
             color: e.target.color.value
         }
-        postGenre(data) 
-            .then(genre => this.props.pushGenre(genre))
-            .catch(err => this.setState({ errorMessage: err.message }))
-
         
+        const requestPromise = genre ? putGenre(genre._id, update) : postGenre(update)
+
+        requestPromise
+            .then(res => successHandler(res))
+            .catch(err => this.setState({ errorMessage: err.message }))
     }
     render() {
         return (

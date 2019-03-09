@@ -21,5 +21,14 @@ const postGenre = async (data) => {
     return await res.json()
 }
 
+const putGenre = async (id, data) => {
+    const res = await putRequest(`${api.genres}/${id}`, data, true)
+    if (!res.ok) {
+        const err = await res.text()
+        throw new Error(err || 'Fail to update new Genre.')
+    }
+    return await res.json()
+}
 
-export { fetchGenres, postGenre }
+
+export { fetchGenres, postGenre, putGenre }
