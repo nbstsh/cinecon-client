@@ -4,6 +4,8 @@ import { postRequest, putRequest } from '../modules/request'
 import ErrorMessage from './ErrorMessage'
 import config from '../config/index'
 import './MovieForm.css'
+import TextInput from './common/TextInput'
+import NumberInput from './common/NumberInput'
 const { api } = config
 
 class MovieForm extends Component {
@@ -78,26 +80,53 @@ class MovieForm extends Component {
                 <ErrorMessage message={this.state.errorMessage} />
                 <form id="moiveForm" onSubmit={this.handleSubmit}>
 
-                    <input type="text" name="title" value={title} onChange={this.handleChange} placeholder="title"/>
-                    <label>title</label>
+                    <TextInput 
+                        name="title" 
+                        value={title} 
+                        onChange={this.handleChange} 
+                        placeholder="title" 
+                    />
+                    <TextInput 
+                        name="director" 
+                        value={director} 
+                        onChange={this.handleChange} 
+                        placeholder="director" 
+                    />
 
-                    <input type="text" name="director" value={director} onChange={this.handleChange} placeholder="director"/>
-                    <label>director</label>
+                    <NumberInput 
+                        name="releaseYear" 
+                        value={releaseYear} 
+                        onChange={this.handleChange} 
+                        placeholder="releaseYear" 
+                    />
 
-                    <input type="number" name="releaseYear" value={releaseYear} onChange={this.handleChange} placeholder="releaseYear"/> 
-                    <label>releaseYear</label>
+                    <TextInput 
+                        name="genre" 
+                        value={genre} 
+                        onChange={this.handleChange} 
+                        placeholder="genre" 
+                    />
 
-                    <input type="text" name="genre" value={genre} onChange={this.handleChange} placeholder="genre"/> 
-                    <label>genre</label>
+                    <NumberInput 
+                        name="runningTime" 
+                        value={runningTime} 
+                        onChange={this.handleChange} 
+                        placeholder="runningTime" 
+                    />
 
-                    <input type="number" name="runningTime" value={runningTime} onChange={this.handleChange} placeholder="runningTime"/> 
-                    <label>runningTime</label>
+                    <TextInput 
+                        name="starring" 
+                        value={starring} 
+                        onChange={this.handleChange} 
+                        placeholder="starring" 
+                    />
 
-                    <input type="text" name="starring" value={starring} onChange={this.handleChange} placeholder="starring"/> 
-                    <label>starring</label>
-
-                    <input type="text" name="country" value={country} onChange={this.handleChange} placeholder="country"/> 
-                    <label>country</label>
+                    <TextInput 
+                        name="country" 
+                        value={country} 
+                        onChange={this.handleChange} 
+                        placeholder="country" 
+                    />
 
                     <div className="MovieForm-btn-box">
                         <span onClick={this.props.handleCancelClick} className="cancel btn">Cancel</span>

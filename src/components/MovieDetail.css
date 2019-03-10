@@ -18,5 +18,18 @@
 
 .MovieDetail li {
     margin-bottom: 1rem;
+
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-column-gap: 1rem;
 }
 
+.MovieDetail > div {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-column-gap: 1rem;
+}
+
+.MovieDetail label {
+    justify-self: end;
+}

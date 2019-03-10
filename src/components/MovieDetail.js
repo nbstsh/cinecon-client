@@ -30,13 +30,27 @@ class MovieDetail extends Component {
             <div className="MovieDetail">
                 <h1>{title}</h1>
                 <ul>
-                    <li>director: {director}</li>
-                    <li>releaseYear: {releaseYear}</li>
-                    <li>genre: {genre}</li>
-                    <li>runningTime: {runningTime}</li>
-                    <li>starring: {starring}</li>
-                    <li>country: {country}</li> 
+                    <li><label>director:</label> {director}</li>
+                    <li><label>releaseYear: </label>{releaseYear}</li>
+                    <li><label>genre: </label>{genre}</li>
+                    <li><label>runningTime: </label>{runningTime}</li>
+                    <li><label>starring: </label>{starring}</li>
+                    <li><label>country: </label>{country}</li> 
                 </ul>
+                {/* <div>
+                    <label>director:</label> 
+                    <span>{director}</span>
+                    <label>releaseYear: </label>
+                    <span>{releaseYear}</span>
+                    <label>genre: </label>
+                    <span>{genre}</span>
+                    <label>runningTime: </label>
+                    <span>{runningTime}</span>
+                    <label>starring: </label>
+                    <span>{starring}</span>
+                    <label>country: </label>
+                    <span>{country}</span>
+                </div> */}
             </div>
         ) 
     }
