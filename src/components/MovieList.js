@@ -17,7 +17,7 @@ class MovieList extends Component {
                 title: '',
                 director: '', 
                 releaseYear: { min: '', max: '' },
-                genre: {},
+                genre: '',
                 runningTime: { min: '' , max: '' },
                 starring: '', 
                 country: ''
@@ -62,12 +62,18 @@ class MovieList extends Component {
     filterMovies = () => {
         const { movies, filter } = this.state
 
+        // TODO move to movies module
         return movies.filter(movie => {
             const judgeValue = (key) => {
                 // check whether or not target value is between min and max
                 if (['releaseYear', 'runningTime'].includes(key)){
                     return isBetweenMinMax(movie[key], filter[key].min, filter[key].max)
                 }
+
+                if (key === 'genre') {
+                    return needsFilterGenre(movie[key], filter[key])
+                }
+
                 // check whether or not target value contains filtering value
                 if (typeof movie[key] === 'string') {
                     return movie[key].toLowerCase().includes(filter[key])
@@ -111,7 +117,7 @@ class MovieList extends Component {
                             key={m._id}
                             _id={m._id}
                             title={m.title} 
-                            genre={m.genre.name} 
+                            genreName={m.genre.name} 
                             releaseYear={m.releaseYear}
                             handleShowDetail={this.handleShowDetail}
                         />
@@ -131,5 +137,9 @@ function isBetweenMinMax(value, min, max) {
     if (!max) return value >= min
     return value <= max && value >= min
 }
+
+function needsFilterGenre(genre, filterId) {
+    return genre ? !filterId || genre._id === filterId : !filterId
+} 
 
 export default MovieList 

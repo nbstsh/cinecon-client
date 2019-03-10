@@ -7,7 +7,7 @@ import './MovieForm.css'
 import TextInput from './common/TextInput'
 import NumberInput from './common/NumberInput'
 import Select from './common/Select'
-import { fetchGenres } from '../modules/genres'
+import { fetchGenres, generateGenreOptions } from '../modules/genres'
 const { api } = config
 
 class MovieForm extends Component {
@@ -23,27 +23,18 @@ class MovieForm extends Component {
                 starring: '', 
                 country: ''
             },
-            options: [],
+            genres: [],
             errorMessage: ''
         }
     } 
 
     componentDidMount() {
-        const generateOptions = (genres) => genres.map(genre => {
-            return { 
-                key: genre._id,
-                value: genre._id,
-                text: genre.name
-            }
-        })
 
         fetchGenres()
-            .then(genres => {
-                console.log({genres})
-                this.setState({ options: generateOptions(genres)})
-            })
+            .then(genres => this.setState({ genres }) )
             // TODO error handling
             .catch(err => console.log(err))
+
 
         if (!this.props.movieId) return 
 
@@ -53,7 +44,14 @@ class MovieForm extends Component {
                 if (res.ok) return res.json()
                 throw new Error(res)
             })
-            .then(movie => this.setState({ movie }))
+            .then(movie => {
+                this.setState(state => {
+                    state.movie = movie
+                    state.movie.genre = movie.genre._id
+                    console.log({state})
+                    return state
+                })
+            })
             .catch(err => console.log(err))
     }
 
@@ -88,12 +86,12 @@ class MovieForm extends Component {
     handleChange = (e) => {
         const name = e.target.name
         const value = e.target.value
-        console.log({ name, value })
         this.setState((state) => state.movie[name] = value)
     }
 
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country } = this.state.movie
+        const options = generateGenreOptions(this.state.genres)
 
         return (
             <div className='MovieForm'>
@@ -124,11 +122,10 @@ class MovieForm extends Component {
                     <Select 
                         name='genre'
                         value={genre}
-                        options={this.state.options}
+                        options={options}
                         onChange={this.handleChange}
-                        selectedValue={genre}
                         label='genre'
-                    /> 
+                    />
 
                     <NumberInput 
                         name='runningTime' 

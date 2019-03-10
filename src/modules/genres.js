@@ -39,4 +39,13 @@ const deleteGenre = async (id) => {
     return await res.json()
 }
 
-export { fetchGenres, postGenre, putGenre, deleteGenre }
+const generateGenreOptions = (genres) => genres.map(genre => {
+    return {
+        key: genre._id,
+        value: genre._id,
+        text: genre.name
+    }
+})
+
+
+export { fetchGenres, postGenre, putGenre, deleteGenre, generateGenreOptions }
