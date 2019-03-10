@@ -6,6 +6,8 @@ import config from '../config/index'
 import './MovieForm.css'
 import TextInput from './common/TextInput'
 import NumberInput from './common/NumberInput'
+import Select from './common/Select'
+import { fetchGenres } from '../modules/genres'
 const { api } = config
 
 class MovieForm extends Component {
@@ -21,11 +23,28 @@ class MovieForm extends Component {
                 starring: '', 
                 country: ''
             },
+            options: [],
             errorMessage: ''
         }
     } 
 
     componentDidMount() {
+        const generateOptions = (genres) => genres.map(genre => {
+            return { 
+                key: genre._id,
+                value: genre._id,
+                text: genre.name
+            }
+        })
+
+        fetchGenres()
+            .then(genres => {
+                console.log({genres})
+                this.setState({ options: generateOptions(genres)})
+            })
+            // TODO error handling
+            .catch(err => console.log(err))
+
         if (!this.props.movieId) return 
 
         // TODO create api module & error handling
@@ -69,68 +88,72 @@ class MovieForm extends Component {
     handleChange = (e) => {
         const name = e.target.name
         const value = e.target.value
+        console.log({ name, value })
         this.setState((state) => state.movie[name] = value)
     }
 
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country } = this.state.movie
+
         return (
-            <div className="MovieForm">
+            <div className='MovieForm'>
                 <h2>Movie Form</h2>
                 <ErrorMessage message={this.state.errorMessage} />
-                <form id="moiveForm" onSubmit={this.handleSubmit}>
+                <form id='moiveForm' onSubmit={this.handleSubmit}>
 
                     <TextInput 
-                        name="title" 
+                        name='title' 
                         value={title} 
                         onChange={this.handleChange} 
-                        placeholder="title" 
+                        placeholder='title' 
                     />
                     <TextInput 
-                        name="director" 
+                        name='director' 
                         value={director} 
                         onChange={this.handleChange} 
-                        placeholder="director" 
+                        placeholder='director' 
                     />
 
                     <NumberInput 
-                        name="releaseYear" 
+                        name='releaseYear' 
                         value={releaseYear} 
                         onChange={this.handleChange} 
-                        placeholder="releaseYear" 
+                        placeholder='releaseYear' 
                     />
 
-                    <TextInput 
-                        name="genre" 
-                        value={genre} 
-                        onChange={this.handleChange} 
-                        placeholder="genre" 
-                    />
+                    <Select 
+                        name='genre'
+                        value={genre}
+                        options={this.state.options}
+                        onChange={this.handleChange}
+                        selectedValue={genre}
+                        label='genre'
+                    /> 
 
                     <NumberInput 
-                        name="runningTime" 
+                        name='runningTime' 
                         value={runningTime} 
                         onChange={this.handleChange} 
-                        placeholder="runningTime" 
+                        placeholder='runningTime' 
                     />
 
                     <TextInput 
-                        name="starring" 
+                        name='starring' 
                         value={starring} 
                         onChange={this.handleChange} 
-                        placeholder="starring" 
+                        placeholder='starring' 
                     />
 
                     <TextInput 
-                        name="country" 
+                        name='country' 
                         value={country} 
                         onChange={this.handleChange} 
-                        placeholder="country" 
+                        placeholder='country' 
                     />
 
-                    <div className="MovieForm-btn-box">
-                        <span onClick={this.props.handleCancelClick} className="cancel btn">Cancel</span>
-                        <input type="submit" className="submit btn" value="submit" />
+                    <div className='MovieForm-btn-box'>
+                        <span onClick={this.props.handleCancelClick} className='cancel btn'>Cancel</span>
+                        <input type='submit' className='submit btn' value='submit' />
                     </div>
                 </form>
             </div>

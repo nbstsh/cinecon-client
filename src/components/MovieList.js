@@ -17,7 +17,7 @@ class MovieList extends Component {
                 title: '',
                 director: '', 
                 releaseYear: { min: '', max: '' },
-                genre: '',
+                genre: {},
                 runningTime: { min: '' , max: '' },
                 starring: '', 
                 country: ''
@@ -30,7 +30,10 @@ class MovieList extends Component {
         // TODO: replace with movie module
         fetch(api.movies)
             .then(response => response.json())
-            .then(movies => this.setState({ movies }))
+            .then(movies => {
+                console.log(movies)
+                return this.setState({ movies })
+            })
 
         // render MovieFormModal if user is admin after having done fetching user info
         userManager.on('userUpdated', () => {
@@ -108,7 +111,7 @@ class MovieList extends Component {
                             key={m._id}
                             _id={m._id}
                             title={m.title} 
-                            genre={m.genre} 
+                            genre={m.genre.name} 
                             releaseYear={m.releaseYear}
                             handleShowDetail={this.handleShowDetail}
                         />
