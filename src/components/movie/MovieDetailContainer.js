@@ -7,6 +7,7 @@ import movieManager from '../../modules/movie-manager'
 import userManager from '../../modules/user-manager'
 import './MovieDetailContainer.css'
 
+
 class MovieDetailContainer extends Component {
     constructor(props) {
         super(props)
@@ -16,14 +17,24 @@ class MovieDetailContainer extends Component {
             needsForm: false 
         }
     } 
-    async componentDidMount() {
-        const movie = await movieManager.getMovie(this.props.id)
-        this.setState({ movie })
-        
+    componentDidMount() {
+        movieManager.getMovie(this.props.id)
+            .then(movie => this.setState({ movie }))
+        // to rerender when value in IndexedDB is updated
+        movieManager.on(movieManager.UPDATE_IDB_EVENT, this.updateMovie)
+
         this.setState({ isAdminUser: userManager.isAdminUser() })
-        userManager.on(userManager.UPDATE_EVENT, () => {
-            this.setState({ isAdminUser: userManager.isAdminUser() })
-        })
+        userManager.on(userManager.UPDATE_EVENT, this.updateIsAdminUser)
+    }
+    componentWillUnmount() {
+        movieManager.off(movieManager.UPDATE_IDB_EVENT, this.updateMovie)
+        userManager.off(userManager.UPDATE_EVENT, this.updateIsAdminUser)
+    }
+    updateMovie = ({ movie }) => {
+        this.setState({ movie })
+    }
+    updateIsAdminUser = () => {
+        this.setState({ isAdminUser: userManager.isAdminUser() })
     }
     showMovieForm = () => {
         this.setState({ needsForm: true })
@@ -53,10 +64,11 @@ class MovieDetailContainer extends Component {
                 {this.state.needsForm &&
                     <MovieForm 
                         movie={this.state.movie}
+                        handleAfterSubmit={this.hideMovieForm}
                         handleCancelClick={this.hideMovieForm} />
                 }
 
-                <CloseBtn handleClick={this.props.handleShowDetail} />
+                <CloseBtn handleClick={this.props.handleClickCloseBtn} />
             </div>
         )
     }

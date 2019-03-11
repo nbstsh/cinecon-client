@@ -26,7 +26,7 @@ class MovieForm extends Component {
         fetchGenres()
             .then(genres => this.setState({ genres }))
     }
-    handleSubmit = async (event) => {
+    handleSubmit = (event) => {
         event.preventDefault()
         const { id, movie } = this.state
 
@@ -35,7 +35,10 @@ class MovieForm extends Component {
             movieManager.postAndSetMovie(movie)
             
         requestPromise
+            .then(() => this.props.handleAfterSubmit())
             .catch(err => this.setState({ errorMessage: err.message }))
+
+        
 
     }
     handleChange = (e) => {

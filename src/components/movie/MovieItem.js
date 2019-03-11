@@ -6,7 +6,6 @@ class MovieItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            _id: '',
             title: '',
             releaseYear: '',
             genre: {}
@@ -17,12 +16,10 @@ class MovieItem extends Component {
             .then(movie => this.setState(movie))
     }
     render() {
-        const { _id, title, releaseYear, genre } = this.state
-        const genreBadge = genre ? <GenreBadge name={genre.name} color={genre.color} /> : null
-
-        //TODO replace 
-        const handleShowDetail = () => {}
-
+        const { title, releaseYear, genre } = this.state
+        const genreBadge = genre ? 
+            <GenreBadge name={genre.name} color={genre.color} /> : null
+        
         return(
             <div className="MovieItem">
                 <h3>{title}</h3>
@@ -30,7 +27,10 @@ class MovieItem extends Component {
                 <p>{releaseYear}</p>
                 <label>genre:</label>
                 <div>{genreBadge}</div>
-                <button data-id={_id} onClick={handleShowDetail}>show detail</button>
+
+                <button onClick={this.props.handleClickShowDetail}>
+                    show detail
+                </button>
             </div>
         )
     }

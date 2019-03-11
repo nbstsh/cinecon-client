@@ -14,13 +14,11 @@ class MovieList extends Component {
             .then(ids => this.setState({ ids }))
     }
     render() {
-        const list = this.state.ids.map(id => (
-            <MovieItemContainer key={id} id={id} />
-        ))
-
         return(
             <div className='MovieList'>
-                {list}
+                {this.state.ids.map(id => (
+                    <MovieItemContainer key={id} id={id} />
+                ))}
             </div>
         )
     }

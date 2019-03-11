@@ -10,11 +10,6 @@ class MovieContainer extends Component {
     } 
     componentDidMount() {
         movieManager.fetchAndSetMovies()
-
-        // movieManager.addListener(movieManager.UPDATE_IDB_EVENT, async () => {
-        //     const movies = await movieManager.getMovies()
-        //     this.setState({ movies })
-        // })
     }
     render() {
         return(
