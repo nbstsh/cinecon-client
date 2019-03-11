@@ -6,6 +6,7 @@ import SearchField from './SearchField'
 import config from '../config/index'
 import './MovieList.css'
 import userManager from '../modules/user-manager'
+import { fetchGenreById } from '../modules/genres'
 const { api } = config
 
 class MovieList extends Component {
@@ -30,7 +31,10 @@ class MovieList extends Component {
         // TODO: replace with movie module
         fetch(api.movies)
             .then(response => response.json())
-            .then(movies => this.setState({ movies }))
+            .then(movies => {
+                console.log(movies)
+                return this.setState({ movies })
+            })
 
         // render MovieFormModal if user is admin after having done fetching user info
         userManager.on('userUpdated', () => {
@@ -48,10 +52,17 @@ class MovieList extends Component {
         this.state.movies.splice(index, 1)
     }
     updateMovie = (update) => {
-        this.setState(({movies}) => {
-            let index = movies.findIndex(m => m._id === update._id)
-            if (index > -1) movies[index] = update
-        })
+        // encapsulate genre 
+        fetchGenreById(update.genre)
+            .then(genre => {
+                update.genre = genre
+                this.setState(({movies}) => {
+                    let index = movies.findIndex(m => m._id === update._id)
+                    if (index > -1) movies[index] = update
+                })
+            })
+            .catch(err => console.log(err)) // TODO error handling
+        
     }
     pushMovie = (movie) => {
         this.setState(({ movies }) => movies.push(movie))
@@ -59,12 +70,18 @@ class MovieList extends Component {
     filterMovies = () => {
         const { movies, filter } = this.state
 
+        // TODO move to movies module
         return movies.filter(movie => {
             const judgeValue = (key) => {
                 // check whether or not target value is between min and max
                 if (['releaseYear', 'runningTime'].includes(key)){
                     return isBetweenMinMax(movie[key], filter[key].min, filter[key].max)
                 }
+
+                if (key === 'genre') {
+                    return needsFilterGenre(movie[key], filter[key])
+                }
+
                 // check whether or not target value contains filtering value
                 if (typeof movie[key] === 'string') {
                     return movie[key].toLowerCase().includes(filter[key])
@@ -83,12 +100,10 @@ class MovieList extends Component {
         }
 
         this.setState(({ filter }) => {
-            const res = key.split('.').reduce((a, c, index, array) => {
-                return (index === array.length - 1)
-                    ? { targetProp: a, targetKey: c } : a[c]
-            }, filter)
+            const keys = key.split('.')
+            const target = keys.splice(0, keys.length -1).reduce((a, c) => a[c], filter)
 
-            return res.targetProp[res.targetKey] = value
+            return target[keys[0]] = value
         })
     }
     render() {
@@ -130,5 +145,9 @@ function isBetweenMinMax(value, min, max) {
     if (!max) return value >= min
     return value <= max && value >= min
 }
+
+function needsFilterGenre(genre, filterId) {
+    return genre ? !filterId || genre._id === filterId : !filterId
+} 
 
 export default MovieList 

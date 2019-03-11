@@ -1,9 +1,9 @@
 import React from 'react'
-
+import './TextInput.css'
 
 const TextInput = ({name, value, onChange, placeholder}) => {
     return (
-        <div>
+        <div className="TextInput">
             <input 
                 type="text" 
                 name={name}

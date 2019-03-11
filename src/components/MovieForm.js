@@ -4,6 +4,10 @@ import { postRequest, putRequest } from '../modules/request'
 import ErrorMessage from './ErrorMessage'
 import config from '../config/index'
 import './MovieForm.css'
+import TextInput from './common/TextInput'
+import NumberInput from './common/NumberInput'
+import Select from './common/Select'
+import { fetchGenres, generateGenreOptions } from '../modules/genres'
 const { api } = config
 
 class MovieForm extends Component {
@@ -19,11 +23,19 @@ class MovieForm extends Component {
                 starring: '', 
                 country: ''
             },
+            genres: [],
             errorMessage: ''
         }
     } 
 
     componentDidMount() {
+
+        fetchGenres()
+            .then(genres => this.setState({ genres }) )
+            // TODO error handling
+            .catch(err => console.log(err))
+
+
         if (!this.props.movieId) return 
 
         // TODO create api module & error handling
@@ -32,7 +44,14 @@ class MovieForm extends Component {
                 if (res.ok) return res.json()
                 throw new Error(res)
             })
-            .then(movie => this.setState({ movie }))
+            .then(movie => {
+                this.setState(state => {
+                    state.movie = movie
+                    state.movie.genre = movie.genre._id
+                    console.log({state})
+                    return state
+                })
+            })
             .catch(err => console.log(err))
     }
 
@@ -72,36 +91,66 @@ class MovieForm extends Component {
 
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country } = this.state.movie
+        const options = generateGenreOptions(this.state.genres)
+
         return (
-            <div className="MovieForm">
+            <div className='MovieForm'>
                 <h2>Movie Form</h2>
                 <ErrorMessage message={this.state.errorMessage} />
-                <form id="moiveForm" onSubmit={this.handleSubmit}>
+                <form id='moiveForm' onSubmit={this.handleSubmit}>
 
-                    <input type="text" name="title" value={title} onChange={this.handleChange} placeholder="title"/>
-                    <label>title</label>
+                    <TextInput 
+                        name='title' 
+                        value={title} 
+                        onChange={this.handleChange} 
+                        placeholder='title' 
+                    />
+                    <TextInput 
+                        name='director' 
+                        value={director} 
+                        onChange={this.handleChange} 
+                        placeholder='director' 
+                    />
 
-                    <input type="text" name="director" value={director} onChange={this.handleChange} placeholder="director"/>
-                    <label>director</label>
+                    <NumberInput 
+                        name='releaseYear' 
+                        value={releaseYear} 
+                        onChange={this.handleChange} 
+                        placeholder='releaseYear' 
+                    />
 
-                    <input type="number" name="releaseYear" value={releaseYear} onChange={this.handleChange} placeholder="releaseYear"/> 
-                    <label>releaseYear</label>
+                    <Select 
+                        name='genre'
+                        value={genre}
+                        options={options}
+                        onChange={this.handleChange}
+                        label='genre'
+                    />
 
-                    <input type="text" name="genre" value={genre} onChange={this.handleChange} placeholder="genre"/> 
-                    <label>genre</label>
+                    <NumberInput 
+                        name='runningTime' 
+                        value={runningTime} 
+                        onChange={this.handleChange} 
+                        placeholder='runningTime' 
+                    />
 
-                    <input type="number" name="runningTime" value={runningTime} onChange={this.handleChange} placeholder="runningTime"/> 
-                    <label>runningTime</label>
+                    <TextInput 
+                        name='starring' 
+                        value={starring} 
+                        onChange={this.handleChange} 
+                        placeholder='starring' 
+                    />
 
-                    <input type="text" name="starring" value={starring} onChange={this.handleChange} placeholder="starring"/> 
-                    <label>starring</label>
+                    <TextInput 
+                        name='country' 
+                        value={country} 
+                        onChange={this.handleChange} 
+                        placeholder='country' 
+                    />
 
-                    <input type="text" name="country" value={country} onChange={this.handleChange} placeholder="country"/> 
-                    <label>country</label>
-
-                    <div className="MovieForm-btn-box">
-                        <span onClick={this.props.handleCancelClick} className="cancel btn">Cancel</span>
-                        <input type="submit" className="submit btn" value="submit" />
+                    <div className='MovieForm-btn-box'>
+                        <span onClick={this.props.handleCancelClick} className='cancel btn'>Cancel</span>
+                        <input type='submit' className='submit btn' value='submit' />
                     </div>
                 </form>
             </div>

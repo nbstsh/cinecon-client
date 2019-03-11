@@ -45,3 +45,22 @@
         transform: scale(1);
     }
 }
+
+@keyframes shake {
+    0% { transform: rotate(5deg) }
+    25% {transform: rotate(-5deg) }
+    50% {transform: rotate(5deg) }
+    75% {transform: rotate(-5deg) }
+    100% {transform: rotate(5deg) }
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-10%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

@@ -5,6 +5,7 @@ import MovieFormModal from './MovieFormModal'
 import ModalControll from './common/ModalControll'
 import config from '../config/index'
 import { fetchUser, getUser } from '../modules/user'
+import GenreList from '../components/genre/GenreList'
 
 const { api } = config
 
@@ -40,7 +41,7 @@ class Test extends Component {
                 <CloseBtn />
                 <MovieFormModal />
                 <ModalControll /> */}
-                
+                <GenreList />
             </div>
         )
     }

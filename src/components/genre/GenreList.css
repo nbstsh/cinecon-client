@@ -1,0 +1,8 @@
+.GenreList {
+    background-color: var(--color-grey-dark-1);
+    padding: 3rem;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    grid-gap: 1rem;
+}
