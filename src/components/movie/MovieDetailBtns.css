@@ -1,0 +1,14 @@
+
+.MovieDetailBtns {
+    display: flex;
+    justify-content: center;
+}
+
+.MovieDetailBtns button {
+    width: 10rem;
+    border-radius: 3rem;
+}
+
+.MovieDetailBtns button:not(:last-child) {
+    margin-right: 2rem;
+}

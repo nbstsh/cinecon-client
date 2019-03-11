@@ -55,7 +55,7 @@ const deleteRequest = (url, needsToken = false) => {
 }
 
 
-const handleResponse = (res, defaultErrorMessage) => {
+const handleResponse = async (res, defaultErrorMessage) => {
     if (!res.ok) {
         const err = await res.text()
         throw new Error(err || defaultErrorMessage)

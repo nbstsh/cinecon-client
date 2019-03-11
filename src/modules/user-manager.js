@@ -8,6 +8,7 @@ class UserManager extends EventEmitter {
     constructor() {
         super()
         this.user = null
+        this.UPDATE_EVENT = 'update'
     }
     async fetchUser() {
         const res = await getRequest(config.api.user, true)
@@ -22,7 +23,7 @@ class UserManager extends EventEmitter {
     }
     setUser(u) {
         this.user = u
-        this.emit('userUpdated', { user: u })
+        this.emit(this.UPDATE_EVENT, { user: u })
     }
     signinUser(token){
         setToken(token)

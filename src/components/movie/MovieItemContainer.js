@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import MovieItem from './MovieItem'
+import MovieDetailContainer from './MovieDetailContainer'
 
 class MovieItemContainer extends Component {
     constructor(props) {
@@ -7,7 +9,11 @@ class MovieItemContainer extends Component {
     } 
     render() {
         return(
-            <div className='MovieItemContainer'>MovieItemContainer</div>
+            <div className='MovieItemContainer'>
+                {this.props.id}
+                <MovieItem id={this.props.id} />
+                <MovieDetailContainer id={this.props.id} />
+            </div>
         )
     }
 }

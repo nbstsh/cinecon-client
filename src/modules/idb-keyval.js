@@ -16,10 +16,10 @@ const createIdbKeyval = (objectStoreName) => {
             const db = await dbPromise
             return db.transaction(objectStoreName).objectStore(objectStoreName).getAll()
         },
-        async set(key, val) {
+        async set(val) {
             const db = await dbPromise
             const tx = db.transaction(objectStoreName, 'readwrite')
-            tx.objectStore(objectStoreName).put(val, key)
+            tx.objectStore(objectStoreName).put(val)
             return tx.complete
         },
         async delete(key) {
@@ -36,7 +36,7 @@ const createIdbKeyval = (objectStoreName) => {
         },
         async keys() {
             const db = await dbPromise
-            return db.transaction(objectStoreName).objectStore(objectStoreName).getAllKeys(key)
+            return db.transaction(objectStoreName).objectStore(objectStoreName).getAllKeys()
         }
     }
 }

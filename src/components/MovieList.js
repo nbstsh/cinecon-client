@@ -37,7 +37,7 @@ class MovieList extends Component {
             })
 
         // render MovieFormModal if user is admin after having done fetching user info
-        userManager.on('userUpdated', () => {
+        userManager.on(userManager.UPDATE_EVENT, () => {
             this.setState({ isAdminUser: userManager.isAdminUser()})
         })
     }

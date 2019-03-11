@@ -9,6 +9,7 @@ const idbKeyval = createIdbKeyval('movies')
 class MovieManager extends EventEmitter {
     constructor() {
         super()
+        this.UPDATE_IDB_EVENT = 'updateIDB' 
     }
     // api
     async fetchMovies() {
@@ -34,32 +35,35 @@ class MovieManager extends EventEmitter {
     async getMovie(id) {
         return await idbKeyval.get(id)
     }
-    async setMovie(id, movie) {
-        this.emit('updateIdb', { id, movie })
-        return await idbKeyval.set(id, movie)
+    async getIds() {
+        return await idbKeyval.keys()
+    }
+    async setMovie(movie) {
+        this.emit(this.UPDATE_IDB_EVENT, { movie })
+        return await idbKeyval.set(movie)
     }
     async deleteMovieInIndexDb(id) {
-        this.emit('updateIdb', { id, movie: null })
+        this.emit(this.UPDATE_IDB_EVENT, { movie: null })
         return await idbKeyval.delete(id)
     }
     async clearMovies() {
-        this.emit('updateIdb')
+        this.emit(this.UPDATE_IDB_EVENT)
         return await idbKeyval.clear()
     }
     // api & IndexedDB
     async fetchAndSetMovies() {
         const movies = await this.fetchMovies()
-        await Promise.all(movies.map(m => this.setMovie(m._id, m)))
+        await Promise.all(movies.map(m => this.setMovie(m)))
         return movies
     }
     async postAndSetMovie(data) {
         const movie = await this.postMovie(data)
-        await this.setMovie(movie._id, movie)
+        await this.setMovie(movie)
         return movie
     }
     async putAndSetMovie(id, data) {
         const movie = await this.putMovie(id, data)
-        await this.setMovie(movie._id, movie)
+        await this.setMovie(movie)
         return movie
     }
     async deleteMovie(id) {
@@ -68,6 +72,7 @@ class MovieManager extends EventEmitter {
     }
 }
 
+const movieManager = new MovieManager()
 
 
-export default MovieManager
+export default movieManager

@@ -44,17 +44,6 @@
     transform: translateY(0);
 }
 
-.MovieForm-btn-box {
-    align-self: center;
-}
-
-.MovieForm-btn-box .btn{
-    text-align: center;
-    display: inline-block;
-    margin: 0 1rem;
-    width: 10rem;
-    border-radius: 3rem;
-}
 
 @keyframes MovieFormShow {
     0% {
