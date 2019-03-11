@@ -55,5 +55,14 @@ const deleteRequest = (url, needsToken = false) => {
 }
 
 
-export  { getRequest, postRequest, putRequest, deleteRequest }
+const handleResponse = (res, defaultErrorMessage) => {
+    if (!res.ok) {
+        const err = await res.text()
+        throw new Error(err || defaultErrorMessage)
+    }
+    return await res.json()
+}
+
+
+export  { getRequest, postRequest, putRequest, deleteRequest, handleResponse }
 

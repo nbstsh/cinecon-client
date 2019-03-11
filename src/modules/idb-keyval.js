@@ -4,13 +4,17 @@ const IDB_NAME = 'cinecon'
 
 const createIdbKeyval = (objectStoreName) => {
     const dbPromise = openDb(IDB_NAME, 1, upgradeDB => {
-        upgradeDB.createObjectStore(objectStoreName)
+        upgradeDB.createObjectStore(objectStoreName, { keyPath: '_id'})
     })
     
     return {
         async get(key) {
             const db = await dbPromise
             return db.transaction(objectStoreName).objectStore(objectStoreName).get(key)
+        },
+        async getAll() {
+            const db = await dbPromise
+            return db.transaction(objectStoreName).objectStore(objectStoreName).getAll()
         },
         async set(key, val) {
             const db = await dbPromise
