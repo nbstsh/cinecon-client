@@ -44,9 +44,6 @@ class MovieList extends Component {
     handleShowDetail = (event) => {
         this.setState({ showingMovieId: event.target.dataset.id})
     }
-    handleShowForm = (event) => {
-        //TODO: show form
-    }
     removeMovie = (_id) => {
         const index = this.state.movies.findIndex(m => m._id === _id)
         this.state.movies.splice(index, 1)

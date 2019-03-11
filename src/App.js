@@ -6,6 +6,7 @@ import Signin from './components/Signin'
 import MovieForm from './components/MovieForm'
 import MovieDetailBox from './components/MovieDetailBox'
 import Navigation from './components/navigation/Navigation'
+import MovieContainer from './components/movie/MovieContainer'
 
 import Test from './components/Test'
 
@@ -15,7 +16,8 @@ class App extends Component {
       <div>
         <Navigation />
         <div className="container">
-          <MovieList />
+          <MovieContainer />
+          {/* <MovieList /> */}
           {/* <Signin /> */}
           {/* <MovieForm /> */}
           <Test />
