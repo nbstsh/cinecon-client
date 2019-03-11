@@ -6,6 +6,7 @@ import SearchField from './SearchField'
 import config from '../config/index'
 import './MovieList.css'
 import userManager from '../modules/user-manager'
+import { fetchGenreById } from '../modules/genres'
 const { api } = config
 
 class MovieList extends Component {
@@ -51,10 +52,17 @@ class MovieList extends Component {
         this.state.movies.splice(index, 1)
     }
     updateMovie = (update) => {
-        this.setState(({movies}) => {
-            let index = movies.findIndex(m => m._id === update._id)
-            if (index > -1) movies[index] = update
-        })
+        // encapsulate genre 
+        fetchGenreById(update.genre)
+            .then(genre => {
+                update.genre = genre
+                this.setState(({movies}) => {
+                    let index = movies.findIndex(m => m._id === update._id)
+                    if (index > -1) movies[index] = update
+                })
+            })
+            .catch(err => console.log(err)) // TODO error handling
+        
     }
     pushMovie = (movie) => {
         this.setState(({ movies }) => movies.push(movie))
@@ -117,7 +125,7 @@ class MovieList extends Component {
                             key={m._id}
                             _id={m._id}
                             title={m.title} 
-                            genreName={m.genre.name} 
+                            genre={m.genre} 
                             releaseYear={m.releaseYear}
                             handleShowDetail={this.handleShowDetail}
                         />

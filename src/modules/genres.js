@@ -12,6 +12,15 @@ const fetchGenres = async () => {
     return await res.json()
 }
 
+const fetchGenreById = async (id) => {
+    const res = await getRequest(`${api.genres}/${id}`)
+    if (!res.ok) {
+        const err = await res.text()
+        throw new Error(err || 'Fail to fetch genre')
+    }
+    return await res.json()
+}
+
 const postGenre = async (data) => {
     const res = await postRequest(api.genres, data, true)
     if (!res.ok) {
@@ -48,4 +57,4 @@ const generateGenreOptions = (genres) => genres.map(genre => {
 })
 
 
-export { fetchGenres, postGenre, putGenre, deleteGenre, generateGenreOptions }
+export { fetchGenres, fetchGenreById, postGenre, putGenre, deleteGenre, generateGenreOptions }
