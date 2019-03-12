@@ -5,6 +5,7 @@ import NumberInput from './common/NumberInput'
 import Select from './common/Select'
 import { fetchGenres, generateGenreOptions } from '../modules/genres'
 
+
 class SearchField extends Component {
     constructor(props) {
         super(props)
