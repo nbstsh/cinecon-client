@@ -18,7 +18,6 @@ class MovieItemContainer extends Component {
     render() {
         return(
             <div className='MovieItemContainer'>
-                {this.props.id}
 
                 {!this.state.needsDetail && 
                     <MovieItem 
