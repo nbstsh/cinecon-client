@@ -2,22 +2,19 @@ import React, { Component } from 'react'
 import './GenreItemBox.css'
 import GenreItem from './GenreItem';
 import GenreForm from './GenreForm'
-import { deleteGenre } from '../../modules/genres'
-
+import manager from '../../modules/genre-manager'
 
 class GenreItemBox extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            needsForm: false
+            needsForm: false,
+            id: props.id
         }
     }
-    handleClick = () => {
-        const { genre, removeGenre } = this.props
-        deleteGenre(genre._id)
-            .then(res => removeGenre(res._id))
-            // TODO error handling
-            .catch(err => console.log(err))
+    deleteGenre = () => {
+        manager.deleteGenre(this.props.id)
+            .then(() => this.setState({ id: null }))
     }
     showForm = () => {
         this.setState({ needsForm: true })
@@ -26,22 +23,21 @@ class GenreItemBox extends Component {
         this.setState({ needsForm: false  })
     }
     render() {
-        const { genre, updateGenre } = this.props
-        
+        if (!this.state.id) return null
+
         return (
             <div className='GenreItemBox'>
                 
                 {this.state.needsForm ? (
                     <GenreForm 
-                        genre={genre} 
-                        handleResponse={updateGenre}
+                        id={this.props.id}
                         handleAfterSubmit={this.hideForm}
                     />
-                 ): (
+                 ) : (
                     <GenreItem 
-                        genre={genre} 
-                        handleDeleteBtn={this.handleClick}
-                        showForm={this.showForm}
+                        id={this.props.id}
+                        handleClickGenreItem={this.showForm}
+                        handleClickDeleteBtn={this.deleteGenre}
                     />
                 )}
             </div>

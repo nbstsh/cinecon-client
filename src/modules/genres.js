@@ -1,51 +1,31 @@
-import { getRequest, postRequest, putRequest, deleteRequest } from './request'
+import { getRequest, postRequest, putRequest, deleteRequest, handleResponse } from './request'
 import config from '../config/index'
 const { api } = config
 
 
 const fetchGenres = async () => {
     const res = await getRequest(api.genres)
-    if (!res.ok) {
-        const err = await res.text()
-        throw new Error(err || 'Fail to fetch genres.')
-    }
-    return await res.json()
+    return handleResponse(res, 'Fail to fetch genres.')
 }
 
 const fetchGenreById = async (id) => {
     const res = await getRequest(`${api.genres}/${id}`)
-    if (!res.ok) {
-        const err = await res.text()
-        throw new Error(err || 'Fail to fetch genre')
-    }
-    return await res.json()
+    return handleResponse(res, 'Fail to fetch genre.')
 }
 
 const postGenre = async (data) => {
     const res = await postRequest(api.genres, data, true)
-    if (!res.ok) {
-        const err = await res.text() 
-        throw new Error(err || 'Fail to create new genre.')
-    }
-    return await res.json()
+    return handleResponse(res, 'Fail to create new genre.')
 }
 
 const putGenre = async (id, data) => {
     const res = await putRequest(`${api.genres}/${id}`, data, true)
-    if (!res.ok) {
-        const err = await res.text()
-        throw new Error(err || 'Fail to update new Genre.')
-    }
-    return await res.json()
+    return handleResponse(res, 'Fail to update genre.')
 }
 
 const deleteGenre = async (id) => {
     const res = await deleteRequest(`${api.genres}/${id}`, true)
-    if (!res.ok) {
-        const err = await res.text()
-        throw new Error(err || 'Fail to delete genre.')
-    }
-    return await res.json()
+    return handleResponse(res, 'Fail to delete genre.')
 }
 
 const generateGenreOptions = (genres) => genres.map(genre => {

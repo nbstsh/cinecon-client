@@ -13,7 +13,7 @@ class MovieForm extends Component {
     constructor(props) {
         super(props)
         const { _id, title, director, releaseYear, genre, runningTime, starring, country } = props.movie
-        const genreId = genre ? genre._id : null
+        const genreId = genre ? genre._id : ''
         
         this.state = {
             id: _id,
