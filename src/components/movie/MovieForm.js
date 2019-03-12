@@ -18,11 +18,12 @@ class MovieForm extends Component {
         }
     } 
     componentDidMount() {
-        movieManager.getMovie(this.props.id)
-            .then(this.initMovie)
-
         genreManager.fetchGenres()
             .then(genres => this.setState({ genres }))
+
+        if (!this.props.id) return 
+        movieManager.getMovie(this.props.id)
+            .then(this.initMovie)
     }
     initMovie = ({ title, director, releaseYear, genre, runningTime, starring, country }) => {
         this.setState(state => {

@@ -2,6 +2,7 @@ import React from 'react'
 import ModalControll from '../common/ModalControll'
 import MovieForm from './MovieForm'
 import CreateBtn from '../common/CreateBtn'
+import './MovieFormModal.css'
 
 class MovieFormModal extends ModalControll {
     constructor(props) {
@@ -21,7 +22,7 @@ class MovieFormModal extends ModalControll {
         return(
             <div className="MovieFormModal">
                 <CreateBtn handleClick={this.openModal} />
-                {/* {modal} */}
+                {modal}
             </div>
         )
     }

@@ -1,20 +1,22 @@
 .MovieFormModal {
-    grid-column: 1 / -1;
-    position:sticky;
-    bottom: 0;
+    text-align: right;
+    padding-bottom: 3rem;
+    padding-right: 3rem;
+    z-index: 1000;
+
+    position: sticky;
+    bottom:  0;
     right: 0;
-    justify-self: end;
 }
 
 .MovieFormModal .CreateBtn {
-    max-width: 7rem;
-    max-height: 7rem;
-    width: 10vw;
-    height: 10vw;
+    width: 7rem;
+    height: 7rem;
+    padding: 2rem;
+    background-color: var(--color-grey-dark-1);
     color: var(--color-grey-light-1);
-    background-color: var(--color-grey-dark-2);
-    border-radius: 50%;
-    padding: 30%;
+    border-radius: 10rem;
+    box-shadow: 0 .5rem .5rem #00000036;
     transition: all .3s;
 }
 
