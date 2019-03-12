@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import movieManager from '../../modules/movie-manager'
 import GenreBadge from '../genre/GenreBadge'
+import './MovieItem.css'
 
 class MovieItem extends Component {
     constructor(props) {

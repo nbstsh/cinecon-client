@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MovieItem from './MovieItem'
 import MovieDetailContainer from './MovieDetailContainer'
+import './MovieItemContainer.css'
 
 class MovieItemContainer extends Component {
     constructor(props) {
