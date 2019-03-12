@@ -1,7 +1,5 @@
 import React, { Component} from 'react'
 import './GenreList.css'
-import GenreItem from './GenreItem'
-import GenreForm from './GenreForm'
 import GenreItemBox from './GenreItemBox'
 import { fetchGenres } from '../../modules/genres'
 
@@ -39,7 +37,6 @@ class GenreList extends Component {
         })
     }
     render() {
-        console.log('test', this.state.genres[0])
         return (
             <div className="GenreList">
                 {this.state.genres.map(genre => (
@@ -50,7 +47,6 @@ class GenreList extends Component {
                         removeGenre={this.removeGenre}
                     />
                 ))}
-                <GenreForm handleResponse={this.pushGenre} />
             </div>
         )
     }
