@@ -12,19 +12,19 @@ class MovieDetailContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isAdminUser: false,
+            isAdmin: false,
             needsForm: false 
         }
     } 
     componentDidMount() {
-        this.setState({ isAdminUser: userManager.isAdminUser() })
-        userManager.on(userManager.UPDATE_EVENT, this.updateIsAdminUser)
+        this.initIsAdmin()
+        userManager.on(userManager.UPDATE_EVENT, this.initIsAdmin)
     }
     componentWillUnmount() {
-        userManager.off(userManager.UPDATE_EVENT, this.updateIsAdminUser)
+        userManager.off(userManager.UPDATE_EVENT, this.initIsAdmin)
     }
-    updateIsAdminUser = () => {
-        this.setState({ isAdminUser: userManager.isAdminUser() })
+    initIsAdmin = () => {
+        this.setState({ isAdmin: userManager.isAdminUser() })
     }
     showMovieForm = () => {
         this.setState({ needsForm: true })
@@ -37,7 +37,7 @@ class MovieDetailContainer extends Component {
         movieManager.deleteMovie(this.state.movie._id)
     }
     render() {
-        const { needsForm, isAdminUser } = this.state
+        const { needsForm, isAdmin } = this.state
 
         return(
             <div className='MovieDetailContainer'>
@@ -45,7 +45,7 @@ class MovieDetailContainer extends Component {
                     <MovieDetail id={this.props.id} />
                 }
                 
-                {!needsForm && isAdminUser && 
+                {!needsForm && isAdmin && 
                     <MovieDetailBtns 
                         handleClcikEdit={this.showMovieForm} 
                         handleClickDelete={this.deleteMovie} />

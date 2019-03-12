@@ -31,7 +31,7 @@ class MovieForm extends Component {
                 title, 
                 director, 
                 releaseYear, 
-                genre: genre._id, 
+                genre: genre ? genre._id : '', 
                 runningTime, 
                 starring, country 
             }
@@ -57,6 +57,7 @@ class MovieForm extends Component {
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country } = this.state.movie
         const options = genreManager.generateGenreOptions(this.state.genres)
+        options.splice(0, 0, { key: '', value: '', text: 'none'})
 
         return(
             <div className='MovieForm'>

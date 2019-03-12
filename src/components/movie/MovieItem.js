@@ -9,7 +9,7 @@ class MovieItem extends Component {
         this.state = {
             title: '',
             releaseYear: '',
-            genre: {}
+            genre: ''
         }
     } 
     componentDidMount() {
@@ -19,7 +19,8 @@ class MovieItem extends Component {
     render() {
         const { title, releaseYear, genre } = this.state
         const genreBadge = genre ? 
-            <GenreBadge name={genre.name} color={genre.color} /> : null
+            <GenreBadge name={genre.name} color={genre.color} /> : 
+            <p style={{color: 'var(--color-grey-dark-2)'}}>none</p>
         
         return(
             <div className="MovieItem">
