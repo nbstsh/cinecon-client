@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import TextInput from '../common/TextInput'
 import ErrorMessage from '../ErrorMessage'
 import './GenreForm.css'
-import { postGenre, putGenre } from '../../modules/genres'
 import manager from '../../modules/genre-manager'
 const DEFAULT_COLOR = '#ffffff'
 
@@ -58,7 +57,9 @@ class GenreForm extends Component {
                     name='color' 
                     value={this.state.color}
                     onChange={this.handleChange}/>
-                <button></button>
+
+                <input type="submit" value=""></input>
+                <button>s</button>
             </form>
         )
     }

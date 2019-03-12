@@ -1,7 +1,6 @@
 import React, { Component} from 'react'
 import './GenreList.css'
 import GenreItemBox from './GenreItemBox'
-import { fetchGenres } from '../../modules/genres'
 import manager from '../../modules/genre-manager'
 
 
@@ -21,10 +20,7 @@ class GenreList extends Component {
     }
     initIds = () => {
         manager.getIds()
-            .then(ids => {
-                console.log(ids)
-                this.setState({ ids })
-            })
+            .then(ids => this.setState({ ids }))
     }
     render() {
         return (

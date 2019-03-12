@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './GenreItemBox.css'
 import GenreItem from './GenreItem';
 import GenreForm from './GenreForm'
-import { deleteGenre } from '../../modules/genres'
 import manager from '../../modules/genre-manager'
 
 class GenreItemBox extends Component {
