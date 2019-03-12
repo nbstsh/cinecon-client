@@ -30,6 +30,36 @@
     box-shadow: none;
 }
 
+.MovieFormModal .modal {
+    width: 65rem;
+
+}
 
 
+@media (max-width: 500px) {
+
+    .MovieFormModal .modal {
+       padding: 0;
+    }
+    
+    .MovieFormModal .MovieForm {
+        height: 100vh;
+        padding: 3rem;
+        justify-content: space-between;
+    }
+    .MovieFormModal .MovieForm h2 {
+        flex: 0 0 15vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .MovieFormModal .MovieForm form {
+        flex: 0 0 80vh;
+    }
+
+    .MovieFormModal .MovieFormBtns {
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+}
 
