@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MovieItem from './MovieItem'
 import MovieDetailContainer from './MovieDetailContainer'
+import './MovieItemContainer.css'
 
 class MovieItemContainer extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class MovieItemContainer extends Component {
     }
     render() {
         return(
-            <div className='MovieItemContainer'>
+            <div className={`MovieItemContainer ${this.state.needsDetail ? 'has-detail-container' : '' }`}>
 
                 {this.state.needsDetail ? (
                     <MovieDetailContainer 

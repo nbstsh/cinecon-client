@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MovieItemContainer from './MovieItemContainer'
 import movieManager from '../../modules/movie-manager'
+import './MovieList.css'
 
 class MovieList extends Component {
     constructor(props) {
@@ -10,6 +11,13 @@ class MovieList extends Component {
         }
     } 
     componentDidMount() {
+        this.initIds()
+        movieManager.on(movieManager.UPDATE_IDB_EVENT, this.initIds)
+    }
+    componentWillUnmount() {
+        movieManager.off(movieManager.UPDATE_IDB_EVENT, this.initIds)
+    }
+    initIds = () => {
         movieManager.getIds()
             .then(ids => this.setState({ ids }))
     }

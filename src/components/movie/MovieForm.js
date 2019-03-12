@@ -5,40 +5,48 @@ import Select from '../common/Select'
 import ErrorMessage from '../ErrorMessage'
 import MovieFormBtns from './MovieFormBtns'
 import movieManager from '../../modules/movie-manager'
-import { generateGenreOptions, fetchGenres } from '../../modules/genres'
+import genreManager from '../../modules/genre-manager'
 import './MovieForm.css'
 
 
 class MovieForm extends Component {
     constructor(props) {
         super(props)
-        const { _id, title, director, releaseYear, genre, runningTime, starring, country } = props.movie
-        const genreId = genre ? genre._id : ''
-        
         this.state = {
-            id: _id,
-            movie: { title, director, releaseYear, genre: genreId, runningTime, starring, country },
+            movie: {},
             genres: []
         }
     } 
     componentDidMount() {
-        // TODO replace after refactoring genre module
-        fetchGenres()
+        genreManager.fetchGenres()
             .then(genres => this.setState({ genres }))
+
+        if (!this.props.id) return 
+        movieManager.getMovie(this.props.id)
+            .then(this.initMovie)
+    }
+    initMovie = ({ title, director, releaseYear, genre, runningTime, starring, country }) => {
+        this.setState(state => {
+            return state.movie = { 
+                title, 
+                director, 
+                releaseYear, 
+                genre: genre._id, 
+                runningTime, 
+                starring, country 
+            }
+        })
     }
     handleSubmit = (event) => {
         event.preventDefault()
-        const { id, movie } = this.state
 
-        const requestPromise = id ? 
-            movieManager.putAndSetMovie(id, movie) : 
-            movieManager.postAndSetMovie(movie)
+        const requestPromise = this.props.id ? 
+            movieManager.putAndSetMovie(this.props.id, this.state.movie) : 
+            movieManager.postAndSetMovie(this.state.movie)
             
         requestPromise
             .then(() => this.props.handleAfterSubmit())
-            .catch(err => this.setState({ errorMessage: err.message }))
-
-        
+            .catch(err => this.setState({ errorMessage: err.message }))        
 
     }
     handleChange = (e) => {
@@ -48,7 +56,7 @@ class MovieForm extends Component {
     }
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country } = this.state.movie
-        const options = generateGenreOptions(this.state.genres)
+        const options = genreManager.generateGenreOptions(this.state.genres)
 
         return(
             <div className='MovieForm'>

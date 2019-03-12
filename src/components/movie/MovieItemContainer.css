@@ -1,0 +1,7 @@
+.MovieItemContainer.has-detail-container {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    position: sticky;
+    top: 3rem;
+    z-index: 2;
+}

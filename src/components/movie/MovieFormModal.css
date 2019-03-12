@@ -1,0 +1,65 @@
+.MovieFormModal {
+    text-align: right;
+    padding-bottom: 3rem;
+    padding-right: 3rem;
+    z-index: 1000;
+
+    position: sticky;
+    bottom:  0;
+    right: 0;
+}
+
+.MovieFormModal .CreateBtn {
+    width: 7rem;
+    height: 7rem;
+    padding: 2rem;
+    background-color: var(--color-grey-dark-1);
+    color: var(--color-grey-light-1);
+    border-radius: 10rem;
+    box-shadow: 0 .5rem .5rem #00000036;
+    transition: all .3s;
+}
+
+.MovieFormModal .CreateBtn:hover {
+    transform: translateY(-10%);
+    box-shadow: 0 1rem 1rem #00000f1f;
+}
+
+.MovieFormModal .CreateBtn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.MovieFormModal .modal {
+    width: 65rem;
+
+}
+
+
+@media (max-width: 500px) {
+
+    .MovieFormModal .modal {
+       padding: 0;
+    }
+    
+    .MovieFormModal .MovieForm {
+        height: 100vh;
+        padding: 3rem;
+        justify-content: space-between;
+    }
+    .MovieFormModal .MovieForm h2 {
+        flex: 0 0 15vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .MovieFormModal .MovieForm form {
+        flex: 0 0 80vh;
+    }
+
+    .MovieFormModal .MovieFormBtns {
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+}
+

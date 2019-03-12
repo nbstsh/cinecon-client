@@ -3,6 +3,7 @@ import movieManager from '../../modules/movie-manager'
 import MovieSearchField from './MovieSearchField'
 import MovieList from './MovieList'
 import MovieFormModal from './MovieFormModal'
+import './MovieContainer.css'
 
 class MovieContainer extends Component {
     constructor(props) {
