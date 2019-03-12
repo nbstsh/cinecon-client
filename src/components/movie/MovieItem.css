@@ -2,11 +2,15 @@
     padding: 2rem;
     background-color: #fff;
     color: var(--color-grey-dark-1);
+    box-shadow: 1px 1px #0000002b;
+    border: 1px solid var(--color-grey-light-2);
 
     display: grid;
     grid-template-columns: max-content 1fr;
     grid-column-gap: 1rem;
     grid-row-gap: .3rem;
+
+    animation: MovieItemShow .3s;
 }
 
 .MovieItem h3 {

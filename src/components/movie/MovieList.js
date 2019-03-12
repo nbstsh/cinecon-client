@@ -11,6 +11,13 @@ class MovieList extends Component {
         }
     } 
     componentDidMount() {
+        this.initIds()
+        movieManager.on(movieManager.UPDATE_IDB_EVENT, this.initIds)
+    }
+    componentWillUnmount() {
+        movieManager.off(movieManager.UPDATE_IDB_EVENT, this.initIds)
+    }
+    initIds = () => {
         movieManager.getIds()
             .then(ids => this.setState({ ids }))
     }
