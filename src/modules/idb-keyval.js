@@ -3,7 +3,7 @@ import { openDb } from 'idb'
 const IDB_NAME = 'cinecon'
 
 const createIdbKeyval = (objectStoreName) => {
-    const dbPromise = openDb(IDB_NAME, 1, upgradeDB => {
+    const dbPromise = openDb(IDB_NAME, 2, upgradeDB => {
         upgradeDB.createObjectStore(objectStoreName, { keyPath: '_id'})
     })
     

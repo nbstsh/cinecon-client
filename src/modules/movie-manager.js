@@ -39,16 +39,16 @@ class MovieManager extends EventEmitter {
         return await idbKeyval.keys()
     }
     async setMovie(movie) {
+        await idbKeyval.set(movie)
         this.emit(this.UPDATE_IDB_EVENT, { movie })
-        return await idbKeyval.set(movie)
     }
     async deleteMovieInIndexDb(id) {
+        await idbKeyval.delete(id)
         this.emit(this.UPDATE_IDB_EVENT, { movie: null })
-        return await idbKeyval.delete(id)
     }
     async clearMovies() {
+        await idbKeyval.clear()
         this.emit(this.UPDATE_IDB_EVENT)
-        return await idbKeyval.clear()
     }
     // api & IndexedDB
     async fetchAndSetMovies() {

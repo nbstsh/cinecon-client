@@ -47,16 +47,16 @@ class GenreManager extends EventEmitter {
         return await idbKeyval.keys()
     }
     async setGenre(genre) {
+        await idbKeyval.set(genre)
         this.emit(this.UPDATE_IDB_EVENT, { genre })
-        return await idbKeyval.set(genre)
     }
     async deleteGenreInIndexDb(id) {
+        await idbKeyval.delete(id)
         this.emit(this.UPDATE_IDB_EVENT)
-        return await idbKeyval.delete(id)
     }
     async clearGenres() {
+        await idbKeyval.clear()
         this.emit(this.UPDATE_IDB_EVENT)
-        return await idbKeyval.clear()
     }
     // api & IndexedDB
     async fetchAndSetGenres() {

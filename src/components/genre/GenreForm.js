@@ -3,6 +3,8 @@ import TextInput from '../common/TextInput'
 import ErrorMessage from '../ErrorMessage'
 import './GenreForm.css'
 import { postGenre, putGenre } from '../../modules/genres'
+import manager from '../../modules/genre-manager'
+const DEFAULT_COLOR = '#ffffff'
 
 
 class GenreForm extends Component {
@@ -10,15 +12,15 @@ class GenreForm extends Component {
         super(props)
         this.state = {
             name: '',
-            color: '#ffffff',
+            color: DEFAULT_COLOR,
             errorMessage: ''
         }
     }
     componentDidMount() {
-        const { genre } = this.props
-        if (!genre) return 
-
-        this.setState({ name: genre.name, color: genre.color })
+        if (!this.props.id) return 
+        
+        manager.getGenre(this.props.id) 
+            .then(genre => this.setState(genre))
     }
     handleChange = (e) => {
         const key = e.target.name
@@ -27,45 +29,35 @@ class GenreForm extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-        const { genre, handleResponse, handleAfterSubmit } = this.props
+        const update = { name: this.state.name, color: this.state.color }
 
-        const update = {
-            name: e.target.name.value,
-            color: e.target.color.value
-        }
-        
-        const requestPromise = genre ? putGenre(genre._id, update) : postGenre(update)
+        const requestPromise = this.props.id ? 
+            manager.putAndSetGenre(this.props.id, update) : 
+            manager.postAndSetGenre(update)
+            
+        const handleAfterSubmit = this.props.handleAfterSubmit || function(){
+            this.setState({ name: '', color: DEFAULT_COLOR, errorMessage: '' })
+        }.bind(this)
 
         requestPromise
-            .then(res => { 
-                handleResponse(res)
-                handleAfterSubmit && handleAfterSubmit()
-                this.setState({ name: '', color: '#ffffff', errorMessage: '' })
-            })
-            // .then(res => handleResponse(res))
-            // .then(() => handleAfterSubmit && handleAfterSubmit())
-            .catch(err => this.setState({ errorMessage: err.message }))
-
+            .then(() => handleAfterSubmit())
+            .catch(err => this.setState({ errorMessage: err.message}))
     }
     render() {
         return (
             <form className='GenreForm' onSubmit={this.handleSubmit}>
                 <ErrorMessage 
-                    message={this.state.errorMessage} 
-                />
+                    message={this.state.errorMessage} />
                 <TextInput 
                     name='name'
                     value={this.state.name} 
                     onChange={this.handleChange} 
-                    placeholder='genre name'
-                />
+                    placeholder='genre name' />
                 <input 
                     type='color' 
                     name='color' 
                     value={this.state.color}
-                    onChange={this.handleChange}
-                />
-
+                    onChange={this.handleChange}/>
                 <button></button>
             </form>
         )
