@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import config from '../config/index'
-import './MovieDetail.css'
+// import './MovieDetail.css'
 const { api } = config
 
 

@@ -1,0 +1,12 @@
+
+.MovieFormBtns {
+    align-self: center;
+}
+
+.MovieFormBtns .btn{
+    text-align: center;
+    display: inline-block;
+    margin: 0 1rem;
+    width: 10rem;
+    border-radius: 3rem;
+}

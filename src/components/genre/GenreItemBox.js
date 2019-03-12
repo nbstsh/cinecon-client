@@ -33,9 +33,9 @@ class GenreItemBox extends Component {
                 
                 {this.state.needsForm ? (
                     <GenreForm 
-                    genre={genre} 
-                    handleResponse={updateGenre}
-                    handleAfterSubmit={this.hideForm}
+                        genre={genre} 
+                        handleResponse={updateGenre}
+                        handleAfterSubmit={this.hideForm}
                     />
                  ): (
                     <GenreItem 

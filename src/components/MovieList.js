@@ -37,15 +37,12 @@ class MovieList extends Component {
             })
 
         // render MovieFormModal if user is admin after having done fetching user info
-        userManager.on('userUpdated', () => {
+        userManager.on(userManager.UPDATE_EVENT, () => {
             this.setState({ isAdminUser: userManager.isAdminUser()})
         })
     }
     handleShowDetail = (event) => {
         this.setState({ showingMovieId: event.target.dataset.id})
-    }
-    handleShowForm = (event) => {
-        //TODO: show form
     }
     removeMovie = (_id) => {
         const index = this.state.movies.findIndex(m => m._id === _id)

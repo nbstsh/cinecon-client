@@ -13,7 +13,7 @@ class UserInfo extends Component {
     componentDidMount() {
         this.setState({ user: userManager.getUser() })
 
-        userManager.on('userUpdated', ({ user }) => {
+        userManager.on(userManager.UPDATE_EVENT, ({ user }) => {
             this.setState({ user })
         })
     }

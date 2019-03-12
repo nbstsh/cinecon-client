@@ -13,7 +13,7 @@ class SigninControll extends ModalControll {
         }
     }
     componentDidMount() {
-        userManager.on('userUpdated', () => {
+        userManager.on(userManager.UPDATE_EVENT, () => {
             this.setState({ isSignedIn: userManager.isSignedIn() })
         })
         

@@ -18,7 +18,7 @@ class MovieDetailBox extends Component {
     }
     componentDidMount() {
         this.setState({ isAdminUser: userManager.isAdminUser() })
-        userManager.on('userUpdated', () => {
+        userManager.on(userManager.UPDATE_EVENT, () => {
             this.setState({ isAdminUser: userManager.isAdminUser() })
         })
     }
