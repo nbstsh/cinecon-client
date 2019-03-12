@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import MovieForm from './MovieForm'
-import MovieDetailBox from './MovieDetailBox'
-import MovieFormModal from './MovieFormModal'
-import ModalControll from './common/ModalControll'
 import config from '../config/index'
 import { fetchUser, getUser } from '../modules/user'
 import GenreList from '../components/genre/GenreList'

@@ -18,7 +18,7 @@ class MovieItemContainer extends Component {
     }
     render() {
         return(
-            <div className='MovieItemContainer'>
+            <div className={`MovieItemContainer ${this.state.needsDetail ? 'has-detail-container' : '' }`}>
 
                 {this.state.needsDetail ? (
                     <MovieDetailContainer 
