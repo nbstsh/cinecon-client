@@ -16,6 +16,10 @@ class MovieManager extends EventEmitter {
         const res = await getRequest(api.movies)
         return handleResponse(res, 'Fail to fetch movies.')
     }
+    async fetchMovieById(id) {
+        const res = await getRequest(`${api.movies}/${id}`)
+        return handleResponse(res, 'Fail to fetch a movie with given id.')
+    }
     async postMovie(data) {
         const res = await postRequest(api.movies, data, true)
         return handleResponse(res, 'Fail to create new movies.')
@@ -57,12 +61,14 @@ class MovieManager extends EventEmitter {
         return movies
     }
     async postAndSetMovie(data) {
-        const movie = await this.postMovie(data)
+        let movie = await this.postMovie(data)
+        movie = await this.fetchMovieById(movie._id) // needs to populate genre
         await this.setMovie(movie)
         return movie
     }
     async putAndSetMovie(id, data) {
-        const movie = await this.putMovie(id, data)
+        let movie = await this.putMovie(id, data)
+        movie = await this.fetchMovieById(movie._id) // needs to populate genre
         await this.setMovie(movie)
         return movie
     }

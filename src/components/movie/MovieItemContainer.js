@@ -19,17 +19,15 @@ class MovieItemContainer extends Component {
         return(
             <div className='MovieItemContainer'>
 
-                {!this.state.needsDetail && 
-                    <MovieItem 
-                        id={this.props.id}
-                        handleClickShowDetail={this.showDetail}/>
-                }
-
-                {this.state.needsDetail &&
+                {this.state.needsDetail ? (
                     <MovieDetailContainer 
                         id={this.props.id} 
                         handleClickCloseBtn={this.hideDetail}/>
-                }
+                ) : ( 
+                    <MovieItem 
+                        id={this.props.id}
+                        handleClickShowDetail={this.showDetail}/>
+                )}
             </div>
         )
     }
