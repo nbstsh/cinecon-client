@@ -2,6 +2,7 @@ import EventEmitter from 'events'
 import { getRequest, postRequest, putRequest, deleteRequest, handleResponse } from './request'
 import createIdbKeyval from './idb-keyval'
 import config from '../config/index'
+import { needInFilteredMovies } from './movie-filter'
 const { api } = config
 const idbKeyval = createIdbKeyval('movies')
 
@@ -9,7 +10,7 @@ const idbKeyval = createIdbKeyval('movies')
 class MovieManager extends EventEmitter {
     constructor() {
         super()
-        this.UPDATE_IDB_EVENT = 'updateIDB' 
+        this.UPDATE_IDB_EVENT = 'updateIDB'
     }
     // api
     async fetchMovies() {
@@ -75,6 +76,13 @@ class MovieManager extends EventEmitter {
     async deleteMovie(id) {
         await this.deleteMovieRequest(id)
         await this.deleteMovieInIndexDb(id)
+    }
+    //util
+    async generateFilteredMovies() {
+        const movies = this.getMovies()
+        const filteredMovies = movies.filter(needInFilteredMovies)
+        console.log({ movies, filteredMovies })
+        return filteredMovies
     }
 }
 
