@@ -1,7 +1,7 @@
 import React from 'react'
 import ModalControll from '../common/ModalControll'
 import './SigninControll.css'
-import Signin from '../Signin'
+import Signin from './Signin'
 import userManager from '../../modules/user-manager'
 
 
@@ -22,13 +22,10 @@ class SigninControll extends ModalControll {
         this.openModal()
     }
     handleSignoutClick = () => {
-        // signoutUser()
         userManager.signoutUser()
-        // this.setState({ isSignedIn: false })
     }
     handleAfterSingin = () => {
         this.closeModal()
-        // this.setState({ isSignedIn: true })
     }
     render() {
         const isSignedIn = this.state.isSignedIn

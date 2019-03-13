@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SigninControll from './SigninControll'
+import SigninControll from '../signin/SigninControll'
 import './Navigation.css'
 import UserInfo from './UserInfo'
 

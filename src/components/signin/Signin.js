@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import ErrorMessage from './ErrorMessage'
+import ErrorMessage from '../common/ErrorMessage'
 import './Signin.css'
-import { fetchToken } from '../modules/token'
-import userManager from '../modules/user-manager'
+import { fetchToken } from '../../modules/token'
+import userManager from '../../modules/user-manager'
 
 
 class Signin extends Component {
