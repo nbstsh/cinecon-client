@@ -3,7 +3,7 @@ import TextInput from '../common/TextInput'
 import NumberInput from '../common/NumberInput'
 import Select from '../common/Select'
 import genreManager from '../../modules/genre-manager'
-import { setFilter } from '../../modules/movie-filter'
+import movieManager from '../../modules/movie-manager'
 import './MovieSearchField.css'
 
 class MovieSearchField extends Component {
@@ -24,15 +24,13 @@ class MovieSearchField extends Component {
         genreManager.getGenres()
             .then(genres => this.setState({ genres }))
     }
-    // TODO 
     handleChange = (e) => {
         const key = e.target.name
         const value = e.target.value
         this.setState((state) => state[key] = value)
 
-        setFilter({ [key]: value })
+        movieManager.updateFilter({ [key]: value })
     }
-    // TODO 
     handleRangeChange = (e) => {
         const num = Number(e.target.value)
         const value  = num > 0 ? num : ''
@@ -40,7 +38,7 @@ class MovieSearchField extends Component {
         const [ filterKey, minMaxKey ] = e.target.name.split('.')
         this.setState((state) => state[filterKey][minMaxKey] = value)
 
-        setFilter({ [filterKey]:  { [minMaxKey]: value} })
+        movieManager.updateFilter({ [filterKey]:  { [minMaxKey]: value} })
     }
     render() {
         const { title, director, releaseYear, genre, runningTime, starring, country, genres } = this.state

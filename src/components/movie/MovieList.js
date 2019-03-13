@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import MovieItemContainer from './MovieItemContainer'
-import movieManager from '../../modules/movie-manager'
+import manager from '../../modules/movie-manager'
 import './MovieList.css'
 
 class MovieList extends Component {
@@ -12,13 +12,15 @@ class MovieList extends Component {
     } 
     componentDidMount() {
         this.initIds()
-        movieManager.on(movieManager.UPDATE_IDB_EVENT, this.initIds)
+        manager.on(manager.UPDATE_IDB_EVENT, this.initIds)
+        manager.on(manager.UPDATE_FILTER_EVENT, this.initIds)
     }
     componentWillUnmount() {
-        movieManager.off(movieManager.UPDATE_IDB_EVENT, this.initIds)
+        manager.off(manager.UPDATE_IDB_EVENT, this.initIds)
+        manager.off(manager.UPDATE_FILTER_EVENT, this.initIds)
     }
     initIds = () => {
-        movieManager.generateFilteredMovieIds()
+        manager.generateFilteredMovieIds()
             .then(ids => this.setState({ ids }))
     }
     render() {
