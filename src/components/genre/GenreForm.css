@@ -35,7 +35,18 @@
     align-items: center;
     justify-content: center;
 
+    position: relative;
+
     animation: delayJumpIn .8s ease-in-out;
+}
+
+.GenreForm svg {
+    position: absolute;
+    top: .5rem;
+    
+    width: 2rem;
+    height: 2rem;
+    fill: #fff;
 }
 
 @keyframes delayJumpIn {

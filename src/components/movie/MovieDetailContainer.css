@@ -7,9 +7,40 @@
     border: 1px solid var(--color-grey-light-4);
     box-shadow: 1px 2px 2px 2px #0000000d;
 
+    max-width: 65%;
+    margin: 0 auto;
+
     position: relative;
     animation: showMovieDetailContainer 1s;
 }
+
+@media only screen and (max-width: 50em) {
+    .MovieDetailContainer {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 35em) {
+    .MovieDetailContainer {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+
+
+/* .MovieDetailContainer::after {
+    content: '';
+    position: absolute;
+    top: -1%;
+    right: -1%;
+    bottom: -1%;
+    left: -1%;
+    z-index: -1;
+    transform: skew(3deg, 3deg);
+    background: linear-gradient(to right bottom, rgba(255, 153, 0, 0.411), rgba(255, 208, 0, 0.411));
+} */
 
 .MovieDetailContainer > *:not(.MovieForm) {
     animation: fadeIn 1s;
