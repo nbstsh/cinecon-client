@@ -1,8 +1,29 @@
 .GenresContainer {
     background-color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .GenresContainer > .GenreForm {
-    max-width: 35rem;
-    margin: 0 auto;
+    height: 12vh;
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    justify-content: center;
+    border-top: 1px solid var(--color-grey-light-3);
+}
+
+.GenresContainer > .GenreForm .ErrorMessage {
+    flex: 100%;
+}
+
+.GenresContainer > .GenreForm > * {
+    flex: none;
+    margin-left: 1rem;
+}
+
+.GenresContainer > .GenreForm > input[type='color'] {
+    margin-right: 0;
 }

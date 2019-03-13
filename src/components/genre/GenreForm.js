@@ -59,7 +59,11 @@ class GenreForm extends Component {
                     onChange={this.handleChange}/>
 
                 <input type="submit" value=""></input>
-                <button>s</button>
+                <button>
+                    <svg className="">
+                        <use xlinkHref="img/symbol-defs.svg#icon-check"></use>
+                    </svg>
+                </button>
             </form>
         )
     }
