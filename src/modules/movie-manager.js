@@ -2,6 +2,7 @@ import EventEmitter from 'events'
 import { getRequest, postRequest, putRequest, deleteRequest, handleResponse } from './request'
 import createIdbKeyval from './idb-keyval'
 import config from '../config/index'
+import { setFilter, needInFilteredMovies } from './movie-filter'
 const { api } = config
 const idbKeyval = createIdbKeyval('movies')
 
@@ -9,7 +10,8 @@ const idbKeyval = createIdbKeyval('movies')
 class MovieManager extends EventEmitter {
     constructor() {
         super()
-        this.UPDATE_IDB_EVENT = 'updateIDB' 
+        this.UPDATE_IDB_EVENT = 'updateIDB'
+        this.UPDATE_FILTER_EVENT = 'updateFilter'
     }
     // api
     async fetchMovies() {
@@ -75,6 +77,23 @@ class MovieManager extends EventEmitter {
     async deleteMovie(id) {
         await this.deleteMovieRequest(id)
         await this.deleteMovieInIndexDb(id)
+    }
+    // filter 
+    updateFilter(update) {
+        setFilter(update)
+        this.emit(this.UPDATE_FILTER_EVENT)
+    }
+    //util
+    async generateFilteredMovies() {
+        const movies =  await this.getMovies()
+
+        return movies
+            .map(movie => Object.assign(movie, { genre: movie.genre._id }))// to replace genre with gerne objectId
+            .filter(needInFilteredMovies)
+    }
+    async generateFilteredMovieIds() {
+        const filteredMovies =  await this.generateFilteredMovies()
+        return filteredMovies.map(m => m._id)
     }
 }
 
