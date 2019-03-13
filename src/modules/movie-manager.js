@@ -3,8 +3,8 @@ import { getRequest, postRequest, putRequest, deleteRequest, handleResponse } fr
 import createIdbKeyval from './idb-keyval'
 import config from '../config/index'
 import { setFilter, needInFilteredMovies } from './movie-filter'
-const { api } = config
-const idbKeyval = createIdbKeyval('movies')
+const { api, idb } = config
+const idbKeyval = createIdbKeyval(idb.objectStoreNames.movies)
 
 
 class MovieManager extends EventEmitter {
