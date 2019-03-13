@@ -32,7 +32,6 @@
 
 .MovieFormModal .modal {
     width: 65rem;
-
 }
 
 
@@ -43,23 +42,22 @@
     }
     
     .MovieFormModal .MovieForm {
-        height: 100vh;
         padding: 3rem;
-        justify-content: space-between;
+        min-height: 100vh;
     }
     .MovieFormModal .MovieForm h2 {
-        flex: 0 0 15vh;
+        /* flex: 0 0 15vh;
         display: flex;
-        align-items: center;
+        align-items: center; */
     }
 
     .MovieFormModal .MovieForm form {
-        flex: 0 0 80vh;
+        /* flex: 0 0 80vh; */
     }
 
     .MovieFormModal .MovieFormBtns {
-        padding-top: 5vh;
-        padding-bottom: 5vh;
+        /* padding-top: 5vh;
+        padding-bottom: 5vh; */
     }
 }
 
