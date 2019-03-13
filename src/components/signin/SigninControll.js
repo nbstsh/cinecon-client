@@ -29,12 +29,12 @@ class SigninControll extends ModalControll {
     }
     render() {
         const isSignedIn = this.state.isSignedIn
-        const onClickHandler = isSignedIn ? this.handleSignoutClick : this.handleSigninClick
+        const handleClick = isSignedIn ? this.handleSignoutClick : this.handleSigninClick
         
-        const button = (
-            <button className="nav-item" onClick={onClickHandler}>
+        const tab = (
+            <span className="nav-item">
                 {isSignedIn ? 'Signout' : 'Signin'}
-            </button>
+            </span>
         )
 
         const modal =  this.generateModalBoilerplate({
@@ -43,8 +43,8 @@ class SigninControll extends ModalControll {
         })
 
         return (
-            <div className="SigninControll"> 
-                {button}
+            <div className="SigninControll"  onClick={handleClick}> 
+                {tab}
                 {modal}
             </div>
         )

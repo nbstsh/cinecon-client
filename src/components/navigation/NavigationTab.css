@@ -1,9 +1,8 @@
-.UserInfo {
-    display: flex;
-    align-items: center;
+.NavigationTab {
     padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     animation: slideInLeft .2s;
 }
-
-

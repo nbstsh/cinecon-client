@@ -26,6 +26,31 @@
     display: flex;
 }
 
+.Navigation .right > div {
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.Navigation .right > div:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.Navigation .right > div > span {
+    transition: all .2s;
+}
+
+.Navigation .right > div:hover > span {
+    transform: translateY(-10%);
+}
+
+.Navigation .right > div:active {
+    background-color: var(--color-grey-dark-1);
+}
+/* 
 .nav-item {
     height: 100%;
     padding: 1rem;
@@ -41,4 +66,4 @@
 
 .nav-item:active {
     background-color: var(--color-grey-dark-1);
-}
+} */

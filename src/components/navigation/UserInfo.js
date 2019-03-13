@@ -23,7 +23,7 @@ class UserInfo extends Component {
 
         return (
             <div className="UserInfo">
-                {this.state.user.name}
+                <span>{this.state.user.name}</span>
             </div>
         )
     }
