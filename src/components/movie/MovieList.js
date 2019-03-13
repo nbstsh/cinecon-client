@@ -18,7 +18,7 @@ class MovieList extends Component {
         movieManager.off(movieManager.UPDATE_IDB_EVENT, this.initIds)
     }
     initIds = () => {
-        movieManager.getIds()
+        movieManager.generateFilteredMovieIds()
             .then(ids => this.setState({ ids }))
     }
     render() {

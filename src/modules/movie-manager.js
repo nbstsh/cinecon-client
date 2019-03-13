@@ -79,10 +79,15 @@ class MovieManager extends EventEmitter {
     }
     //util
     async generateFilteredMovies() {
-        const movies = this.getMovies()
-        const filteredMovies = movies.filter(needInFilteredMovies)
-        console.log({ movies, filteredMovies })
-        return filteredMovies
+        const movies =  await this.getMovies()
+
+        return movies
+            .map(movie => Object.assign(movie, { genre: movie.genre._id }))// to replace genre with gerne objectId
+            .filter(needInFilteredMovies)
+    }
+    async generateFilteredMovieIds() {
+        const filteredMovies =  await this.generateFilteredMovies()
+        return filteredMovies.map(m => m._id)
     }
 }
 

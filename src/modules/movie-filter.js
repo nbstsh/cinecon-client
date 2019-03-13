@@ -1,3 +1,4 @@
+import { nextTick } from "q";
 
 // string ... lowercase
 const filter = {
@@ -16,7 +17,7 @@ const filterFuncMap = {
     title: isIncluded,
     director: isIncluded,
     releaseYear: isBetweenMinMax,
-    genre: isSame,
+    genre: isSameOrEmpty,
     runningTime: isBetweenMinMax,
     starring: isIncluded, 
     country: isIncluded
@@ -45,6 +46,8 @@ const setFilter = (update) => {
 
 const needInFilteredMovies = (movie) => {
     for (let key in movie) {
+        if (!validKeys.includes(key)) continue
+
         const isValid = filterFuncMap[key](key, movie[key])
         if (!isValid)  return false
     }
@@ -57,8 +60,8 @@ function isIncluded(key, val){
     return val.toLowerCase().includes(filter[key])
 }
 
-function isSame(key, val){
-    return val === filter[key]
+function isSameOrEmpty(key, val){
+    return filter[key] === '' || val === filter[key]
 }
 
 function isBetweenMinMax(key, val){
@@ -70,5 +73,5 @@ function isBetweenMinMax(key, val){
 }
 
 
-
 export { getFilter, setFilter, needInFilteredMovies }
+

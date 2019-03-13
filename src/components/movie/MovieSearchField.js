@@ -30,7 +30,6 @@ class MovieSearchField extends Component {
         const value = e.target.value
         this.setState((state) => state[key] = value)
 
-        // this.props.updateFilter({ key, value })
         setFilter({ [key]: value })
     }
     // TODO 
