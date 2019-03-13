@@ -2,8 +2,8 @@ import EventEmitter from 'events'
 import { getRequest, postRequest, putRequest, deleteRequest, handleResponse } from './request'
 import createIdbKeyval from './idb-keyval'
 import config from '../config/index'
-const { api } = config
-const idbKeyval = createIdbKeyval('genres')
+const { api, idb } = config
+const idbKeyval = createIdbKeyval(idb.objectStoreNames.genres)
 
 
 class GenreManager extends EventEmitter {

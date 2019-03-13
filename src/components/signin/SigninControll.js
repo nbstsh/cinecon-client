@@ -1,7 +1,7 @@
 import React from 'react'
 import ModalControll from '../common/ModalControll'
 import './SigninControll.css'
-import Signin from '../Signin'
+import Signin from './Signin'
 import userManager from '../../modules/user-manager'
 
 
@@ -22,22 +22,19 @@ class SigninControll extends ModalControll {
         this.openModal()
     }
     handleSignoutClick = () => {
-        // signoutUser()
         userManager.signoutUser()
-        // this.setState({ isSignedIn: false })
     }
     handleAfterSingin = () => {
         this.closeModal()
-        // this.setState({ isSignedIn: true })
     }
     render() {
         const isSignedIn = this.state.isSignedIn
-        const onClickHandler = isSignedIn ? this.handleSignoutClick : this.handleSigninClick
+        const handleClick = isSignedIn ? this.handleSignoutClick : this.handleSigninClick
         
-        const button = (
-            <button className="nav-item" onClick={onClickHandler}>
+        const tab = (
+            <span className="nav-item">
                 {isSignedIn ? 'Signout' : 'Signin'}
-            </button>
+            </span>
         )
 
         const modal =  this.generateModalBoilerplate({
@@ -46,8 +43,8 @@ class SigninControll extends ModalControll {
         })
 
         return (
-            <div className="SigninControll"> 
-                {button}
+            <div className="SigninControll"  onClick={handleClick}> 
+                {tab}
                 {modal}
             </div>
         )

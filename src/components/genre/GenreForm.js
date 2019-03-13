@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TextInput from '../common/TextInput'
-import ErrorMessage from '../ErrorMessage'
+import ErrorMessage from '../common/ErrorMessage'
 import './GenreForm.css'
 import manager from '../../modules/genre-manager'
 const DEFAULT_COLOR = '#ffffff'

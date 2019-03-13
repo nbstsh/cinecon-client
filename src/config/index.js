@@ -1,5 +1,6 @@
 import developmentConfig from './development'
 import productionConfig from './production'
+import defaultConfig from './default'
 
 const env = process.env.NODE_ENV
 
@@ -10,6 +11,9 @@ const config = {
     'production': productionConfig
 }
 
-export default config[env]
+Object.assign(defaultConfig, config[env])
+
+
+export default defaultConfig
 
 

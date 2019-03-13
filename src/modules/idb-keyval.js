@@ -1,12 +1,18 @@
 import { openDb } from 'idb'
+import config from '../config/index'
+const { dbName, objectStoreNames } = config.idb
 
-const IDB_NAME = 'cinecon'
+
+const dbPromise = openDb(dbName, 2, upgradeDB => {
+    Object.values(objectStoreNames).forEach(objectStoreName => {
+        if (!upgradeDB.objectStoreNames.contains(objectStoreName)) {
+            upgradeDB.createObjectStore(objectStoreName, { keyPath: '_id'})
+        }
+    })
+})
+
 
 const createIdbKeyval = (objectStoreName) => {
-    const dbPromise = openDb(IDB_NAME, 2, upgradeDB => {
-        upgradeDB.createObjectStore(objectStoreName, { keyPath: '_id'})
-    })
-    
     return {
         async get(key) {
             const db = await dbPromise
