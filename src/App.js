@@ -38,8 +38,8 @@ class App extends Component {
     return (
       <div>
         <Navigation 
-          handleMovieClick={this.hideGenre}
-          handleGenreClick={this.showGenre}/>
+          handleClickMovie={this.hideGenre}
+          handleClickGenre={this.showGenre}/>
 
         <div className="container">
           {this.state.needsGenre && this.state.isAdmin ? (

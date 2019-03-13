@@ -32,10 +32,14 @@ class Navigation extends Component {
                     </div>
                     <div className="right">
                         {this.state.isAdmin && 
-                            <NavigationTab content='Genre'/>
+                            <NavigationTab 
+                                content='Genre'
+                                handleClick={this.props.handleClickGenre} />
                         }
                         {this.state.isAdmin && 
-                            <NavigationTab content='Movie'/>
+                            <NavigationTab 
+                                content='Movie'
+                                handleClick={this.props.handleClickMovie} />
                         }
 
                         <UserInfo />

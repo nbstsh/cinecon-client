@@ -1,9 +1,9 @@
 import React from 'react'
 import './NavigationTab.css'
 
-const NavigationTab = ({content}) => {
+const NavigationTab = ({content, handleClick}) => {
     return (
-        <div className='NavigationTab'>
+        <div className='NavigationTab' onClick={handleClick}>
             <span>{content}</span>
         </div>
     )
