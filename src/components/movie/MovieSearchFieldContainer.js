@@ -9,27 +9,36 @@ class MovieSearchFieldContainer extends Component {
     constructor(props) {
         super(props) 
         this.state = {
+            isSearchBtnClicked: false,
             needsOpen: false
         }
     }
     open = () => {
-        this.setState({ needsOpen: true })
+        this.setState({ isSearchBtnClicked: true })
+        setTimeout(() => {
+            this.setState({ needsOpen: true })
+            this.setState({ isSearchBtnClicked: false })
+        }, 600)
     }
     close = () => {
         this.setState({ needsOpen: false })
     }
     render() {
         return (
-            <div className='MovieSearchFieldContainer'>
+            <div className='MovieSearchFieldContainer' 
+                data-sb-clicked={this.state.isSearchBtnClicked}>
 
                 {this.state.needsOpen && 
                     <MovieSearchField />
                 }
 
                 {this.state.needsOpen ? (
-                    <CloseBtn handleClick={this.close}/>
+                    <CloseBtn 
+                        handleClick={this.close}/>
                 ) : (
-                    <SearchBtn handleClick={this.open}/>
+                    <SearchBtn
+                        isClicked={this.state.searchBtnClicked}
+                        handleClick={this.open}/>
                 )}
                 
             </div>

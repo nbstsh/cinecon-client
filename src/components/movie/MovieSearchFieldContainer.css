@@ -1,23 +1,142 @@
 .MovieSearchFieldContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    position: fixed;
+    bottom: 0;
+
+    width: 100vw;
+    overflow: hidden;
+
+    /* background-color: var(--color-grey-dark-1); */
+}
+
+.MovieSearchFieldContainer[data-sb-clicked='true']{
+    overflow: visible;
 }
 
 
+.MovieSearchFieldContainer .MovieSearchField {
+    flex: 1;
+    z-index: 2;
 
+    animation: searchFieldShow 1s;
+}
 
-
-
-
-
+@keyframes searchFieldShow {
+    0% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+        transform: translatex(10%);
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 /* SearchBtn style  & CloseBtn style***********************************/
-.MovieSearchFieldContainer .SearchBtn,
-.MovieSearchFieldContainer .CloseBtn {
-    width: 7rem;
-    height: 7rem;
-    padding: 2rem;
-}
 
 .MovieSearchFieldContainer .icon {
     width: 3rem;
     height: 3rem;
 }
+
+
+.MovieSearchFieldContainer .SearchBtn {
+    width: 7rem;
+    height: 7rem;
+    padding: 2rem;
+
+    background-color: var(--color-grey-dark-1);
+    box-shadow: 0 0.5rem 0.5rem #00000036;
+    margin: 0 3rem 3rem 0;
+}
+
+.MovieSearchFieldContainer .SearchBtn:hover {
+    animation: shake .5s infinite;
+}
+
+.MovieSearchFieldContainer[data-sb-clicked='true'] .SearchBtn {
+    animation: searchBtnHide .6s;
+}
+
+@keyframes searchBtnHide {
+    0% {
+        transform: translateY(0);
+    }
+    10% {
+        transform: translateY(-70%);
+    }
+    30% {
+        transform: translateY(-80%);
+    }
+    60% {
+        transform: translateY(-70%) rotate(0);
+    }
+    100% {
+        transform: translateY(-70%) rotate(700deg) ;
+    }
+}
+
+
+.MovieSearchFieldContainer .CloseBtn {
+    width: 7rem;
+    height: 7rem;
+    padding: 2rem;
+    background-color: var(--color-grey-dark-1);
+    margin: 0 3rem 0 0;
+
+    animation: closeBtnShow .75s;
+}
+
+
+@keyframes closeBtnShow {
+    0% {
+        transform: rotate(-30deg);
+    }
+    20% {
+        transform: rotate(0) scale(1.3);
+    }
+    50% {
+        transform: scale(.8);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.MovieSearchFieldContainer .CloseBtn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: block;
+    width: 7rem;
+    height: 7rem;
+    background-color: var(--color-grey-dark-1);
+    border-radius: 50%;
+    z-index: -1;
+
+    transform: scale(30);
+    animation: containerBgShow 1s;
+}
+
+@keyframes containerBgShow {
+    0% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(5);
+    }
+    60% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(30);
+    }
+}
+
