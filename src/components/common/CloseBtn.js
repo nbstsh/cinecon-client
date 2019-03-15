@@ -3,9 +3,11 @@ import './CloseBtn.css'
 
 const CloseBtn = ({ handleClick }) => {
     return (
-        <svg className="CloseBtn" onClick={handleClick}>
-            <use xlinkHref="img/symbol-defs.svg#icon-cross"></use>
-        </svg>
+        <div className='CloseBtn' onClick={handleClick}>
+            <svg className='icon'>
+                <use xlinkHref="img/symbol-defs.svg#icon-cross"></use>
+            </svg>
+        </div>
     )
 }
 

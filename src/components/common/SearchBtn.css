@@ -1,4 +1,4 @@
-.CloseBtn {
+.SearchBtn {
     display: inline-block;
     position: relative;
 
@@ -11,7 +11,7 @@
     cursor: pointer;
 }
 
-.CloseBtn .icon {
+.SearchBtn .icon {
     position: absolute;
     top: 50%;
     left: 50%;

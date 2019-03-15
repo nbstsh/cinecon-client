@@ -3,6 +3,7 @@ import movieManager from '../../modules/movie-manager'
 import MovieSearchField from './MovieSearchField'
 import MovieList from './MovieList'
 import MovieFormModal from './MovieFormModal'
+import MovieSearchFieldContainer from './MovieSearchFieldContainer'
 import userManager from '../../modules/user-manager'
 import './MovieContainer.css'
 
@@ -28,8 +29,8 @@ class MovieContainer extends Component {
     render() {
         return(
             <div className='MovieContainer'>
-                <MovieSearchField />
                 <MovieList />
+                <MovieSearchFieldContainer />
 
                 {this.state.isAdmin &&
                     <MovieFormModal />

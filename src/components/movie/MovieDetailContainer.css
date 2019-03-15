@@ -50,14 +50,18 @@
     position: absolute;
     top: 2rem;
     right: 2rem;
-    color: var(--color-grey-dark-2);
-    border-radius: 50%;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+
     font-size: 2rem;
     font-weight: bold;
+    color: var(--color-grey-dark-2);
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: .7rem;
 }
 
 .MovieDetailContainer .CloseBtn:hover {

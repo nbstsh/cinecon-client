@@ -1,14 +1,11 @@
 .MovieSearchField {
-    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     grid-row-gap: 2rem;
     grid-column-gap: 1rem;
 
-    background-color: var(--color-grey-light-3);
+    /* background-color: var(--color-grey-light-3); */
     padding: 3rem;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr))
-
 }
 
 .MovieSearchField > div {
