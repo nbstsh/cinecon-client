@@ -1,0 +1,8 @@
+.GenreCheckBox {
+    padding: .5rem;
+}
+
+.GenreCheckBox label input {
+    width: auto;
+    margin-right: 1rem;
+}

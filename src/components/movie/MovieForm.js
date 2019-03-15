@@ -6,6 +6,7 @@ import ErrorMessage from '../common/ErrorMessage'
 import MovieFormBtns from './MovieFormBtns'
 import movieManager from '../../modules/movie-manager'
 import genreManager from '../../modules/genre-manager'
+import SelectGenres from './SelectGenres'
 import './MovieForm.css'
 
 
@@ -31,7 +32,7 @@ class MovieForm extends Component {
                 title, 
                 director, 
                 releaseYear, 
-                genre: genre ? genre._id : '', 
+                genre: [], 
                 runningTime, 
                 starring, country 
             }
@@ -39,14 +40,19 @@ class MovieForm extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault()
+        const selectedGenreIds = Array.from(event.target.genres)
+            .filter(input => input.checked)
+            .map(input => input.value)
+        console.log({ selectedGenreIds }) 
+        
 
-        const requestPromise = this.props.id ? 
-            movieManager.putAndSetMovie(this.props.id, this.state.movie) : 
-            movieManager.postAndSetMovie(this.state.movie)
+        // const requestPromise = this.props.id ? 
+        //     movieManager.putAndSetMovie(this.props.id, this.state.movie) : 
+        //     movieManager.postAndSetMovie(this.state.movie)
             
-        requestPromise
-            .then(() => this.props.handleAfterSubmit())
-            .catch(err => this.setState({ errorMessage: err.message }))        
+        // requestPromise
+        //     .then(() => this.props.handleAfterSubmit())
+        //     .catch(err => this.setState({ errorMessage: err.message }))        
 
     }
     handleChange = (e) => {
@@ -80,12 +86,13 @@ class MovieForm extends Component {
                         value={releaseYear} 
                         onChange={this.handleChange} 
                         placeholder='releaseYear' />
-                    <Select 
+                    {/* <Select 
                         name='genre'
                         value={genre}
                         options={options}
                         onChange={this.handleChange}
-                        label='genre'/>
+                        label='genre'/> */}
+                    <SelectGenres />
                     <NumberInput 
                         name='runningTime' 
                         value={runningTime} 
