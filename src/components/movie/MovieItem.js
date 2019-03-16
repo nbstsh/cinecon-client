@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import movieManager from '../../modules/movie-manager'
 import GenreBadge from '../genre/GenreBadge'
+import GenresDisplay from './GenresDisplay'
 import './MovieItem.css'
 
 class MovieItem extends Component {
@@ -9,7 +10,7 @@ class MovieItem extends Component {
         this.state = {
             title: '',
             releaseYear: '',
-            genre: ''
+            genres: ''
         }
     } 
     componentDidMount() {
@@ -17,10 +18,7 @@ class MovieItem extends Component {
             .then(movie => this.setState(movie))
     }
     render() {
-        const { title, releaseYear, genre } = this.state
-        const genreBadge = genre ? 
-            <GenreBadge name={genre.name} color={genre.color} /> : 
-            <p style={{color: 'var(--color-grey-dark-2)'}}>none</p>
+        const { title, releaseYear } = this.state
         
         return(
             <div className="MovieItem">
@@ -28,7 +26,7 @@ class MovieItem extends Component {
                 <label>year:</label>
                 <p>{releaseYear}</p>
                 <label>genre:</label>
-                <div>{genreBadge}</div>
+                <GenresDisplay  genres={this.state.genres} />
 
                 <button onClick={this.props.handleClickShowDetail}>
                     show detail

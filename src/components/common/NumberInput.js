@@ -1,14 +1,14 @@
 import React from 'react'
 import './NumberInput.css'
 
-const NumberInput = ({ name, value, onChange, placeholder }) => {
+const NumberInput = ({ name, value, handleChange, placeholder }) => {
     return (
         <div className="NumberInput">
             <input 
                 type="number" 
                 name={name} 
                 value={value} 
-                onChange={onChange} 
+                onChange={handleChange} 
                 placeholder={placeholder}/> 
             <label>{placeholder}</label>
         </div>

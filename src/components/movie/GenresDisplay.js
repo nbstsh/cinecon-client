@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React  from 'react'
 import './GenresDisplay.css'
 import GenreBadge from '../genre/GenreBadge'
 
@@ -6,7 +6,7 @@ import GenreBadge from '../genre/GenreBadge'
 const GenresDisplay = ({ genres }) => {
     return (
         <div className='GenresDisplay'>
-            {genres.map(({ _id, name, color }) => (
+            {genres && genres.map(({ _id, name, color }) => (
                 <GenreBadge key={_id} name={name} color={color} />
             ))}
         </div> 

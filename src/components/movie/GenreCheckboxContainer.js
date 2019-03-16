@@ -17,19 +17,19 @@ class GenreCheckboxContainer extends Component {
             .then(genres => this.setState({ genres }))
     }
     handleChange = ({ target }) => {
+        const genre = JSON.parse(target.dataset.genre)
         target.checked ? 
-            this.props.push(target.value) :
-            this.props.remove(target.value)
+            this.props.pushGenre(genre) :
+            this.props.removeGenre(genre)
     }
     render() {
         return (
             <div className='GenreCheckboxContainer'>
-                {this.state.genres.map(({ _id, name, color }) => (
+                {this.state.genres.map((genre) => (
                     <GenreCheckbox 
-                        key={_id} 
-                        id={_id} 
-                        name={name} 
-                        color={color} 
+                        key={genre._id} 
+                        genre={genre}
+                        isSelected={this.props.selectedGenres.some(g => g._id === genre._id)}
                         handleChange={this.handleChange}/>
                 ))}
             </div>

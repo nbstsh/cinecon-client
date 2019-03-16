@@ -2,52 +2,38 @@ import React, { Component } from 'react'
 import './SelectGenres.css'
 import GenresDisplay from './GenresDisplay'
 import GenreCheckboxContainer from './GenreCheckboxContainer'
-import genreManager from '../../modules/genre-manager';
+import movieManager from '../../modules/movie-manager'
 
 
 class SelectGenres extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedGenreIds: [],
             selectedGenres: []
         }
     }
-    pushId = (id) => {
-        this.setState(({ selectedGenreIds }) => selectedGenreIds.push(id))
-    }
-    removeId = (id) => {
-        const { selectedGenreIds } = this.state
-        const index = selectedGenreIds.findIndex(i => i === id)
-        if (index < 0) return 
-        selectedGenreIds.splice(index, 1)
-        
-        this.setState({ selectedGenreIds: selectedGenreIds })
+    componentDidMount() {
+        if (!this.props.movieId) return 
+        movieManager.getMovie(this.props.movieId)
+            .then(movie => this.setState({ selectedGenres: movie.genres }))
     }
     pushGenre = (genre) => {
         this.setState(({ selectedGenres }) => selectedGenres.push(genre))
     }
-    removeGenre = (index) => {
-        this.setState(state => state.selectedGenres.splice(index, 1))
-    }
-    push = (id) => {
-        this.pushId(id)
-        genreManager.getGenre(id)
-            .then(genre => this.pushGenre(genre))
-    }
-    remove = (id) => {
-        this.removeId(id)
-        const index = this.state.selectedGenres.findIndex(g => g._id === id)
+    removeGenre = (genre) => {
+        const index = this.state.selectedGenres.findIndex(g => g._id === genre._id)
         if (index < 0) return 
-        this.removeGenre(index)
+        this.setState(state => state.selectedGenres.splice(index, 1))
     }
     render() {
         return (
             <div className='SelectGenres'>
-                <GenresDisplay genres={this.state.selectedGenres} />
+                <GenresDisplay 
+                    genres={this.state.selectedGenres} />
                 <GenreCheckboxContainer 
-                    push={this.push}
-                    remove={this.remove} />
+                    selectedGenres={this.state.selectedGenres}
+                    pushGenre={this.pushGenre}
+                    removeGenre={this.removeGenre} />
             </div>
         )
     }
