@@ -9,7 +9,8 @@ class SelectGenres extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedGenres: []
+            selectedGenres: [],
+            needOpen: false
         }
     }
     componentDidMount() {
@@ -25,11 +26,16 @@ class SelectGenres extends Component {
         if (index < 0) return 
         this.setState(state => state.selectedGenres.splice(index, 1))
     }
+    toggleNeedsOpen = () => {
+        this.setState({ needOpen: !this.state.needOpen })
+    }
     render() {
         const placeholderShown = this.state.selectedGenres.length < 1
 
         return (
-            <div className='SelectGenres' data-placeholder-shown={placeholderShown}>
+            <div className='SelectGenres' onClick={this.toggleNeedsOpen}
+                data-placeholder-shown={placeholderShown} data-need-open={this.state.needOpen} >
+
                 <GenresDisplay 
                     genres={this.state.selectedGenres}
                     placeholder='genre' />
