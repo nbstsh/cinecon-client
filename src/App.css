@@ -85,3 +85,28 @@
         transform: translateX(0);
     }
 }
+
+
+@keyframes delayJumpIn {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    49% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(20%);
+    }
+    52% {
+        transform: translateY(0);
+    }
+    55% {
+        transform: translateY(-30%);
+    }
+    0% {
+        transform: translateY(0);
+    }
+}

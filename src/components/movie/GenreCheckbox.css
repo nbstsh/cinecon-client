@@ -3,6 +3,52 @@
 }
 
 .GenreCheckBox label input {
-    width: auto;
-    margin-right: 1rem;
+    visibility: hidden;
+    width: 0;
+}
+
+.GenreCheckBox label {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.GenreCheckBox input + .CheckBtn {
+    position: absolute;
+    top: -.5rem;
+    left: -.5rem;
+    z-index: 1;
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    color: var(--color-grey-dark-2);
+    border: 1px solid var(--color-grey-dark-3);
+    box-shadow: 0px 3px 3px #0000002e;
+
+    opacity: 0;
+    transition: transform .1s,
+                opacity .1s .05s;
+    transform: translateY(30%);
+}
+
+.GenreCheckBox input:checked + .CheckBtn {
+    visibility: visible;
+    transform: translateY(0);
+    opacity: 1;
+    animation: delayJumpIn .3s ease-in-out;
+}
+
+.GenreCheckBox .GenreBadge {
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.GenreCheckBox .GenreBadge:hover {
+    transform: translateY(-5%);
+    box-shadow: 0 3px 3px #0000002e;
+}
+
+.GenreCheckBox .GenreBadge:active {
+    transform: translateY(0);
+    box-shadow: none;
 }

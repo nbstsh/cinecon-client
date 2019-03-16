@@ -1,5 +1,6 @@
 import React from 'react'
 import GenreBadge from '../genre/GenreBadge';
+import CheckBtn from '../common/CheckBtn'
 import './GenreCheckbox.css'
 
 const GenreCheckbox = ({ genre, isSelected, handleChange}) => {
@@ -15,7 +16,10 @@ const GenreCheckbox = ({ genre, isSelected, handleChange}) => {
                     data-genre={JSON.stringify(genre)}
                     checked={isSelected}
                     onChange={handleChange}/>
-                <GenreBadge name={name} color={color}/>
+                <CheckBtn />
+                <GenreBadge 
+                    name={name} 
+                    color={color}/>
             </label>
         </div>
     )
