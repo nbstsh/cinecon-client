@@ -3,12 +3,15 @@ import './GenresDisplay.css'
 import GenreBadge from '../genre/GenreBadge'
 
 
-const GenresDisplay = ({ genres }) => {
+const GenresDisplay = ({ genres, placeholder }) => {
+    const needsPlaceholder = !(genres && genres.length >= 1)
+    const genreBadges =  genres && genres.map((genre) => (
+        <GenreBadge key={genre._id} name={genre.name} color={genre.color} />
+    ))
+    
     return (
         <div className='GenresDisplay'>
-            {genres && genres.map(({ _id, name, color }) => (
-                <GenreBadge key={_id} name={name} color={color} />
-            ))}
+            {needsPlaceholder ? placeholder : genreBadges}
         </div> 
     )
 }

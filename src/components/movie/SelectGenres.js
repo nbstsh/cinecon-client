@@ -26,10 +26,13 @@ class SelectGenres extends Component {
         this.setState(state => state.selectedGenres.splice(index, 1))
     }
     render() {
+        const placeholderShown = this.state.selectedGenres.length < 1
+
         return (
-            <div className='SelectGenres'>
+            <div className='SelectGenres' data-placeholder-shown={placeholderShown}>
                 <GenresDisplay 
-                    genres={this.state.selectedGenres} />
+                    genres={this.state.selectedGenres}
+                    placeholder='genre' />
                 <GenreCheckboxContainer 
                     selectedGenres={this.state.selectedGenres}
                     pushGenre={this.pushGenre}
