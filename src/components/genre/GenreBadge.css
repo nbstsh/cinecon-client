@@ -1,5 +1,6 @@
 .GenreBadge {
     color: var(--color-grey-light-1);
+    display: inline-block;
     border-radius: 2px;
     font-size: 1.3rem;
     padding: 0.1rem 1rem;

@@ -50,7 +50,7 @@ class GenreForm extends Component {
                 <TextInput 
                     name='name'
                     value={this.state.name} 
-                    onChange={this.handleChange} 
+                    handleChange={this.handleChange} 
                     placeholder='genre name' />
                 <input 
                     type='color' 

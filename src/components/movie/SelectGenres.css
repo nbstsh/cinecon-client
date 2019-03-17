@@ -1,0 +1,83 @@
+.SelectGenres {
+    position: relative;
+}
+
+.SelectGenres .GenresDisplay {
+    color: var(--color-grey-dark-2);
+    padding: 1.2rem;
+    padding-right: 2.5rem;
+    font-size: 1.6rem;
+    border: 1px solid var(--color-grey-light-4);
+    position: relative;
+    cursor: pointer;
+}
+
+/* genre placeholder aniamtion */
+.SelectGenres .GenresDisplay::after {
+    content: 'genre';
+    display: block;
+    padding-left: 0.2rem;
+    padding-right: .5rem;
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    transition: all .2s;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0);
+}
+.SelectGenres[data-placeholder-shown='false'] .GenresDisplay::after {
+    background-color: #fff;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-2.4rem);
+}
+
+.SelectGenres .GenreBadge {
+    animation: fadeIn .3s ease-in-out;
+}
+
+
+/* icon at the end of genre display */
+.SelectGenres .GenresDisplay::before {
+    content: '\00ab';
+    display: block;
+    height: 3.5rem;
+    line-height: 3rem;
+    font-size: 3rem;
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    transition: transform .2s .4s;
+}
+
+.SelectGenres[data-need-open='true'] .GenresDisplay::before {
+    transform: rotate(90deg);
+}
+
+.SelectGenres[data-need-open='false'] .GenresDisplay::before {
+    transform: rotate(-90deg);
+}
+
+
+/* toggle GenrecheckboxContainer */
+.SelectGenres .GenreCheckboxContainer{
+    visibility: visible;
+    opacity: 1;
+    transition: all .3s cubic-bezier(.65,.12,.62,1.69);
+
+    transform-origin: center;
+    transform: rotateX(0) skew(0);
+    perspective: 150rem;
+    backface-visibility: hidden;
+}
+
+/* .SelectGenres[data-need-open='true'] .GenreCheckboxContainer{
+    animation: GenreCheckboxContainerShow 1s;
+} */
+
+.SelectGenres[data-need-open='false'] .GenreCheckboxContainer{
+    visibility: hidden;
+    opacity: 0;
+    transform: rotateX(-90deg) skewY(-10deg);
+}

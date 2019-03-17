@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import TextInput from '../common/TextInput'
 import NumberInput from '../common/NumberInput'
-import Select from '../common/Select'
 import ErrorMessage from '../common/ErrorMessage'
 import MovieFormBtns from './MovieFormBtns'
 import movieManager from '../../modules/movie-manager'
-import genreManager from '../../modules/genre-manager'
+import SelectGenres from './SelectGenres'
 import './MovieForm.css'
 
 
@@ -13,36 +12,38 @@ class MovieForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            movie: {},
-            genres: []
+            movie: {
+                title: '', 
+                director: '', 
+                releaseYear: '', 
+                genres: '', 
+                runningTime: '', 
+                starring: '', 
+                country: '' 
+            }
         }
     } 
     componentDidMount() {
-        genreManager.fetchGenres()
-            .then(genres => this.setState({ genres }))
-
         if (!this.props.id) return 
-        movieManager.getMovie(this.props.id)
-            .then(this.initMovie)
+        movieManager.getMovie(this.props.id).then(this.initMovie)
     }
-    initMovie = ({ title, director, releaseYear, genre, runningTime, starring, country }) => {
+    initMovie = ({ title, director, releaseYear, genres, runningTime, starring, country }) => {
         this.setState(state => {
-            return state.movie = { 
-                title, 
-                director, 
-                releaseYear, 
-                genre: genre ? genre._id : '', 
-                runningTime, 
-                starring, country 
-            }
+            return state.movie = { title, director, releaseYear, genres, runningTime, starring, country }
         })
     }
     handleSubmit = (event) => {
         event.preventDefault()
 
+        // set selected genre ids
+        const data = this.state.movie 
+        data.genres = Array.from(event.target.genres)
+            .filter(input => input.checked)
+            .map(input => input.value)
+
         const requestPromise = this.props.id ? 
-            movieManager.putAndSetMovie(this.props.id, this.state.movie) : 
-            movieManager.postAndSetMovie(this.state.movie)
+            movieManager.putAndSetMovie(this.props.id, data) : 
+            movieManager.postAndSetMovie(data)
             
         requestPromise
             .then(() => this.props.handleAfterSubmit())
@@ -55,9 +56,7 @@ class MovieForm extends Component {
         this.setState((state) => state.movie[name] = value)
     }
     render() {
-        const { title, director, releaseYear, genre, runningTime, starring, country } = this.state.movie
-        const options = genreManager.generateGenreOptions(this.state.genres)
-        options.splice(0, 0, { key: '', value: '', text: 'none'})
+        const { title, director, releaseYear, runningTime, starring, country } = this.state.movie
 
         return(
             <div className='MovieForm'>
@@ -68,41 +67,35 @@ class MovieForm extends Component {
                     <TextInput 
                         name='title' 
                         value={title} 
-                        onChange={this.handleChange} 
+                        handleChange={this.handleChange} 
                         placeholder='title' />
                     <TextInput 
                         name='director' 
                         value={director} 
-                        onChange={this.handleChange} 
+                        handleChange={this.handleChange} 
                         placeholder='director' />
                     <NumberInput 
                         name='releaseYear' 
                         value={releaseYear} 
-                        onChange={this.handleChange} 
+                        handleChange={this.handleChange} 
                         placeholder='releaseYear' />
-                    <Select 
-                        name='genre'
-                        value={genre}
-                        options={options}
-                        onChange={this.handleChange}
-                        label='genre'/>
+                    <SelectGenres 
+                        movieId={this.props.id} />
                     <NumberInput 
                         name='runningTime' 
                         value={runningTime} 
-                        onChange={this.handleChange} 
+                        handleChange={this.handleChange} 
                         placeholder='runningTime' />
                     <TextInput 
                         name='starring' 
                         value={starring} 
-                        onChange={this.handleChange} 
+                        handleChange={this.handleChange} 
                         placeholder='starring' />
-
                     <TextInput 
                         name='country' 
                         value={country} 
-                        onChange={this.handleChange} 
+                        handleChange={this.handleChange} 
                         placeholder='country' />
-
                     <MovieFormBtns
                         handleCancelClick={this.props.handleCancelClick} />
                 </form>

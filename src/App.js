@@ -27,11 +27,9 @@ class App extends Component {
         this.setState({ isAdmin: userManager.isAdminUser() })
     }
     showGenre = () => {
-        console.log('show genre')
         this.setState({ needsGenre: true })
     }
     hideGenre = () => {
-        console.log('hide genre')
         this.setState({ needsGenre: false })
     }
     render() {
