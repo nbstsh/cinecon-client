@@ -1,6 +1,5 @@
 .MovieSearchFieldContainer {
     align-self: flex-end;
-    /* align-self: stretch; */
 
     display: flex;
     justify-content: flex-end;
@@ -8,10 +7,10 @@
 
     position: fixed;
     bottom: 0;
+    z-index: 1001; /* MovieForm modal's zindex = 1000 */
 
-    /* width: 100vw;
-    max-width: 120rem; */
     overflow: hidden;
+
 }
 
 .MovieSearchFieldContainer[data-needs-open='true']{
@@ -68,7 +67,7 @@
 }
 
 .MovieSearchFieldContainer[data-sb-clicked='true'] .SearchBtn {
-    animation: searchBtnHide .4s;
+    animation: searchBtnHide .1s;
 }
 /* 
 @keyframes searchBtnHide {
@@ -94,7 +93,7 @@
         transform: rotate(0);
     }
     100% {
-        transform: rotate(500deg);
+        transform: rotate(230deg);
     }
 }
 

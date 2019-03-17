@@ -18,7 +18,7 @@ class MovieSearchFieldContainer extends Component {
         setTimeout(() => {
             this.setState({ needsOpen: true })
             this.setState({ isSearchBtnClicked: false })
-        }, 300)
+        }, 100)
     }
     close = () => {
         this.setState({ needsOpen: false })

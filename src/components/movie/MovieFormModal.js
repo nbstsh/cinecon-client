@@ -5,22 +5,18 @@ import CreateBtn from '../common/CreateBtn'
 import './MovieFormModal.css'
 
 class MovieFormModal extends ModalControll {
-    constructor(props) {
-        super(props)
-        this.state = {}
-    } 
     render() {
         const movieForm = <MovieForm 
             handleCancelClick={this.closeModal}
             handleAfterSubmit={this.closeModal} />
                 
         const modal = this.generateModalBoilerplate({
-            id: 'movie-form-model',
+            id: 'movie-form-modal',
             content: movieForm
         })
 
         return(
-            <div className="MovieFormModal">
+            <div className="MovieFormModal" onClick={this.props.handleClick}>
                 <CreateBtn handleClick={this.openModal} />
                 {modal}
             </div>
