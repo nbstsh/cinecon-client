@@ -16,10 +16,14 @@ class ModalControll extends Component {
     }
     generateModalBoilerplate({ id, content }) {
         const className = `modal-wrap ${this.state.isModalOpen ? '' : 'd-none'}`;
+        const handleClick = (event) => {
+            event.stopPropagation()
+            this.closeModal()
+        }
 
         return (
             <div id={id} className={className}>
-                <div className="modal-bg" onClick={this.closeModal}></div>
+                <div className="modal-bg" onClick={handleClick}></div>
                 <div className="modal">
                     <div className="modal-body">
                         {content}

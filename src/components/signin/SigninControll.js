@@ -9,7 +9,8 @@ class SigninControll extends ModalControll {
     constructor(props) {
         super(props) 
         this.state = {
-            isSignedIn: false
+            isSignedIn: false,
+            isModalOpen: false
         }
     }
     componentDidMount() {

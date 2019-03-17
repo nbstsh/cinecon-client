@@ -5,4 +5,9 @@
 .SigninControll .modal {
     max-width: 60rem;
     min-width: 30rem;
+    cursor: initial;
+}
+
+.SigninControll .modal-bg {
+    cursor: initial;
 }
