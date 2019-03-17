@@ -1,11 +1,16 @@
 .MovieFormModal {
-    padding-bottom: 3rem;
-    padding-right: 3rem;
+    /* padding-bottom: 3rem;
+    padding-right: 3rem; */
     z-index: 1000;
 
-    position: sticky;
+    /* position: sticky;
     bottom:  0;
-    right: 0;
+    right: 0; */
+
+    align-self: flex-end;
+
+    position: fixed;
+    bottom: 10rem;
 }
 
 .MovieFormModal .CreateBtn {
@@ -17,6 +22,8 @@
     border-radius: 10rem;
     box-shadow: 0 .5rem .5rem #00000036;
     transition: all .3s;
+
+    margin: 0 3rem 1.5rem 0;
 }
 
 .MovieFormModal .CreateBtn:hover {
