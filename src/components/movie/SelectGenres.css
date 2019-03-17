@@ -64,23 +64,20 @@
 .SelectGenres .GenreCheckboxContainer{
     visibility: visible;
     opacity: 1;
-    transition: all .4s cubic-bezier(.65,.12,.62,1.69);
-    transform-origin: top;
+    transition: all .3s cubic-bezier(.65,.12,.62,1.69);
+
+    transform-origin: center;
     transform: rotateX(0) skew(0);
     perspective: 150rem;
     backface-visibility: hidden;
-    pointer-events: none; /* to prevent click event for SelectGenre*/
-}
-.SelectGenres .GenreCheckboxContainer .GenreBadge {
-    pointer-events: visible; /* enable click event */
 }
 
-.SelectGenres[data-need-open='true'] .GenreCheckboxContainer{
+/* .SelectGenres[data-need-open='true'] .GenreCheckboxContainer{
     animation: GenreCheckboxContainerShow 1s;
-}
+} */
 
 .SelectGenres[data-need-open='false'] .GenreCheckboxContainer{
-    /* visibility: hidden;
-    opacity: 0; */
+    visibility: hidden;
+    opacity: 0;
     transform: rotateX(-90deg) skewY(-10deg);
 }

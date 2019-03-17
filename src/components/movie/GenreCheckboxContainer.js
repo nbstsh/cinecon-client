@@ -24,7 +24,7 @@ class GenreCheckboxContainer extends Component {
     }
     render() {
         return (
-            <div className='GenreCheckboxContainer'>
+            <div className='GenreCheckboxContainer' onClick={(e) => { e.stopPropagation() }}>
                 {this.state.genres.map((genre) => (
                     <GenreCheckbox 
                         key={genre._id} 
