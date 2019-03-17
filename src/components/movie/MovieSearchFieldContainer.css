@@ -2,15 +2,13 @@
     align-self: flex-end;
 
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    flex-direction: column;
 
     position: fixed;
     bottom: 0;
     z-index: 1001; /* MovieForm modal's zindex = 1000 */
 
     overflow: hidden;
-
 }
 
 .MovieSearchFieldContainer[data-needs-open='true']{
@@ -24,10 +22,6 @@
 
 
 .MovieSearchFieldContainer .MovieSearchField {
-    flex: 1;
-    /* flex: 1 0 100vw; */
-    z-index: 2;
-
     animation: searchFieldShow 1s;
 }
 
@@ -99,6 +93,7 @@
 
 
 .MovieSearchFieldContainer .CloseBtn {
+    align-self: flex-end;
     width: 7rem;
     height: 7rem;
     padding: 2rem;

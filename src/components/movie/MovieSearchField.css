@@ -6,6 +6,7 @@
 
     /* background-color: var(--color-grey-light-3); */
     padding: 3rem;
+    padding-bottom: 0;
 }
 
 .MovieSearchField > div {
