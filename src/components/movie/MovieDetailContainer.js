@@ -34,7 +34,7 @@ class MovieDetailContainer extends Component {
     }
     //TODO add confirmation modal
     deleteMovie = () => {
-        movieManager.deleteMovie(this.state.movie._id)
+        movieManager.deleteMovie(this.props.id)
     }
     render() {
         const { needsForm, isAdmin } = this.state

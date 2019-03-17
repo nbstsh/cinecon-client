@@ -13,16 +13,16 @@ class MovieSearchField extends Component {
             title: '',
             director: '', 
             releaseYear: { min: '', max: '' }, 
-            genre: '',
+            genres: '',
             runningTime: { min: '', max: '' },
             starring: '', 
             country: '',
-            genres: [],
+            savedGenres: [],
         }
     } 
     componentDidMount() {
         genreManager.getGenres()
-            .then(genres => this.setState({ genres }))
+            .then(savedGenres => this.setState({ savedGenres }))
     }
     handleChange = (e) => {
         const key = e.target.name
@@ -41,8 +41,8 @@ class MovieSearchField extends Component {
         movieManager.updateFilter({ [filterKey]:  { [minMaxKey]: value} })
     }
     render() {
-        const { title, director, releaseYear, genre, runningTime, starring, country, genres } = this.state
-        const options = genreManager.generateGenreOptions(genres)
+        const { title, director, releaseYear, genres, runningTime, starring, country, savedGenres } = this.state
+        const options = genreManager.generateGenreOptions(savedGenres)
         options.splice(0, 0, { key: 0, value: '', text: 'none'})
 
         return (
@@ -50,48 +50,48 @@ class MovieSearchField extends Component {
                 <TextInput 
                     name="title" 
                     value={title} 
-                    onChange={this.handleChange} 
+                    handleChange={this.handleChange} 
                     placeholder="title" />
                 <TextInput 
                     name="director" 
                     value={director} 
-                    onChange={this.handleChange} 
+                    handleChange={this.handleChange} 
                     placeholder="director" />
                 <NumberInput 
                     name="releaseYear.min" 
                     value={releaseYear.min} 
-                    onChange={this.handleRangeChange} 
+                    handleChange={this.handleRangeChange} 
                     placeholder="releaseYear min" />
                 <NumberInput 
                     name="releaseYear.max" 
                     value={releaseYear.max} 
-                    onChange={this.handleRangeChange} 
+                    handleChange={this.handleRangeChange} 
                     placeholder="releaseYear max" />
                 <Select 
-                    name='genre'
-                    value={genre}
+                    name='genres'
+                    value={genres}
                     options={options}
-                    onChange={this.handleChange}
+                    handleChange={this.handleChange}
                     label='genre'/> 
                 <NumberInput 
                     name="runningTime.min" 
                     value={runningTime.min} 
-                    onChange={this.handleRangeChange} 
+                    handleChange={this.handleRangeChange} 
                     placeholder="runningTime min" />
                 <NumberInput 
                     name="runningTime.max" 
                     value={runningTime.max} 
-                    onChange={this.handleRangeChange} 
+                    handleChange={this.handleRangeChange} 
                     placeholder="runningTime max" />
                 <TextInput 
                     name="starring" 
                     value={starring} 
-                    onChange={this.handleChange} 
+                    handleChange={this.handleChange} 
                     placeholder="starring" />
                 <TextInput 
                     name="country" 
                     value={country} 
-                    onChange={this.handleChange} 
+                    handleChange={this.handleChange} 
                     placeholder="country" />
             </div>
         )

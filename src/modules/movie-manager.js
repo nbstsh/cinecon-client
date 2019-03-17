@@ -86,8 +86,7 @@ class MovieManager extends EventEmitter {
     //util
     async generateFilteredMovies() {
         const movies =  await this.getMovies()
-        return movies
-            .filter(needInFilteredMovies)
+        return movies.filter(needInFilteredMovies)
     }
     async generateFilteredMovieIds() {
         const filteredMovies =  await this.generateFilteredMovies()
