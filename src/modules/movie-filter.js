@@ -4,7 +4,7 @@ const filter = {
     title: '',
     director: '', 
     releaseYear: { min: '', max: '' },
-    genre: '', // genre -> objectId
+    genres: '', // genre -> objectId
     runningTime: { min: '' , max: '' },
     starring: '', 
     country: ''
@@ -16,7 +16,7 @@ const filterFuncMap = {
     title: isIncluded,
     director: isIncluded,
     releaseYear: isBetweenMinMax,
-    genre: isSameOrEmpty,
+    genres: isEmptyOrIncludes,
     runningTime: isBetweenMinMax,
     starring: isIncluded, 
     country: isIncluded
@@ -54,16 +54,21 @@ const needInFilteredMovies = (movie) => {
 }
 
 
-// function to filter value
-function isIncluded(key, val){
+/* function to filter value *******************************/
+function isIncluded(key, val) {
     return val.toLowerCase().includes(filter[key])
 }
 
-function isSameOrEmpty(key, val){
+function isSameOrEmpty(key, val) {
     return filter[key] === '' || val === filter[key]
 }
 
-function isBetweenMinMax(key, val){
+function isEmptyOrIncludes(key, val) {
+    console.log({val})
+    return filter[key] === '' || val.find(genre => genre._id === filter[key])
+}
+
+function isBetweenMinMax(key, val) {
     const { min, max } = filter[key]
     if (!min && !max) return true
     if (!min) return val <= max
