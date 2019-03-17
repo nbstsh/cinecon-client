@@ -20,7 +20,7 @@
     overflow: visible;
 }
 
-
+/************************************ SearchField ***/
 .MovieSearchFieldContainer .MovieSearchField {
     animation: searchFieldShow 1s;
 }
@@ -38,7 +38,14 @@
     }
 }
 
-/* SearchBtn style  & CloseBtn style***********************************/
+.MovieSearchFieldContainer[data-cb-clicked='true'] .MovieSearchField {
+    animation: fadeOut .1s backwards;
+    opacity: 0;
+    visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/*************************************** SearchBtn ***/
 
 .MovieSearchFieldContainer .icon {
     width: 3rem;
@@ -56,6 +63,10 @@
     margin: 0 3rem 3rem 0;
 }
 
+.MovieSearchFieldContainer .SearchBtn .icon {
+    animation: fadeIn .2s;
+}
+
 .MovieSearchFieldContainer .SearchBtn:hover {
     animation: shake .5s infinite;
 }
@@ -63,24 +74,6 @@
 .MovieSearchFieldContainer[data-sb-clicked='true'] .SearchBtn {
     animation: searchBtnHide .1s;
 }
-/* 
-@keyframes searchBtnHide {
-    0% {
-        transform: translateY(0);
-    }
-    10% {
-        transform: translateY(-70%);
-    }
-    30% {
-        transform: translateY(-80%);
-    }
-    60% {
-        transform: translateY(-70%) rotate(0);
-    }
-    100% {
-        transform: translateY(-70%) rotate(700deg) ;
-    }
-} */
 
 @keyframes searchBtnHide {
     0% {
@@ -91,6 +84,7 @@
     }
 }
 
+/*************************************** CloseBtn ***/
 
 .MovieSearchFieldContainer .CloseBtn {
     align-self: flex-end;
@@ -116,6 +110,19 @@
     }
     100% {
         transform: scale(1);
+    }
+}
+
+.MovieSearchFieldContainer[data-cb-clicked='true'] .CloseBtn {
+    animation: closeBtnHide .3s;
+}
+
+@keyframes closeBtnHide {
+    0% {
+        transform: scale(1)
+    }
+    100% {
+        transform: scale(0)
     }
 }
 
