@@ -4,6 +4,8 @@ import MovieForm from './MovieForm'
 import CreateBtn from '../common/CreateBtn'
 import './MovieFormModal.css'
 
+const searchFieldContainerZindex = 1000;
+
 class MovieFormModal extends ModalControll {
     render() {
         const movieForm = <MovieForm 
@@ -15,8 +17,13 @@ class MovieFormModal extends ModalControll {
             content: movieForm
         })
 
+        // to display MovieSearchFieldContainer under modal if modal is open
+        const style = {
+             zIndex: searchFieldContainerZindex + (this.state.isModalOpen ? 1 : -1) 
+        }
+
         return(
-            <div className="MovieFormModal" onClick={this.props.handleClick}>
+            <div className="MovieFormModal" style={style}>
                 <CreateBtn handleClick={this.openModal} />
                 {modal}
             </div>

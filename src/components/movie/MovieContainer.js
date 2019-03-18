@@ -11,8 +11,7 @@ class MovieContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isAdmin: false,
-            isModalClosed: true
+            isAdmin: false
         }
     } 
     componentDidMount() {
@@ -27,21 +26,16 @@ class MovieContainer extends Component {
     initIsAdmin = () => {
         this.setState({ isAdmin: userManager.isAdminUser() })
     }
-    toggleModalState = () => {
-        this.setState({ isModalClosed: !this.state.isModalClosed })
-    }
     render() {
         return(
             <div className='MovieContainer'>
                 <MovieList />
 
                 {this.state.isAdmin &&
-                    <MovieFormModal handleClick={this.toggleModalState}/>
+                    <MovieFormModal />
                 }
 
-                {this.state.isModalClosed && 
-                    <MovieSearchFieldContainer />
-                }
+                <MovieSearchFieldContainer />
 
             </div>
         )
