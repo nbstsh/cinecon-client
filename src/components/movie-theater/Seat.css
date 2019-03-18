@@ -1,0 +1,23 @@
+
+.Seat {
+    position: relative;
+    display: inline-block;
+    width: 6vw;
+    height: 10vw;
+}
+
+.Seat span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6vw;
+    height: 10vw;
+    border-radius: 1rem 1rem 0 0;
+    background-color: rgb(83, 8, 8);
+}
+
+.Seat span:nth-of-type(2) {
+    filter: brightness(2);
+    border-radius: 1.5rem 1.5rem 0 0;
+    transform: translateZ(-1vw);
+}

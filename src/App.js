@@ -4,7 +4,7 @@ import './App.css';
 import Navigation from './components/navigation/Navigation'
 import MovieContainer from './components/movie/MovieContainer'
 import GenresContainer from './components/genre/GenresContainer'
-import MovieTheater from './components/movie/MovieTheater'
+import MovieTheater from './components/movie-theater/MovieTheater'
 import userManager from './modules/user-manager'
 
 import Test from './components/Test'

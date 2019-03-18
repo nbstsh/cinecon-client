@@ -1,0 +1,12 @@
+.AudienceSeats {
+    position: relative;
+    top: calc(50vw * 2 / 3);
+
+    display: flex; 
+    justify-content: center;
+    height: calc(100vw / 3);
+}
+
+.AudienceSeats .Seat {
+    margin: .5vw;
+}

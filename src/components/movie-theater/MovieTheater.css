@@ -1,13 +1,6 @@
 .MovieTheater {
     transform-style: preserve-3d;
-    min-height: 100vh;
-}
 
-.MovieTheater * {
-    transform-style: inherit;
-}
-
-.ScreenContainer {
     position: relative;
     width: 100vw;
     /* max-width: 120rem; */
@@ -16,9 +9,15 @@
 
     perspective-origin: 50% calc(100% / 6);
     perspective: 100rem;
+
+
 }
 
-.ScreenContainer .surface {
+.MovieTheater * {
+    transform-style: inherit;
+}
+
+.MovieTheater .surface {
     /* test */
     border: 1px solid grey;
     background-color: #00000001;
@@ -34,32 +33,33 @@
     left: 0;
 }
 
-.ScreenContainer .screen {
+.MovieTheater .screen {
     transform: translate3d(0, 0, -100vw)
 }
 
-.ScreenContainer .ceiling{
+.MovieTheater .ceiling{
     height: 100vw;
     transform-origin: top;
     transform: rotateX(-90deg);
 }
 
-.ScreenContainer .wall-right{
+.MovieTheater .wall-right{
     transform-origin: right;
     transform: rotateY(-90deg);
 }
 
-.ScreenContainer .wall-left{
+.MovieTheater .wall-left{
     transform-origin: left;
     transform: rotateY(90deg);
 }
 
-.ScreenContainer .floor{
+.MovieTheater .floor{
     height: 100vw;
     transform-origin: bottom;
     transform: translateY(-50vw) rotateX(90deg);
 }
 
-.ScreenContainer .interface{
+.MovieTheater .interface{
     background-color: transparent;
 }
+
