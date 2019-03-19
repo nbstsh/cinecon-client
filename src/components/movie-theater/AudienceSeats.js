@@ -14,7 +14,7 @@ const AudienceSeats = () => {
     const zDiff = AUDIENCE_SEATS_Z_LENGTH / ROWS_NUM
     const yDiff = AUDIENCE_SEATS_Y_LENGTH / ROWS_NUM  
 
-    let zDistance = 20;
+    let zDistance = 15;
     let yDistance = 0;
     let count = 0;
 

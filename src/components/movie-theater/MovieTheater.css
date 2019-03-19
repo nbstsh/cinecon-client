@@ -1,25 +1,24 @@
 .MovieTheater {
     transform-style: preserve-3d;
 
-    position: relative;
+    /* position: relative; */
+    position: fixed;
+    top: 0;
+
     width: 100vw;
     height: 50vw;
-    /* max-width: 120rem; */
-    /* max-height: 60rem; */
 
     perspective-origin: 50% calc(100% / 6);
     perspective: 100rem;
 
-    /* test */
-    /* transform: scale(.5) rotateX(0deg) rotateY(0deg);
-    perspective: 500rem;
-    perspective-origin: bottom; */
-
-    /* animation: animate 20s linear infinite; */
+    --rotateX: rotateX(0deg);
+    --rotateY: rotateY(0deg);
+    transform: scale(1.4) translateY(7vw) var(--rotateX) var(--rotateY);
+    animation: animate 2s ease-in-out;
 }
 
 /* test */
-@keyframes animate {
+/* @keyframes animate {
     0% {
         transform: scale(.5) rotateY(0deg) rotateX(0);
     }
@@ -29,6 +28,15 @@
     100% {
         transform: scale(1.2) rotateY(360deg) rotateX(-30deg);
     }
+} */
+
+@keyframes animate {
+    0% {
+        transform: scale(1.1) translateY(0) rotateX(-10deg) rotateY(-10deg);
+    }
+    100% {
+        transform: scale(1.4) translateY(7vw) rotateX(0) rotateY(0);
+    }
 }
 
 .MovieTheater * {
@@ -37,8 +45,7 @@
 
 .MovieTheater .surface {
     /* test */
-    border: 1px solid grey;
-    background-color: #00000001;
+    background-color: #7a7a7a01;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,32 +60,50 @@
 
 .MovieTheater .screen {
     background-size: cover; 
-    transform: translate3d(0, 0, -100vw)
+    transform: translate3d(0, 0, -100vw);
+    background: radial-gradient(rgb(228, 228, 228), rgb(253, 253, 253));
+    background: radial-gradient(#fff, #000);
+}
+.MovieTheater .screen > *{
+    background-color: #fff;
 }
 
-.MovieTheater .ceiling{
-    height: 100vw;
+.MovieTheater .ceiling {
+    height: 120vw;
     transform-origin: top;
-    transform: rotateX(-90deg);
+    transform: rotateX(-90deg) translateY(-20vw);
+    background: radial-gradient(circle at 50% 100%, rgba(74, 75, 44, 0.137), rgb(35, 35, 48)50%, #000);
+    border: 10vw solid rgba(0, 0, 0, 0.623);
 }
 
-.MovieTheater .wall-right{
+.MovieTheater .wall-right {
     transform-origin: right;
     transform: rotateY(-90deg);
+    background: radial-gradient(circle at 0% 50%, rgba(74, 75, 44, 0.137), rgb(56, 56, 75)50%, #000);
+    /* background: radial-gradient(circle at 0% 50%, rgb(49, 27, 27), #000); */
+    border: 5vw solid rgba(0, 0, 0, 0.39);
+    border-left: none;
 }
 
-.MovieTheater .wall-left{
+.MovieTheater .wall-left {
     transform-origin: left;
     transform: rotateY(90deg);
+    background: radial-gradient(circle at 100% 50%, rgba(74, 75, 44, 0.137), rgb(56, 56, 75)50%, #000);
+    border: 5vw solid rgba(0, 0, 0, 0.247);
+    border-right: none;
 }
 
-.MovieTheater .floor{
+.MovieTheater .floor {
     height: 100vw;
     transform-origin: bottom;
     transform: translateY(-50vw) rotateX(90deg);
+
+    background: radial-gradient(farthest-corner at 50% 0%, rgba(253, 255, 155, 0.137), rgb(65, 63, 51)50%, #000);
+    border: 10vw solid rgba(0, 0, 0, 0.39);
 }
 
-.MovieTheater .interface{
+.MovieTheater .interface {
     background-color: transparent;
+    transform: translateZ(20vw);
+    background: radial-gradient(circle at 50% 25%, transparent,  black 60%);
 }
-
