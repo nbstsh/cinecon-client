@@ -4,8 +4,10 @@ import './Seat.css'
 const Seat = () => {
     return (
         <div className='Seat'>
-            <span></span>
-            <span></span>
+            <span className='back'></span>
+            <span className='front'></span>
+            <span className='right'></span>
+            <span className='left'></span>
         </div>
     )
 }
