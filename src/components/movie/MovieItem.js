@@ -19,18 +19,28 @@ class MovieItem extends Component {
     }
     render() {
         const { title, releaseYear } = this.state
-        
+
+        // TODO replace with data
+        const img = 'https://upload.wikimedia.org/wikipedia/en/e/e7/Harry_Potter_and_the_Order_of_the_Phoenix_poster.jpg'
+     
         return(
-            <div className="MovieItem">
-                <h3>{title}</h3>
+            <div className="MovieItem" onClick={this.props.handleClick}>
+                <figure>
+                    <img src={img} />
+                </figure>
+
+                <h3><span>{title}</span></h3>
+                <GenresDisplay  genres={this.state.genres} />
+                
+                {/* <h3>{title}</h3>
                 <label>year:</label>
                 <p>{releaseYear}</p>
                 <label>genre:</label>
-                <GenresDisplay  genres={this.state.genres} />
+                <GenresDisplay  genres={this.state.genres} /> */}
 
-                <button onClick={this.props.handleClickShowDetail}>
+                {/* <button onClick={this.props.handleClickShowDetail}>
                     show detail
-                </button>
+                </button> */}
             </div>
         )
     }
