@@ -4,6 +4,7 @@
     /* position: relative; */
     position: fixed;
     top: 0;
+    z-index: -1;
 
     width: 100vw;
     height: 50vw;
@@ -64,8 +65,11 @@
     background: radial-gradient(rgb(228, 228, 228), rgb(253, 253, 253));
     background: radial-gradient(#fff, #000);
 }
-.MovieTheater .screen > *{
+
+.MovieTheater .screen-content {
     background-color: #fff;
+    width: 95%;
+    height: 80%;
 }
 
 .MovieTheater .ceiling {
@@ -80,7 +84,6 @@
     transform-origin: right;
     transform: rotateY(-90deg);
     background: radial-gradient(circle at 0% 50%, rgba(74, 75, 44, 0.137), rgb(56, 56, 75)50%, #000);
-    /* background: radial-gradient(circle at 0% 50%, rgb(49, 27, 27), #000); */
     border: 5vw solid rgba(0, 0, 0, 0.39);
     border-left: none;
 }

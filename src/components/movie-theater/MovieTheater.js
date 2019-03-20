@@ -14,12 +14,12 @@ class MovieTheater extends Component {
         this.state = {}
     }
     componentDidMount() {
-        window.addEventListener('mousemove', this.handleMousemove)
-        window.addEventListener('scroll', this.handleScroll)
+        if (this.props.needMousemove) {
+            window.addEventListener('mousemove', this.handleMousemove)
+        }
     }
     componentWillUnmount() {
         window.removeEventListener('mousemove', this.handleMousemove)
-        window.removeEventListener('scroll', this.handleScroll)
     }
     handleMousemove(e) {
         const baseWidth = window.innerWidth / 2
@@ -32,15 +32,13 @@ class MovieTheater extends Component {
         el.style.setProperty('--rotateX', `rotateX(${xdeg}deg)`)
         el.style.setProperty('--rotateY', `rotateY(${ydeg}deg)`)
     }
-    handleScroll(e) {
-        const y = window.scrollY;
-        console.log(y)
-    }
     render() {
         return (
             <div className='MovieTheater'>
                 <div className='surface screen'>
-                    <MovieDetail id='5c850e5e98816fd277b372d1' />
+                    <div className='screen-content'>
+                        {this.props.content}
+                    </div>
                 </div>
                 <div className='surface ceiling'></div>
                 <div className='surface wall-right'></div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MovieItem from './MovieItem'
 import MovieDetailContainer from './MovieDetailContainer'
 import './MovieItemContainer.css'
+import MovieTheater from '../movie-theater/MovieTheater'
 
 class MovieItemContainer extends Component {
     constructor(props) {
@@ -21,9 +22,11 @@ class MovieItemContainer extends Component {
             <div className={`MovieItemContainer ${this.state.needsDetail ? 'has-detail-container' : '' }`}>
 
                 {this.state.needsDetail ? (
-                    <MovieDetailContainer 
-                        id={this.props.id} 
-                        handleClickCloseBtn={this.hideDetail}/>
+                    // <MovieTheater content={
+                        <MovieDetailContainer 
+                            id={this.props.id} 
+                            handleClickCloseBtn={this.hideDetail}/>
+                    // }/>
                 ) : ( 
                     <MovieItem 
                         id={this.props.id}

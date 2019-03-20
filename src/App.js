@@ -40,16 +40,16 @@ class App extends Component {
                     handleClickMovie={this.hideGenre}
                     handleClickGenre={this.showGenre}/>
 
-                {/* <div className="container">
+                <div className="container">
                     {this.state.needsGenre && this.state.isAdmin ? (
                     <GenresContainer />
                     ) : (
                     <MovieContainer />
                     )}
-                </div> */}
+                </div>
 
 
-                <MovieTheater />
+                 {/* <MovieTheater /> */}
             </div>
         )
     }
