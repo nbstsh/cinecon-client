@@ -58,7 +58,7 @@
     height: 7rem;
     padding: 2rem;
 
-    background-color: var(--color-grey-dark-1);
+    background-color: var(--color-primary-dark-1);
     box-shadow: 0 0.5rem 0.5rem #00000036;
     margin: 0 3rem 3rem 0;
 }
@@ -91,7 +91,7 @@
     width: 7rem;
     height: 7rem;
     padding: 2rem;
-    background-color: var(--color-grey-dark-1);
+    background-color: var(--color-grey-primary-1);
     margin: 0 3rem 3rem 0;
 
     animation: closeBtnShow .75s;
@@ -135,7 +135,7 @@
     display: block;
     width: 7rem;
     height: 7rem;
-    background-color: var(--color-grey-dark-1);
+    background-color: var(--color-primary-dark-1);
     border-radius: 50%;
     z-index: -1;
 

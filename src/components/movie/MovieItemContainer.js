@@ -30,7 +30,7 @@ class MovieItemContainer extends Component {
                 ) : ( 
                     <MovieItem 
                         id={this.props.id}
-                        handleClickShowDetail={this.showDetail}/>
+                        handleClick={this.showDetail}/>
                 )}
             </div>
         )

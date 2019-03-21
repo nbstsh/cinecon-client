@@ -16,6 +16,7 @@
     --rotateY: rotateY(0deg);
     transform: scale(1.4) translateY(7vw) var(--rotateX) var(--rotateY);
     animation: animate 2s ease-in-out;
+    /* animation: animate 10s linear infinite; */
 }
 
 /* test */

@@ -1,45 +1,41 @@
 .MovieItem {
-    padding: 2rem;
-    background-color: #fff;
-    color: var(--color-grey-dark-1);
-    box-shadow: 1px 1px #0000002b;
-    border: 1px solid var(--color-grey-light-2);
-
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    grid-column-gap: 1rem;
-    grid-row-gap: .3rem;
-
-    /* max-width: 35rem;
-    margin: 0 auto; */
-
+    background-color: var(--color-grey-light-1);
+    color: var(--color-grey-primary-1);
+    border: 1px solid var(--color-grey-light-4);
     animation: MovieItemShow .3s;
+    cursor: pointer;
+}
+
+.MovieItem figure {
+    width: 100%;
+    height: 26rem;
+    overflow: hidden;
+}
+
+.MovieItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .2s ease;
+}
+
+.MovieItem:hover img {
+    transform: scale(1.1);
 }
 
 .MovieItem h3 {
-    grid-column: 1 / -1;
-
-    margin-bottom: .7rem;
-    font-weight: normal;
+    padding: 1rem;
+    background: var(--color-primary-dark-1);
+    color: var(--color-grey-light-1);
 }
 
-.MovieItem label {
-    /* padding-left: 1rem; */
-    color: var(--color-grey-dark-2);
+.MovieItem h3 > * {
+    display: inline-block;
 }
 
-.MovieItem p {
-    color: var(--color-grey-dark-2);
-}
-
-.MovieItem > div {
-    justify-self: start;
-}
-
-.MovieItem button {
-    grid-column: 1 / -1;
-
-    margin-top: 1rem;
+.MovieItem > .GenresDisplay {
+    padding: 1rem;
+    padding-top: .5rem;
 }
 
 

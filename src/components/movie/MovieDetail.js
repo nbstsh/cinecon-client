@@ -25,16 +25,20 @@ class MovieDetail extends Component {
         const {title, director, releaseYear, genres, runningTime, starring, country} = this.state
         const genresDisplay = <GenresDisplay genres={genres} />
 
+        // TODO replace 
+        // const img = 'https://upload.wikimedia.org/wikipedia/en/e/e7/Harry_Potter_and_the_Order_of_the_Phoenix_poster.jpg'
+
         return(
             <div className='MovieDetail'>
                 <h1>{title}</h1>
+                {/* <img src={img} /> */}
                 <ul>
                     <li><label>director:</label> {director}</li>
                     <li><label>releaseYear: </label>{releaseYear}</li>
-                    <li><label>genre: </label>{genresDisplay}</li>
                     <li><label>runningTime: </label>{runningTime}</li>
                     <li><label>starring: </label>{starring}</li>
                     <li><label>country: </label>{country}</li> 
+                    <li><label>genre: </label>{genresDisplay}</li>
                 </ul>
             </div>
         )
