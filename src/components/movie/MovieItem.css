@@ -4,12 +4,19 @@
     border: 1px solid var(--color-grey-light-4);
     animation: MovieItemShow .3s;
     cursor: pointer;
+
+    --thumnail-height: 26rem; 
 }
 
 .MovieItem figure {
     width: 100%;
-    height: 26rem;
+    height: var(--thumnail-height);
     overflow: hidden;
+    transition: height .3s ease;
+}
+
+.MovieItem[data-open-detail='true'] figure {
+    height: 0;
 }
 
 .MovieItem img {
@@ -36,6 +43,41 @@
 .MovieItem > .GenresDisplay {
     padding: 1rem;
     padding-top: .5rem;
+}
+
+.MovieItem > ul {
+    height: 0;
+    list-style: none;
+    transition: height .3s ease;
+    overflow: hidden;
+}
+
+.MovieItem > ul > li {
+    height: calc(var(--thumnail-height) / 5);
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background-color: var(--color-primary);
+    
+    color: var(--color-grey-light-1);
+}
+
+.MovieItem li > * {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    border-bottom: 1px solid var(--color-grey-light-1);
+}
+
+.MovieItem li > label {
+    background-color: var(--color-primary-light-3);
+    border-right: 1px solid var(--color-grey-light-1);
+}
+
+.MovieItem[data-open-detail='true']  > ul {
+    height: var(--thumnail-height);
 }
 
 
