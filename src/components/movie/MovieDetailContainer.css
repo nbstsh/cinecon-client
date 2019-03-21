@@ -65,7 +65,7 @@
 }
 
 .MovieDetailContainer .CloseBtn:hover {
-    color: var(--color-grey-dark-1);
+    color: var(--color-primary-dark-1);
 }
 
 

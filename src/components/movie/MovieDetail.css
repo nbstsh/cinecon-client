@@ -24,8 +24,8 @@
     font-size: 3rem;
     padding: 1rem 2rem;
     /* margin-bottom: 2rem; */
-    /* background: var(--color-grey-dark-1); */
-    background: linear-gradient(to right, var(--color-grey-dark-1), var(--color-grey-light-4));
+    background: var(--color-primary-dark-1);
+    /* background: linear-gradient(to right, var(--color-grey-dark-1), var(--color-grey-light-4)); */
     color: var(--color-grey-light-1);
     /* align-self: center; */
 }

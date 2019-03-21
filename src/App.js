@@ -49,7 +49,7 @@ class App extends Component {
                 </div>
 
 
-                 {/* <MovieTheater /> */}
+                 {/* <MovieTheater needMousemove={true} /> */}
             </div>
         )
     }

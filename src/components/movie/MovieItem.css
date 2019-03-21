@@ -1,6 +1,6 @@
 .MovieItem {
     background-color: var(--color-grey-light-1);
-    color: var(--color-grey-dark-1);
+    color: var(--color-grey-primary-1);
     box-shadow: 1px 1px #0000002b;
     animation: MovieItemShow .3s;
     cursor: pointer;
@@ -10,7 +10,7 @@
     width: 100%;
     height: 26rem;
     overflow: hidden;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 21rem, 0 0);
+    /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 21rem, 0 0); */
 }
 
 .MovieItem img {
@@ -26,10 +26,10 @@
 
 .MovieItem h3 {
     padding: 1rem;
-    background: var(--color-grey-dark-1);
+    background: var(--color-primary-dark-1);
     color: var(--color-grey-light-1);
-    background: linear-gradient(to right, var(--color-grey-dark-1), var(--color-grey-light-4));
-    transform: translateY(-3.5rem) skewY(8.5deg);
+    /* background: linear-gradient(to right, var(--color-grey-dark-1), var(--color-grey-light-4)); */
+    /* transform: translateY(-3.5rem) skewY(8.5deg); */
     box-shadow: 0 1px 1px #000000ba;
 }
 
