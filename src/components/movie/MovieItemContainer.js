@@ -34,7 +34,7 @@ class MovieItemContainer extends Component {
                         handleClick={this.showDetail}/>
                 )}
 
-                <MovieForm />
+                <MovieForm id={this.props.id}/>
             </div>
         )
     }
