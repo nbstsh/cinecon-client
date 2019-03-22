@@ -1,0 +1,42 @@
+.MovieFormInputs {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.MovieFormInputs input[name='title'] {
+    grid-column: 1 / -1;
+    padding: 1rem;
+}
+
+.MovieFormInputs .SelectGenres {
+    grid-column: 1 / -1;
+}
+
+.MovieFormInputs > label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--color-grey-light-1);
+    border-right: 1px solid var(--color-grey-light-1);
+    background-color: var(--color-primary-light-3);
+}
+
+.MovieFormInputs > input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--color-grey-light-1);
+    background-color: #fff;
+    color: var(--color-grey-dark-1);
+}
+
+
+.MovieFormInputs .GenresDisplay {
+    padding: 1rem;
+    padding-top: .5rem;
+}
+
+.MovieFormInputs .SelectGenres .GenresDisplay::after {
+    display: none;
+}
+

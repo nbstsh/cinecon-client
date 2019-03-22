@@ -1,0 +1,11 @@
+.MovieFormToggleBtns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background-color: var(--color-primary-dark-1);
+}
+
+.MovieFormToggleBtns button:hover {
+    transform: none;
+    background-color: var(--color-primary-dark-1);
+}

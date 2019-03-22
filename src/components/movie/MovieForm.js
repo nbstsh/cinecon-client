@@ -5,6 +5,9 @@ import ErrorMessage from '../common/ErrorMessage'
 import MovieFormBtns from './MovieFormBtns'
 import movieManager from '../../modules/movie-manager'
 import SelectGenres from './SelectGenres'
+import MovieFormToggleBtns from './MovieFormToggleBtns'
+import MovieFormInputs from './MovieFormInputs'
+import EditThumnail from './EditThumnail'
 import './MovieForm.css'
 
 
@@ -20,7 +23,8 @@ class MovieForm extends Component {
                 runningTime: '', 
                 starring: '', 
                 country: '' 
-            }
+            },
+            needShowEditThumnail: false
         }
     } 
     componentDidMount() {
@@ -55,61 +59,33 @@ class MovieForm extends Component {
         const value = e.target.value
         this.setState((state) => state.movie[name] = value)
     }
+    showEditThumnail = () => {
+        this.setState({ needShowEditThumnail: true })
+    }
+    hideEditThumnail = () => {
+        this.setState({ needShowEditThumnail: false })
+    }
     render() {
-        const { title, director, releaseYear, runningTime, starring, country } = this.state.movie
 
         return(
-            <div className='MovieForm'>
-            {/* <h2>Movie Form</h2> */}
+            <div className='MovieForm' data-need-thumnail={this.state.needShowEditThumnail}>
+
+                <MovieFormToggleBtns 
+                    handleDetailBtnClick={this.hideEditThumnail}
+                    handleImageBtnClick={this.showEditThumnail}/>
+
                 <ErrorMessage message={this.state.errorMessage} />
                 <form id='moiveForm' onSubmit={this.handleSubmit}>
 
-                    <input 
-                        type="text" 
-                        name='title'
-                        value={title} 
-                        onChange={this.handleChange} 
-                        placeholder='title' />
+                    {this.state.needShowEditThumnail ? (
+                        <EditThumnail />
+                    ) : (
+                        <MovieFormInputs 
+                            id={this.props.id}
+                            movie={this.state.movie}
+                            handleChange={this.handleChange}/>
+                    )}
 
-                    <label>director</label>
-                    <input 
-                        type="text" 
-                        name='director' 
-                        value={director} 
-                        onChange={this.handleChange} />
-
-                    <label>releaseYear</label>
-                    <input 
-                        type="number" 
-                        name='releaseYear' 
-                        value={releaseYear} 
-                        onChange={this.handleChange} 
-                        min='1900' />
-
-                    <label>runningTime</label>
-                    <input 
-                        type="number" 
-                        name='runningTime' 
-                        value={runningTime} 
-                        onChange={this.handleChange}
-                        min='1' />
-                    
-                    <label>starring</label>
-                    <input 
-                        type="text" 
-                        name='starring'
-                        value={starring} 
-                        onChange={this.handleChange} />
-
-                    <label>country</label>
-                    <input 
-                        type="text" 
-                        name='country'
-                        value={country} 
-                        onChange={this.handleChange} />
-                    
-                    <SelectGenres 
-                        movieId={this.props.id} />
 
                     <MovieFormBtns
                         handleCancelClick={this.props.handleCancelClick} />

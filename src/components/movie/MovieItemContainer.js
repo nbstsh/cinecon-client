@@ -20,7 +20,6 @@ class MovieItemContainer extends Component {
         this.setState({ needsDetail: false })
     }
     showEditForm = () => {
-        console.log('test')
         this.setState({ needShowEditForm: true })
     }
     hideEditForm = () => {
@@ -30,16 +29,18 @@ class MovieItemContainer extends Component {
         return(
             <div className='MovieItemContainer' data-need-form={this.state.needShowEditForm}>
 
-                <MovieItem 
-                    id={this.props.id}
-                    handleClick={this.showDetail}
-                    handleEditBtnClick={this.showEditForm}/>
+                
 
-                {this.state.needShowEditForm && (
+                {this.state.needShowEditForm ? (
                     <MovieForm 
                         id={this.props.id}
                         handleAfterSubmit={this.hideEditForm}
                         handleCancelClick={this.hideEditForm}/>
+                ) : (
+                    <MovieItem 
+                        id={this.props.id}
+                        handleClick={this.showDetail}
+                        handleEditBtnClick={this.showEditForm}/>
                 )}
                 
             </div>
