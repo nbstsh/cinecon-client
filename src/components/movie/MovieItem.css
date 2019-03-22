@@ -26,9 +26,9 @@
     transition: transform .2s ease;
 }
 
-.MovieItem:hover img {
+/* .MovieItem:hover img {
     transform: scale(1.1);
-}
+} */
 
 .MovieItem h3 {
     padding: 1rem;
@@ -36,8 +36,22 @@
     color: var(--color-grey-light-1);
 }
 
-.MovieItem h3 > * {
-    display: inline-block;
+.MovieItem > div:nth-child(2) {
+    position: relative;
+}
+
+.MovieItem .EditBtn {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all .2s;
+}
+
+.MovieItem .EditBtn:hover {
+    background-color: var(--color-grey-light-1);
+    color: var(--color-primary-dark-1);
+    transform: translateY(-55%);
 }
 
 .MovieItem > .GenresDisplay {

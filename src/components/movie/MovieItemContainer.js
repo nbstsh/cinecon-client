@@ -10,6 +10,7 @@ class MovieItemContainer extends Component {
         super(props)
         this.state = {
             needsDetail: false,
+            needShowEditForm: false
         }
     }
     showDetail = () => {
@@ -18,23 +19,29 @@ class MovieItemContainer extends Component {
     hideDetail = () => {
         this.setState({ needsDetail: false })
     }
+    showEditForm = () => {
+        console.log('test')
+        this.setState({ needShowEditForm: true })
+    }
+    hideEditForm = () => {
+        this.setState({ needShowEditForm: false })
+    }
     render() {
         return(
-            <div className={`MovieItemContainer ${this.state.needsDetail ? 'has-detail-container' : '' }`}>
+            <div className='MovieItemContainer' data-need-form={this.state.needShowEditForm}>
 
-                {this.state.needsDetail ? (
-                    <MovieTheater content={
-                        <MovieDetailContainer 
-                            id={this.props.id} 
-                            handleClickCloseBtn={this.hideDetail}/>
-                    }/>
-                ) : ( 
-                    <MovieItem 
+                <MovieItem 
+                    id={this.props.id}
+                    handleClick={this.showDetail}
+                    handleEditBtnClick={this.showEditForm}/>
+
+                {this.state.needShowEditForm && (
+                    <MovieForm 
                         id={this.props.id}
-                        handleClick={this.showDetail}/>
+                        handleAfterSubmit={this.hideEditForm}
+                        handleCancelClick={this.hideEditForm}/>
                 )}
-
-                <MovieForm id={this.props.id}/>
+                
             </div>
         )
     }
