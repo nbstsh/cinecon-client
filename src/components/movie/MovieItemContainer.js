@@ -3,6 +3,7 @@ import MovieItem from './MovieItem'
 import MovieDetailContainer from './MovieDetailContainer'
 import './MovieItemContainer.css'
 import MovieTheater from '../movie-theater/MovieTheater'
+import MovieForm from './MovieForm'
 
 class MovieItemContainer extends Component {
     constructor(props) {
@@ -32,6 +33,8 @@ class MovieItemContainer extends Component {
                         id={this.props.id}
                         handleClick={this.showDetail}/>
                 )}
+
+                <MovieForm />
             </div>
         )
     }

@@ -60,42 +60,57 @@ class MovieForm extends Component {
 
         return(
             <div className='MovieForm'>
-            <h2>Movie Form</h2>
+            {/* <h2>Movie Form</h2> */}
                 <ErrorMessage message={this.state.errorMessage} />
                 <form id='moiveForm' onSubmit={this.handleSubmit}>
 
-                    <TextInput 
-                        name='title' 
+                    <input 
+                        type="text" 
+                        name='title'
                         value={title} 
-                        handleChange={this.handleChange} 
+                        onChange={this.handleChange} 
                         placeholder='title' />
-                    <TextInput 
+
+                    <label>director</label>
+                    <input 
+                        type="text" 
                         name='director' 
                         value={director} 
-                        handleChange={this.handleChange} 
-                        placeholder='director' />
-                    <NumberInput 
+                        onChange={this.handleChange} />
+
+                    <label>releaseYear</label>
+                    <input 
+                        type="number" 
                         name='releaseYear' 
                         value={releaseYear} 
-                        handleChange={this.handleChange} 
-                        placeholder='releaseYear' />
-                    <SelectGenres 
-                        movieId={this.props.id} />
-                    <NumberInput 
+                        onChange={this.handleChange} 
+                        min='1900' />
+
+                    <label>runningTime</label>
+                    <input 
+                        type="number" 
                         name='runningTime' 
                         value={runningTime} 
-                        handleChange={this.handleChange} 
-                        placeholder='runningTime' />
-                    <TextInput 
-                        name='starring' 
+                        onChange={this.handleChange}
+                        min='1' />
+                    
+                    <label>starring</label>
+                    <input 
+                        type="text" 
+                        name='starring'
                         value={starring} 
-                        handleChange={this.handleChange} 
-                        placeholder='starring' />
-                    <TextInput 
-                        name='country' 
+                        onChange={this.handleChange} />
+
+                    <label>country</label>
+                    <input 
+                        type="text" 
+                        name='country'
                         value={country} 
-                        handleChange={this.handleChange} 
-                        placeholder='country' />
+                        onChange={this.handleChange} />
+                    
+                    <SelectGenres 
+                        movieId={this.props.id} />
+
                     <MovieFormBtns
                         handleCancelClick={this.props.handleCancelClick} />
                 </form>
