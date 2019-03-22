@@ -22,11 +22,11 @@ class MovieItemContainer extends Component {
             <div className={`MovieItemContainer ${this.state.needsDetail ? 'has-detail-container' : '' }`}>
 
                 {this.state.needsDetail ? (
-                    // <MovieTheater content={
+                    <MovieTheater content={
                         <MovieDetailContainer 
                             id={this.props.id} 
                             handleClickCloseBtn={this.hideDetail}/>
-                    // }/>
+                    }/>
                 ) : ( 
                     <MovieItem 
                         id={this.props.id}
