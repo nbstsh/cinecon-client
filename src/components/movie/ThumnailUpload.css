@@ -1,0 +1,36 @@
+.ThumnailUpload {
+    width: 100%;
+    height: var(--thumnail-height);
+    position: relative;
+}
+
+.ThumnailUpload input {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.ThumnailUpload label{
+    position: absolute;
+    top: 0;
+    content: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: var(--color-primary);
+    background-color: var(--color-primary-light-1);
+    border: 1px solid var(--color-grey-light-4);
+    border-bottom: none;
+    cursor: pointer;
+    transition: color .2s;
+}
+
+.ThumnailUpload label:hover {
+    color: var(--color-primary-dark-2);
+}
+
+.ThumnailUpload .CreateBtn {
+    margin-right: 1rem;
+}

@@ -6,4 +6,5 @@
     width: 100%;
     height: var(--thumnail-height);
     object-fit: cover;
+    vertical-align: top;
 }

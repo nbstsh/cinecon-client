@@ -2,6 +2,9 @@
     position: relative;
     height: var(--thumnail-height);
     overflow: hidden;
+    background-color: var(--color-primary-light-1);
+    border: 1px solid var(--color-grey-light-4);
+    border-bottom: none;
 }
 
 .ThumnailVideo::after {
@@ -20,7 +23,7 @@
     cursor: pointer;
 }
 
-.ThumnailVideo p {
+.ThumnailVideo :nth-child(1) {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,10 +34,5 @@
 
 
 .ThumnailVideo canvas {
-    width: var(--thumnail-width);
-    height: var(--thumnail-height);
     visibility: hidden;
-
-/* TEST */
-    /* transform: translateY(30rem); */
 }
