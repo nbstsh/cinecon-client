@@ -21,6 +21,10 @@ class EditThumnail extends Component {
     setImageBlob = (imageBlob) => {
         this.setState({ imageBlob })
     }
+    handleBackClick = () => {
+        this.setState({ imageBlob: null })
+        this.hideThumnailVideo()
+    }
     render() {
         // TODO replace with data
         const img = 'https://upload.wikimedia.org/wikipedia/en/e/e7/Harry_Potter_and_the_Order_of_the_Phoenix_poster.jpg'
@@ -44,7 +48,7 @@ class EditThumnail extends Component {
                 }
 
                 <div>
-                    <button type="button" onClick={this.hideThumnailVideo}>back</button>
+                    <button type="button" onClick={this.handleBackClick}>back</button>
                     <button type="button" onClick={this.showThumnailVideo}>camera</button>
                     <button type="button">file</button>
                 </div>

@@ -31,10 +31,5 @@
 
 
 .ThumnailVideo canvas {
-    width: var(--thumnail-width);
-    height: var(--thumnail-height);
     visibility: hidden;
-
-/* TEST */
-    /* transform: translateY(30rem); */
 }

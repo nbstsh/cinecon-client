@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './ThumnailVideo.css'
 
+const IMG_WIDTH = 1000;
 
 class ThumnailVideo extends Component {
     constructor(props) {
@@ -27,7 +28,12 @@ class ThumnailVideo extends Component {
         const videoEl = document.getElementById(this.videElementId)
         const canvasEl = document.querySelector('#canvas')
         const ctx = canvasEl.getContext('2d')
-        ctx.drawImage(videoEl, 0, 0, canvasEl.width, canvasEl.height)
+
+        const imgHeight = videoEl.videoHeight / (videoEl.videoWidth / IMG_WIDTH)
+        canvasEl.width = IMG_WIDTH
+        canvasEl.height = imgHeight
+
+        ctx.drawImage(videoEl, 0, 0, IMG_WIDTH, imgHeight)
         canvasEl.toBlob(blob => {
             this.props.setImageBlob(blob)
             this.props.hideThumnailVideo()
