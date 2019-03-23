@@ -23,11 +23,22 @@ class ThumnailVideo extends Component {
             track.stop()
         })
     }
+    handleVideoClick = () => {
+        const videoEl = document.getElementById(this.videElementId)
+        const canvasEl = document.querySelector('#canvas')
+        const ctx = canvasEl.getContext('2d')
+        ctx.drawImage(videoEl, 0, 0, canvasEl.width, canvasEl.height)
+        canvasEl.toBlob(blob => {
+            this.props.setImageBlob(blob)
+            this.props.hideThumnailVideo()
+        })
+    }
     render() {
         return (
             <div className='ThumnailVideo'>
                 <p>カメラ準備中．．．</p>
-                <video id={this.videElementId} autoPlay></video>
+                <video id={this.videElementId} autoPlay onClick={this.handleVideoClick}></video>
+                <canvas id='canvas'></canvas>
             </div>
         )
     }

@@ -17,6 +17,7 @@
     width: var(--thumnail-width);
     height: var(--thumnail-height);
     z-index: 2;
+    cursor: pointer;
 }
 
 .ThumnailVideo p {
@@ -26,4 +27,14 @@
     transform: translate(-50%, -50%);
     color: var(--color-primary);
     z-index: 1;
+}
+
+
+.ThumnailVideo canvas {
+    width: var(--thumnail-width);
+    height: var(--thumnail-height);
+    visibility: hidden;
+
+/* TEST */
+    /* transform: translateY(30rem); */
 }
