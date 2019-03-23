@@ -1,7 +1,19 @@
-.MovieItemContainer.has-detail-container {
-    grid-row: 1;
-    grid-column: 1 / -1;
-    position: sticky;
-    top: 3rem;
-    z-index: 2;
+
+/* .MovieItemContainer[data-need-form='true'] .MovieItem{
+    animation: fadeOut .3s ease;
+    visibility: hidden;
+    float:right;
+} */
+
+.MovieItemContainer .MovieForm {
+    opacity: 0;
+    transition: opacity .3s ease;
 }
+
+.MovieItemContainer[data-need-form='true'] .MovieForm {
+    opacity: 1;
+    animation:  slideInLeft .3s;
+}
+
+
+

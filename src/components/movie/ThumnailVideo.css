@@ -1,0 +1,40 @@
+.ThumnailVideo {
+    position: relative;
+    height: var(--thumnail-height);
+    overflow: hidden;
+}
+
+.ThumnailVideo::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.ThumnailVideo video {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--thumnail-width);
+    height: var(--thumnail-height);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.ThumnailVideo p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-primary);
+    z-index: 1;
+}
+
+
+.ThumnailVideo canvas {
+    width: var(--thumnail-width);
+    height: var(--thumnail-height);
+    visibility: hidden;
+
+/* TEST */
+    /* transform: translateY(30rem); */
+}

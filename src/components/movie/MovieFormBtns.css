@@ -1,6 +1,7 @@
 
 .MovieFormBtns {
-    align-self: center;
+    display: flex;
+    justify-content: center;
 }
 
 .MovieFormBtns .btn{

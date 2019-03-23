@@ -40,11 +40,12 @@
 
 /* icon at the end of genre display */
 .SelectGenres .GenresDisplay::before {
+    font-family: sans-serif;
     content: '\00ab';
     display: block;
     height: 3.5rem;
     line-height: 3rem;
-    font-size: 3rem;
+    font-size: 2.5rem;
     position: absolute;
     top: .5rem;
     right: 1rem;
@@ -62,22 +63,12 @@
 
 /* toggle GenrecheckboxContainer */
 .SelectGenres .GenreCheckboxContainer{
-    visibility: visible;
-    opacity: 1;
-    transition: all .3s cubic-bezier(.65,.12,.62,1.69);
+    transition: all .2s ease;
+    transform-origin: top;
+    transform: scaleY(1);
 
-    transform-origin: center;
-    transform: rotateX(0) skew(0);
-    perspective: 150rem;
-    backface-visibility: hidden;
 }
 
-/* .SelectGenres[data-need-open='true'] .GenreCheckboxContainer{
-    animation: GenreCheckboxContainerShow 1s;
-} */
-
 .SelectGenres[data-need-open='false'] .GenreCheckboxContainer{
-    visibility: hidden;
-    opacity: 0;
-    transform: rotateX(-90deg) skewY(-10deg);
+    transform: scaleY(0);
 }

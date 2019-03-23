@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import movieManager from '../../modules/movie-manager'
 import GenreBadge from '../genre/GenreBadge'
 import GenresDisplay from './GenresDisplay'
+import EditBtn from '../common/EditBtn'
 import './MovieItem.css'
 
 class MovieItem extends Component {
@@ -21,6 +22,13 @@ class MovieItem extends Component {
     hideDetail = () => {
         this.setState({ needShowDetail: false })
     }
+    toggleDetail = () => {
+        this.setState({ needShowDetail: !this.state.needShowDetail })
+    }
+    handleEditBtnClick = (event) => {
+        event.stopPropagation()
+        this.props.handleEditBtnClick()
+    }
     render() {
         const {title, director, releaseYear, genres, runningTime, starring, country, needShowDetail} = this.state
         // TODO replace with data
@@ -33,7 +41,11 @@ class MovieItem extends Component {
                     <img src={img} />
                 </figure>
 
-                <h3><span>{title}</span></h3>
+                <div onClick={this.toggleDetail}>
+                    <h3>{title}</h3>
+                    <EditBtn handleClick={this.handleEditBtnClick}/>
+                </div>
+                
                 <ul onClick={this.hideDetail}>
                     <li>
                         <label>director</label>

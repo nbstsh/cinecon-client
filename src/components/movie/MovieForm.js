@@ -5,6 +5,9 @@ import ErrorMessage from '../common/ErrorMessage'
 import MovieFormBtns from './MovieFormBtns'
 import movieManager from '../../modules/movie-manager'
 import SelectGenres from './SelectGenres'
+import MovieFormToggleBtns from './MovieFormToggleBtns'
+import MovieFormInputs from './MovieFormInputs'
+import EditThumnail from './EditThumnail'
 import './MovieForm.css'
 
 
@@ -20,7 +23,8 @@ class MovieForm extends Component {
                 runningTime: '', 
                 starring: '', 
                 country: '' 
-            }
+            },
+            needShowEditThumnail: false
         }
     } 
     componentDidMount() {
@@ -55,47 +59,35 @@ class MovieForm extends Component {
         const value = e.target.value
         this.setState((state) => state.movie[name] = value)
     }
+    showEditThumnail = () => {
+        this.setState({ needShowEditThumnail: true })
+    }
+    hideEditThumnail = () => {
+        this.setState({ needShowEditThumnail: false })
+    }
     render() {
-        const { title, director, releaseYear, runningTime, starring, country } = this.state.movie
 
         return(
-            <div className='MovieForm'>
-            <h2>Movie Form</h2>
+            <div className='MovieForm' data-need-thumnail={this.state.needShowEditThumnail}>
+
                 <ErrorMessage message={this.state.errorMessage} />
+
+                <MovieFormToggleBtns 
+                    handleDetailBtnClick={this.hideEditThumnail}
+                    handleImageBtnClick={this.showEditThumnail}/>
+
                 <form id='moiveForm' onSubmit={this.handleSubmit}>
 
-                    <TextInput 
-                        name='title' 
-                        value={title} 
-                        handleChange={this.handleChange} 
-                        placeholder='title' />
-                    <TextInput 
-                        name='director' 
-                        value={director} 
-                        handleChange={this.handleChange} 
-                        placeholder='director' />
-                    <NumberInput 
-                        name='releaseYear' 
-                        value={releaseYear} 
-                        handleChange={this.handleChange} 
-                        placeholder='releaseYear' />
-                    <SelectGenres 
-                        movieId={this.props.id} />
-                    <NumberInput 
-                        name='runningTime' 
-                        value={runningTime} 
-                        handleChange={this.handleChange} 
-                        placeholder='runningTime' />
-                    <TextInput 
-                        name='starring' 
-                        value={starring} 
-                        handleChange={this.handleChange} 
-                        placeholder='starring' />
-                    <TextInput 
-                        name='country' 
-                        value={country} 
-                        handleChange={this.handleChange} 
-                        placeholder='country' />
+                    {this.state.needShowEditThumnail ? (
+                        <EditThumnail />
+                    ) : (
+                        <MovieFormInputs 
+                            id={this.props.id}
+                            movie={this.state.movie}
+                            handleChange={this.handleChange}/>
+                    )}
+
+
                     <MovieFormBtns
                         handleCancelClick={this.props.handleCancelClick} />
                 </form>

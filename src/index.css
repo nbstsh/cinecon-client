@@ -20,6 +20,9 @@
   
     --box-shadow-1: 0 1rem 1rem #0000001a;
     --box-shadow-dark-1: 0 1rem 1rem #00000021;
+
+    --thumnail-width: 35rem;
+    --thumnail-height: 26rem;
   }
   
   * {

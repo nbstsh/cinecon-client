@@ -64,7 +64,6 @@ function isSameOrEmpty(key, val) {
 }
 
 function isEmptyOrIncludes(key, val) {
-    console.log({val})
     return filter[key] === '' || val.find(genre => genre._id === filter[key])
 }
 
