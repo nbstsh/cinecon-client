@@ -4,8 +4,6 @@
     border: 1px solid var(--color-grey-light-4);
     animation: MovieItemShow .3s;
     cursor: pointer;
-
-    --thumnail-height: 26rem; 
 }
 
 .MovieItem figure {

@@ -70,11 +70,12 @@ class MovieForm extends Component {
         return(
             <div className='MovieForm' data-need-thumnail={this.state.needShowEditThumnail}>
 
+                <ErrorMessage message={this.state.errorMessage} />
+
                 <MovieFormToggleBtns 
                     handleDetailBtnClick={this.hideEditThumnail}
                     handleImageBtnClick={this.showEditThumnail}/>
 
-                <ErrorMessage message={this.state.errorMessage} />
                 <form id='moiveForm' onSubmit={this.handleSubmit}>
 
                     {this.state.needShowEditThumnail ? (

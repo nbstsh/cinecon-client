@@ -1,0 +1,9 @@
+.EditThumnail {
+
+}
+
+.EditThumnail img {
+    width: 100%;
+    height: var(--thumnail-height);
+    object-fit: cover;
+}
