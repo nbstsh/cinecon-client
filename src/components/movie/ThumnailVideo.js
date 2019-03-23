@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './ThumnailVideo.css'
+import ErrorMessage from '../common/ErrorMessage'
 
 const IMG_WIDTH = 1000;
 
@@ -8,19 +9,29 @@ class ThumnailVideo extends Component {
         super(props)
         this.videElementId = 'video-' + new Date().getTime() 
         this.state = {
-            isStreamReady: false
+            isStreamReady: false,
+            errorMessage: null
         }
     }
     componentDidMount() {
-        navigator.mediaDevices.getUserMedia({ video: true })
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
+            .catch(err => {
+                return navigator.mediaDevices.getUserMedia({ video: true })
+            })
             .then(stream => {
                 this.setState({ isStreamReady: true })
                 const videoEl = document.getElementById(this.videElementId)
                 videoEl.srcObject = stream
             })
+            .catch(err => {
+                this.setState({ errorMessage: 'カメラを使用することができません' })
+            })
     }
     componentWillUnmount() {
-        document.getElementById(this.videElementId).srcObject.getVideoTracks().forEach((track) => {
+        const srcObject = document.getElementById(this.videElementId).srcObject
+        if (!srcObject) return 
+
+        srcObject.getVideoTracks().forEach((track) => {
             track.stop()
         })
     }
@@ -42,7 +53,12 @@ class ThumnailVideo extends Component {
     render() {
         return (
             <div className='ThumnailVideo'>
-                <p>カメラ準備中．．．</p>
+                {this.state.errorMessage ? (
+                    <ErrorMessage message={this.state.errorMessage} />
+                ) : (
+                    <p>カメラ準備中．．．</p>
+                )}
+                
                 <video id={this.videElementId} autoPlay onClick={this.handleVideoClick}></video>
                 <canvas id='canvas'></canvas>
             </div>
