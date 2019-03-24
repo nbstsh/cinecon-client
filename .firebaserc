@@ -1,1 +1,5 @@
-{}
+{
+  "projects": {
+    "cinecon": "cinecon-be402"
+  }
+}

@@ -10,8 +10,7 @@ class EditThumnail extends Component {
         this.state = {
             stream: null,
             needShowThumnailVideo: false,
-            needShowThumnailUpload: false,
-            imageBlob: null
+            needShowThumnailUpload: false
         }
     }
     showThumnailVideo = () => {
@@ -27,18 +26,20 @@ class EditThumnail extends Component {
         this.setState({ needShowThumnailUpload: false })
     }
     setImageBlob = (imageBlob) => {
-        this.setState({ imageBlob })
+        this.props.setImageBlob(imageBlob)
     }
     handleBackClick = () => {
-        this.setState({ imageBlob: null })
+        this.props.setImageBlob(null)
         this.hideThumnailVideo()
         this.hideThumnailUpload()
     }
     handleVideoBtnClick = () => {
+        this.props.setImageBlob(null)
         this.hideThumnailUpload()
         this.showThumnailVideo()
     }
     handleFileBtnClick = () => {
+        this.props.setImageBlob(null)
         this.hideThumnailVideo()
         this.showThumnailUpload()
     }
@@ -46,14 +47,14 @@ class EditThumnail extends Component {
         // TODO replace with data
         const img = 'https://upload.wikimedia.org/wikipedia/en/e/e7/Harry_Potter_and_the_Order_of_the_Phoenix_poster.jpg'
 
-        const { needShowThumnailVideo, needShowThumnailUpload, imageBlob } = this.state
+        const { needShowThumnailVideo, needShowThumnailUpload } = this.state
+        const imageBlob = this.props.imageBlob
 
-        const needsCurrentImage = 
-            ( !needShowThumnailVideo && !needShowThumnailUpload && !imageBlob )
-        const needsUpdateImage = 
-            ( !needShowThumnailVideo && !needShowThumnailUpload && imageBlob )
-        const selectedStatus = 
-            { needsCurrentImage, needShowThumnailUpload, needShowThumnailVideo }
+        const needsCurrentImage = ( !needShowThumnailVideo && !needShowThumnailUpload && !imageBlob )
+        const needsUpdateImage = ( imageBlob !== null )
+        const selectedStatus = { needsCurrentImage, needShowThumnailUpload, needShowThumnailVideo }
+
+        console.log(imageBlob)
 
         return (
             <div className='EditThumnail'>
@@ -62,7 +63,7 @@ class EditThumnail extends Component {
                 }
 
                 {needsUpdateImage && 
-                    <img src={URL.createObjectURL(this.state.imageBlob)} />
+                    <img src={URL.createObjectURL(imageBlob)} />
                 }
                 
                 {needShowThumnailVideo && 

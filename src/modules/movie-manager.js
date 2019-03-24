@@ -1,9 +1,10 @@
 import EventEmitter from 'events'
-import { getRequest, postRequest, putRequest, deleteRequest, handleResponse } from './request'
+import { getRequest, postRequest, postFormDataRequest, putRequest, deleteRequest, handleResponse } from './request'
 import createIdbKeyval from './idb-keyval'
 import config from '../config/index'
 import { setFilter, needInFilteredMovies } from './movie-filter'
-const { api, idb } = config
+import storage from './storage'
+const { api, idb, firebase } = config
 const idbKeyval = createIdbKeyval(idb.objectStoreNames.movies)
 
 
@@ -33,6 +34,16 @@ class MovieManager extends EventEmitter {
     async deleteMovieRequest(id){
         const res = await deleteRequest(`${api.movies}/${id}`, true)
         return handleResponse(res, 'Fail to delete movie.')
+    }
+    async postThumnail(imageBlob) {
+        // const postData = new FormData() 
+        // postData.append('file', imageBlob, new Date().toISOString + '.png');
+        // const res = await postFormDataRequest(firebase.storageUrl, postData, true)
+        // return handleResponse(res, 'Fail to upload image.')
+        const filename = new Date().toISOString() + '.jpg'
+        const imageRef = storage.ref().child(filename)
+        await imageRef.put(imageBlob).catch(err => { throw new Error(err)})
+        return imageRef.getDownloadURL()
     }
     // IndexedDB
     async getMovies() {

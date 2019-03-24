@@ -10,6 +10,8 @@ import MovieFormInputs from './MovieFormInputs'
 import EditThumnail from './EditThumnail'
 import './MovieForm.css'
 
+import { uploadFile } from '../../modules/storage'
+
 
 class MovieForm extends Component {
     constructor(props) {
@@ -24,6 +26,7 @@ class MovieForm extends Component {
                 starring: '', 
                 country: '' 
             },
+            imageBlob: null,
             needShowEditThumnail: false
         }
     } 
@@ -40,18 +43,27 @@ class MovieForm extends Component {
         event.preventDefault()
 
         // set selected genre ids
-        const data = this.state.movie 
-        data.genres = Array.from(event.target.genres)
-            .filter(input => input.checked)
-            .map(input => input.value)
+        // const data = this.state.movie 
+        //TODO: take care of genre
+        // data.genres = Array.from(event.target.genres)
+        //     .filter(input => input.checked)
+        //     .map(input => input.value)
 
-        const requestPromise = this.props.id ? 
-            movieManager.putAndSetMovie(this.props.id, data) : 
-            movieManager.postAndSetMovie(data)
-            
-        requestPromise
-            .then(() => this.props.handleAfterSubmit())
-            .catch(err => this.setState({ errorMessage: err.message }))        
+        // const requestPromise = this.props.id ? 
+        //     movieManager.putAndSetMovie(this.props.id, data) : 
+        //     movieManager.postAndSetMovie(data)
+        
+        if (this.state.imageBlob) {
+            console.log('send image')
+
+            movieManager.postThumnail(this.state.imageBlob)
+                .then(url => console.log(url))
+                .catch(err => console.log(err)) //TODO: error handling
+        }
+
+        // requestPromise
+        //     .then(() => this.props.handleAfterSubmit())
+        //     .catch(err => this.setState({ errorMessage: err.message }))        
 
     }
     handleChange = (e) => {
@@ -64,6 +76,9 @@ class MovieForm extends Component {
     }
     hideEditThumnail = () => {
         this.setState({ needShowEditThumnail: false })
+    }
+    setImageBlob = (imageBlob) => {
+        this.setState({ imageBlob })
     }
     render() {
 
@@ -79,7 +94,9 @@ class MovieForm extends Component {
                 <form id='moiveForm' onSubmit={this.handleSubmit}>
 
                     {this.state.needShowEditThumnail ? (
-                        <EditThumnail />
+                        <EditThumnail 
+                            setImageBlob={this.setImageBlob}
+                            imageBlob={this.state.imageBlob}/>
                     ) : (
                         <MovieFormInputs 
                             id={this.props.id}
