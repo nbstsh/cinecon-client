@@ -40,6 +40,7 @@ class MovieManager extends EventEmitter {
         // postData.append('file', imageBlob, new Date().toISOString + '.png');
         // const res = await postFormDataRequest(firebase.storageUrl, postData, true)
         // return handleResponse(res, 'Fail to upload image.')
+
         const filename = new Date().toISOString() + '.jpg'
         const imageRef = storage.ref().child(filename)
         await imageRef.put(imageBlob).catch(err => { throw new Error(err)})

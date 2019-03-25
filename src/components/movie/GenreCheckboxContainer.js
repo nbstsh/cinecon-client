@@ -16,11 +16,12 @@ class GenreCheckboxContainer extends Component {
         genreManager.getGenres()
             .then(genres => this.setState({ genres }))
     }
-    handleChange = ({ target }) => {
-        const genre = JSON.parse(target.dataset.genre)
-        target.checked ? 
-            this.props.pushGenre(genre) :
-            this.props.removeGenre(genre)
+    handleChange = (event) => {
+        this.props.handleChange(event)
+        // const genre = JSON.parse(event.target.dataset.genre)
+        // event.target.checked ? 
+        //     this.props.pushGenre(genre) :
+        //     this.props.removeGenre(genre)
     }
     render() {
         return (
