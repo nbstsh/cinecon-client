@@ -28,7 +28,7 @@ class UserManager extends EventEmitter {
     signinUser(token){
         setToken(token)
         saveToken()
-        this.fetchUser()
+        return this.fetchUser()
             .then(u => this.setUser(u))
             .catch(() => this.setUser(null))
     }

@@ -7,6 +7,7 @@ import GenresContainer from './components/genre/GenresContainer'
 import MovieTheater from './components/movie-theater/MovieTheater'
 import userManager from './modules/user-manager'
 
+// test
 import Test from './components/Test'
 
 class App extends Component {

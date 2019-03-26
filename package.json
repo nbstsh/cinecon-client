@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^5.9.1",
+    "firebaseui": "^3.5.2",
     "idb": "^3.0.2",
     "lodash": "^4.17.11",
     "react": "^16.8.3",

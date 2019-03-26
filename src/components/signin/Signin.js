@@ -3,6 +3,7 @@ import ErrorMessage from '../common/ErrorMessage'
 import './Signin.css'
 import { fetchToken } from '../../modules/token'
 import userManager from '../../modules/user-manager'
+import firebase from '../../modules/firebase-init'
 
 
 class Signin extends Component {
@@ -14,20 +15,30 @@ class Signin extends Component {
     }
     submit = async (e) => {
         e.preventDefault()
+        const email = e.target.email.value
+        const password = e.target.password.value
+        const data = { email, password}
 
-        const data = {
-            email: e.target.email.value,
-            password: e.target.password.value
-        }
-        const successHandler = (token) => {
+        const handleSuccess = async (token) => {
             // signinUser(token)
-            userManager.signinUser(token)
+            await userManager.signinUser(token)
             this.setState({ errorMessage: '' })
             this.props.handleAfterSingin()
         }
 
+        const handleAdminUser = () => {
+            if (!userManager.isAdminUser()) return 
+            firebase.auth()
+                .signInWithEmailAndPassword(email, password)
+                .catch(err => {
+                    userManager.signoutUser()// if there is an error, make sure that user is logged out
+                    throw new Error(err)
+                })
+        }
+
         fetchToken(data)
-            .then(successHandler)
+            .then(handleSuccess)
+            .then(handleAdminUser)
             .catch(err => this.setState({ errorMessage: err.message }))
     }
     render(){

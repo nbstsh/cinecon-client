@@ -36,6 +36,15 @@ const postRequest = (url, data, needsToken = false) => {
     return fetch(url, init)
 }
 
+const postFormDataRequest = (url, formData, needsToken = false) => {
+    const init = presetInit("POST")
+    init.headers = { "Content-Type": "application/x-www-form-urlencoded" }
+    init.body = formData
+    if (needsToken) initToken(init)
+
+    return fetch(url, init)
+}
+
 // PUT request to given url with body embeded with given data
 // if needsToken is true, x-auth-token is set with jwt in localStorage
 const putRequest = (url, data, needsToken = false) => {
@@ -64,5 +73,5 @@ const handleResponse = async (res, defaultErrorMessage) => {
 }
 
 
-export  { getRequest, postRequest, putRequest, deleteRequest, handleResponse }
+export  { getRequest, postRequest, postFormDataRequest, putRequest, deleteRequest, handleResponse }
 

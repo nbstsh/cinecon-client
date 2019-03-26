@@ -3,7 +3,8 @@ import './MovieFormInputs.css'
 import SelectGenres from './SelectGenres'
 
 const MovieFormInputs = ({ id, movie, handleChange }) => {
-    const { title, director, releaseYear, runningTime, starring, country } = movie
+    const { title, director, releaseYear, runningTime, starring, country, genres } = movie
+    console.log({ genres})
     return (
         <div className='MovieFormInputs'>
             <input 
@@ -51,7 +52,8 @@ const MovieFormInputs = ({ id, movie, handleChange }) => {
                 onChange={handleChange} />
 
             <SelectGenres 
-                movieId={id} />
+                genres={genres}
+                handleChange={handleChange} />
 
         </div>
     )

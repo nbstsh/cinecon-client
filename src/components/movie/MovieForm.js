@@ -11,6 +11,7 @@ import EditThumnail from './EditThumnail'
 import './MovieForm.css'
 
 
+
 class MovieForm extends Component {
     constructor(props) {
         super(props)
@@ -19,11 +20,13 @@ class MovieForm extends Component {
                 title: '', 
                 director: '', 
                 releaseYear: '', 
-                genres: '', 
+                genres: [], // [{genre object}]
                 runningTime: '', 
                 starring: '', 
-                country: '' 
+                country: '',
+                thumnail: '' 
             },
+            imageBlob: null,
             needShowEditThumnail: false
         }
     } 
@@ -33,37 +36,60 @@ class MovieForm extends Component {
     }
     initMovie = ({ title, director, releaseYear, genres, runningTime, starring, country }) => {
         this.setState(state => {
-            return state.movie = { title, director, releaseYear, genres, runningTime, starring, country }
+            state.movie = { title, director, releaseYear, genres, runningTime, starring, country }
+            return state
         })
     }
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault()
 
         // set selected genre ids
         const data = this.state.movie 
-        data.genres = Array.from(event.target.genres)
-            .filter(input => input.checked)
-            .map(input => input.value)
+        // extract id of selected genres
+        data.genres = data.genres.map(g => g._id)
+
+        if (this.state.imageBlob) {
+            const url = await movieManager.postThumnail(this.state.imageBlob)// TODO: error handling
+            data.thumnail = url 
+
+        } 
 
         const requestPromise = this.props.id ? 
             movieManager.putAndSetMovie(this.props.id, data) : 
             movieManager.postAndSetMovie(data)
-            
+
         requestPromise
             .then(() => this.props.handleAfterSubmit())
-            .catch(err => this.setState({ errorMessage: err.message }))        
-
+            .catch(err => this.setState({ errorMessage: err.message }))       
     }
     handleChange = (e) => {
         const name = e.target.name
         const value = e.target.value
+        
+        if (name === 'genres') return this.handleGenresChange(e)
         this.setState((state) => state.movie[name] = value)
+    }
+    handleGenresChange = (e) => {
+        e.target.checked ? 
+            this.pushGenre(JSON.parse(e.target.dataset.genre)) : this.removeGenre(e.target.value)
+    }
+    pushGenre = (genre) => {
+        this.setState(({ movie }) => movie.genres.push(genre))
+    }
+    removeGenre = (id) => {
+        this.setState(({ movie }) => {
+            const index = movie.genres.findIndex(g => g._id === id)
+            return movie.genres.splice(index, 1)
+        })
     }
     showEditThumnail = () => {
         this.setState({ needShowEditThumnail: true })
     }
     hideEditThumnail = () => {
         this.setState({ needShowEditThumnail: false })
+    }
+    setImageBlob = (imageBlob) => {
+        this.setState({ imageBlob })
     }
     render() {
 
@@ -79,7 +105,10 @@ class MovieForm extends Component {
                 <form id='moiveForm' onSubmit={this.handleSubmit}>
 
                     {this.state.needShowEditThumnail ? (
-                        <EditThumnail />
+                        <EditThumnail 
+                            thumnail={this.state.movie.thumnail}
+                            setImageBlob={this.setImageBlob}
+                            imageBlob={this.state.imageBlob}/>
                     ) : (
                         <MovieFormInputs 
                             id={this.props.id}

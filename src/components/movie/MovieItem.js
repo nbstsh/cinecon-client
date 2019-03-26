@@ -30,15 +30,13 @@ class MovieItem extends Component {
         this.props.handleEditBtnClick()
     }
     render() {
-        const {title, director, releaseYear, genres, runningTime, starring, country, needShowDetail} = this.state
-        // TODO replace with data
-        const img = 'https://upload.wikimedia.org/wikipedia/en/e/e7/Harry_Potter_and_the_Order_of_the_Phoenix_poster.jpg'
+        const {title, director, releaseYear, genres, runningTime, starring, country, needShowDetail, thumnail} = this.state
      
         return(
             // <div className="MovieItem" onClick={this.props.handleClick} >
             <div className="MovieItem" data-open-detail={needShowDetail}>
                 <figure onClick={this.showDetail}>
-                    <img src={img} />
+                    <img src={thumnail} />
                 </figure>
 
                 <div onClick={this.toggleDetail}>
@@ -68,7 +66,7 @@ class MovieItem extends Component {
                         <span>{country}</span>
                     </li>
                 </ul>
-                <GenresDisplay  genres={this.state.genres} />
+                <GenresDisplay  genres={genres} placeholder='ジャンルなし' />
             </div>
         )
     }
