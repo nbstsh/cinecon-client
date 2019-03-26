@@ -4,7 +4,6 @@ import SelectGenres from './SelectGenres'
 
 const MovieFormInputs = ({ id, movie, handleChange }) => {
     const { title, director, releaseYear, runningTime, starring, country, genres } = movie
-    console.log({ genres})
     return (
         <div className='MovieFormInputs'>
             <input 
