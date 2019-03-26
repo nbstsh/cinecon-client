@@ -3,6 +3,7 @@ import ModalControll from '../common/ModalControll'
 import './SigninControll.css'
 import Signin from './Signin'
 import userManager from '../../modules/user-manager'
+import firebase from '../../modules/firebase-init'
 
 
 class SigninControll extends ModalControll {
@@ -23,6 +24,9 @@ class SigninControll extends ModalControll {
         this.openModal()
     }
     handleSignoutClick = () => {
+        if (userManager.isAdminUser()) {
+            firebase.auth().signOut()
+        }
         userManager.signoutUser()
     }
     handleAfterSingin = () => {

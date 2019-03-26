@@ -10,7 +10,6 @@ import MovieFormInputs from './MovieFormInputs'
 import EditThumnail from './EditThumnail'
 import './MovieForm.css'
 
-import { uploadFile } from '../../modules/storage'
 
 
 class MovieForm extends Component {
@@ -52,6 +51,7 @@ class MovieForm extends Component {
         if (this.state.imageBlob) {
             const url = await movieManager.postThumnail(this.state.imageBlob)// TODO: error handling
             data.thumnail = url 
+
         } 
 
         const requestPromise = this.props.id ? 

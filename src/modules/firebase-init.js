@@ -10,13 +10,5 @@ const config = {
 }
 
 firebase.initializeApp(config);
-const storage = firebase.storage()
 
-const storageRef = storage.ref()
-
-const uploadFile = ({ file, fileName, metadata }) => {
-    const imageRef = storageRef.child(fileName)
-    return imageRef.put(file, metadata)
-}
-
-export default storage
+export default firebase
