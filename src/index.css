@@ -58,6 +58,7 @@
   
     font-size: 1.6rem;
     color: var(--color-grey-dark-1);
+    background-color: var(--color-grey-light-1);
   }
   
   code {
@@ -69,6 +70,18 @@
   /***********************
   * DEFAULT STYLE
   ************************/
+
+  /* iOSでのデフォルトスタイルをリセット */
+input[type="submit"],
+input[type="button"] {
+  border-radius: 0;
+  -webkit-box-sizing: content-box;
+  -webkit-appearance: button;
+  appearance: button;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
   
   /*  button */
   button,

@@ -1,9 +1,8 @@
 
-/* .MovieItemContainer[data-need-form='true'] .MovieItem{
-    animation: fadeOut .3s ease;
-    visibility: hidden;
-    float:right;
-} */
+.MovieItemContainer {
+    /* max-width: var(--thumnail-width);
+    justify-self: center; */
+}
 
 .MovieItemContainer .MovieForm {
     opacity: 0;

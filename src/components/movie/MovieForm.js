@@ -43,8 +43,8 @@ class MovieForm extends Component {
     handleSubmit = async (event) => {
         event.preventDefault()
 
-        // set selected genre ids
-        const data = this.state.movie 
+        // to maintain genres as array of objects
+        const data = { ...this.state.movie }
         // extract id of selected genres
         data.genres = data.genres.map(g => g._id)
 
