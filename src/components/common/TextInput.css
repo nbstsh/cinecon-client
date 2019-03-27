@@ -10,13 +10,12 @@
     align-self: flex-start;
     margin-left: 1rem;
     font-size: 1.3rem;
-    color: var(--color-grey-dark-2);
     padding: .2rem .5rem;
     opacity: 1;
     transition: all .2s;
     transform: translateY(-1.3rem) rotate(-5deg) translateX(-1.5rem);
-    background-color: var(--color-grey-dark-2);
-    color: var(--color-grey-light-1);
+    background-color: var(--color-primary-light-2);
+    color: var( --color-primary-dark-1);
     box-shadow: 0 1rem 1rem #0000000f;
 }
 

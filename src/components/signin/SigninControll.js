@@ -4,12 +4,13 @@ import './SigninControll.css'
 import Signin from './Signin'
 import userManager from '../../modules/user-manager'
 import firebase from '../../modules/firebase-init'
-
+const hash = window.location.hash
 
 class SigninControll extends ModalControll {
     constructor(props) {
         super(props) 
         this.state = {
+            needShowSigninTab: hash === '#admin',
             isSignedIn: false,
             isModalOpen: false
         }
@@ -18,7 +19,6 @@ class SigninControll extends ModalControll {
         userManager.on(userManager.UPDATE_EVENT, () => {
             this.setState({ isSignedIn: userManager.isSignedIn() })
         })
-        
     }
     handleSigninClick = () => {
         this.openModal()
@@ -33,7 +33,9 @@ class SigninControll extends ModalControll {
         this.closeModal()
     }
     render() {
-        const isSignedIn = this.state.isSignedIn
+        const { isSignedIn, needShowSigninTab} = this.state
+        if (!isSignedIn && !needShowSigninTab) return null
+
         const handleClick = isSignedIn ? this.handleSignoutClick : this.handleSigninClick
         
         const tab = (

@@ -4,26 +4,24 @@ import './Navigation.css'
 import UserInfo from './UserInfo'
 import NavigationTab from './NavigationTab'
 import userManager from '../../modules/user-manager'
-const hash = window.location.hash
 
 class Navigation extends Component {    
     constructor(props) {
         super(props)
         this.state = {
-            needShowSigninTab: hash === '#admin',
             isAdmin: false
         }
     }
     componentDidMount() {
         this.initIsAdmin()
         userManager.on(userManager.UPDATE_EVENT, this.initIsAdmin)
-      }
-      componentWillUnmount() {
-          userManager.off(userManager.UPDATE_EVENT, this.initIsAdmin)
-      }
-      initIsAdmin = () => {
-          this.setState({ isAdmin: userManager.isAdminUser() })
-      }
+    }
+    componentWillUnmount() {
+        userManager.off(userManager.UPDATE_EVENT, this.initIsAdmin)
+    }
+    initIsAdmin = () => {
+        this.setState({ isAdmin: userManager.isAdminUser() })
+    }
     render() {
         return (
             <nav className="Navigation">
@@ -45,9 +43,7 @@ class Navigation extends Component {
 
                         <UserInfo />
 
-                        {this.state.needShowSigninTab && 
-                            <SigninControll />
-                        }
+                        <SigninControll />
                     </div>
                 </div>
             </nav>
