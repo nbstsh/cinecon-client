@@ -3,18 +3,29 @@ import movieManager from '../../modules/movie-manager'
 import GenreBadge from '../genre/GenreBadge'
 import GenresDisplay from './GenresDisplay'
 import EditBtn from '../common/EditBtn'
+import userManager from '../../modules/user-manager'
 import './MovieItem.css'
 
 class MovieItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            needShowDetail: false
+            needShowDetail: false,
+            isAdmin: false
         }
-    } 
+    }
     componentDidMount() {
         movieManager.getMovie(this.props.id)
             .then(movie => this.setState(movie))
+
+        this.initIsAdmin()
+        userManager.on(userManager.UPDATE_EVENT, this.initIsAdmin)
+    }
+    componentWillUnmount() {
+        userManager.off(userManager.UPDATE_EVENT, this.initIsAdmin)
+    }
+    initIsAdmin = () => {
+        this.setState({ isAdmin: userManager.isAdminUser() })
     }
     showDetail = () => {
         this.setState({ needShowDetail: true })
@@ -41,7 +52,9 @@ class MovieItem extends Component {
 
                 <div onClick={this.toggleDetail}>
                     <h3>{title}</h3>
-                    <EditBtn handleClick={this.handleEditBtnClick}/>
+                    {this.state.isAdmin && 
+                        <EditBtn handleClick={this.handleEditBtnClick}/>
+                    }
                 </div>
                 
                 <ul onClick={this.hideDetail}>
