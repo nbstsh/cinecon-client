@@ -1,16 +1,10 @@
 .MovieFormModal {
-    /* padding-bottom: 3rem;
-    padding-right: 3rem; */
-    z-index: 1000;
-
-    /* position: sticky;
-    bottom:  0;
-    right: 0; */
-
     align-self: flex-end;
 
     position: fixed;
     bottom: 10rem;
+    right: 0;
+    z-index: 1000;
 }
 
 .MovieFormModal .CreateBtn {

@@ -4,23 +4,31 @@ import NumberInput from '../common/NumberInput'
 import Select from '../common/Select'
 import genreManager from '../../modules/genre-manager'
 import movieManager from '../../modules/movie-manager'
+import { getFilter } from '../../modules/movie-filter'
 import './MovieSearchField.css'
+
+
+const emptyFilter = {
+    title: '',
+    director: '', 
+    releaseYear: { min: '', max: '' }, 
+    genres: '',
+    runningTime: { min: '', max: '' },
+    starring: '', 
+    country: '',
+}
 
 class MovieSearchField extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            title: '',
-            director: '', 
-            releaseYear: { min: '', max: '' }, 
-            genres: '',
-            runningTime: { min: '', max: '' },
-            starring: '', 
-            country: '',
-            savedGenres: [],
-        }
+        this.state = Object.assign({
+            savedGenres: []
+        }, emptyFilter)
     } 
     componentDidMount() {
+        const { title, director, releaseYear, genres, runningTime, starring, country} = getFilter()
+        this.setState({ title, director, releaseYear, genres, runningTime, starring, country} )
+
         genreManager.getGenres()
             .then(savedGenres => this.setState({ savedGenres }))
     }
@@ -39,6 +47,10 @@ class MovieSearchField extends Component {
         this.setState((state) => state[filterKey][minMaxKey] = value)
 
         movieManager.updateFilter({ [filterKey]:  { [minMaxKey]: value} })
+    }
+    handleResetClick = () => {
+        this.setState(emptyFilter)
+        movieManager.updateFilter(emptyFilter)
     }
     render() {
         const { title, director, releaseYear, genres, runningTime, starring, country, savedGenres } = this.state
@@ -93,6 +105,8 @@ class MovieSearchField extends Component {
                     value={country} 
                     handleChange={this.handleChange} 
                     placeholder="country" />
+
+                <button onClick={this.handleResetClick}>リセット</button>
             </div>
         )
     }

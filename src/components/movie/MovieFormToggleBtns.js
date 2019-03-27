@@ -7,12 +7,12 @@ const MovieFormToggleBtns = ({ handleDetailBtnClick, handleImageBtnClick }) => {
             <button 
                 className='show-detail-btn' 
                 type='button' 
-                onClick={handleDetailBtnClick}>詳細入力</button>
+                onClick={handleDetailBtnClick}>映画情報</button>
 
             <button 
                 className='show-thumnail-btn' 
                 type='button' 
-                onClick={handleImageBtnClick}>画像更新</button>
+                onClick={handleImageBtnClick}>画像</button>
         </div>
     )
 }

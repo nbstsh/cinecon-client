@@ -5,7 +5,6 @@ import UserInfo from './UserInfo'
 import NavigationTab from './NavigationTab'
 import userManager from '../../modules/user-manager'
 const hash = window.location.hash
-console.log(hash)
 
 class Navigation extends Component {    
     constructor(props) {

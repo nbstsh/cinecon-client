@@ -6,6 +6,7 @@
 
     position: fixed;
     bottom: 0;
+    right: 0;
     z-index: 1000; /* MovieForm modal's zindex = 1000 */
 
     overflow: hidden;
@@ -13,7 +14,6 @@
 
 .MovieSearchFieldContainer[data-needs-open='true']{
     width: 100vw;
-    max-width:  120rem;
 }
 
 .MovieSearchFieldContainer[data-sb-clicked='true']{
