@@ -34,9 +34,9 @@ class MovieForm extends Component {
         if (!this.props.id) return 
         movieManager.getMovie(this.props.id).then(this.initMovie)
     }
-    initMovie = ({ title, director, releaseYear, genres, runningTime, starring, country }) => {
+    initMovie = ({ title, director, releaseYear, genres, runningTime, starring, country, thumnail }) => {
         this.setState(state => {
-            state.movie = { title, director, releaseYear, genres, runningTime, starring, country }
+            state.movie = { title, director, releaseYear, genres, runningTime, starring, country, thumnail }
             return state
         })
     }
@@ -92,7 +92,6 @@ class MovieForm extends Component {
         this.setState({ imageBlob })
     }
     render() {
-
         return(
             <div className='MovieForm' data-need-thumnail={this.state.needShowEditThumnail}>
 
