@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import TextInput from '../common/TextInput'
-import NumberInput from '../common/NumberInput'
 import ErrorMessage from '../common/ErrorMessage'
 import MovieFormBtns from './MovieFormBtns'
 import movieManager from '../../modules/movie-manager'
-import SelectGenres from './SelectGenres'
 import MovieFormToggleBtns from './MovieFormToggleBtns'
 import MovieFormInputs from './MovieFormInputs'
 import EditThumnail from './EditThumnail'
+import SendingMessage from '../common/SendingMessage'
 import './MovieForm.css'
 
 
@@ -20,14 +18,15 @@ class MovieForm extends Component {
                 title: '', 
                 director: '', 
                 releaseYear: '', 
-                genres: [], // [{genre object}]
+                genres: [], // [{genre object}] (genres in formData needs to be an array of genre's id)
                 runningTime: '', 
                 starring: '', 
                 country: '',
                 thumnail: '' 
             },
             imageBlob: null,
-            needShowEditThumnail: false
+            needShowEditThumnail: false,
+            isSending: false
         }
     } 
     componentDidMount() {
@@ -42,25 +41,31 @@ class MovieForm extends Component {
     }
     handleSubmit = async (event) => {
         event.preventDefault()
+        this.setState({ isSending: true })
 
-        // to maintain genres as array of objects
-        const data = { ...this.state.movie }
-        // extract id of selected genres
-        data.genres = data.genres.map(g => g._id)
+        const data = { ...this.state.movie } // to maintain genres as an array of objects
+        data.genres = data.genres.map(g => g._id) // extract id of selected genres
 
-        if (this.state.imageBlob) {
-            const url = await movieManager.postThumnail(this.state.imageBlob)// TODO: error handling
-            data.thumnail = url 
+        try {
+            if (this.state.imageBlob) {
+                const url = await movieManager.postThumnail(this.state.imageBlob)
+                data.thumnail = url
+            }
 
-        } 
+            if (this.props.id) {
+                await movieManager.putAndSetMovie(this.props.id, data)
+            } else {
+                await movieManager.postAndSetMovie(data)
+            }
 
-        const requestPromise = this.props.id ? 
-            movieManager.putAndSetMovie(this.props.id, data) : 
-            movieManager.postAndSetMovie(data)
+            this.props.handleAfterSubmit()
+        }
+        catch(err) {
+            this.setState({ errorMessage: err.message })
+            console.log({err})
+        }
 
-        requestPromise
-            .then(() => this.props.handleAfterSubmit())
-            .catch(err => this.setState({ errorMessage: err.message }))       
+        this.setState({ isSending: false })
     }
     handleChange = (e) => {
         const name = e.target.name
@@ -94,31 +99,39 @@ class MovieForm extends Component {
     render() {
         return(
             <div className='MovieForm' data-need-thumnail={this.state.needShowEditThumnail}>
+                {!this.state.isSending && 
+                    <ErrorMessage message={this.state.errorMessage} />
+                }
 
-                <ErrorMessage message={this.state.errorMessage} />
+                {this.state.isSending && 
+                    <SendingMessage />
+                }
 
-                <MovieFormToggleBtns 
-                    handleDetailBtnClick={this.hideEditThumnail}
-                    handleImageBtnClick={this.showEditThumnail}/>
+                {!this.state.isSending && 
+                    <MovieFormToggleBtns 
+                        handleDetailBtnClick={this.hideEditThumnail}
+                        handleImageBtnClick={this.showEditThumnail}/>
+                }
+                
+                {!this.state.isSending && 
+                    <form id='moiveForm' onSubmit={this.handleSubmit}>
 
-                <form id='moiveForm' onSubmit={this.handleSubmit}>
+                        {this.state.needShowEditThumnail ? (
+                            <EditThumnail 
+                                thumnail={this.state.movie.thumnail}
+                                setImageBlob={this.setImageBlob}
+                                imageBlob={this.state.imageBlob}/>
+                        ) : (
+                            <MovieFormInputs 
+                                id={this.props.id}
+                                movie={this.state.movie}
+                                handleChange={this.handleChange}/>
+                        )}
 
-                    {this.state.needShowEditThumnail ? (
-                        <EditThumnail 
-                            thumnail={this.state.movie.thumnail}
-                            setImageBlob={this.setImageBlob}
-                            imageBlob={this.state.imageBlob}/>
-                    ) : (
-                        <MovieFormInputs 
-                            id={this.props.id}
-                            movie={this.state.movie}
-                            handleChange={this.handleChange}/>
-                    )}
-
-
-                    <MovieFormBtns
-                        handleCancelClick={this.props.handleCancelClick} />
-                </form>
+                        <MovieFormBtns
+                            handleCancelClick={this.props.handleCancelClick} />
+                    </form>
+                }
             </div>
         )
     }

@@ -1,5 +1,6 @@
 .MovieForm {
     color: var(--color-grey-light-1);
+    height: 100%;
 }
 
 .MovieForm .MovieFormBtns {

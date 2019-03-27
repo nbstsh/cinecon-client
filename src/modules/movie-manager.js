@@ -38,7 +38,7 @@ class MovieManager extends EventEmitter {
     async postThumnail(imageBlob) {
         const filename = new Date().toISOString() + '.jpg'
         const imageRef = firebase.storage().ref().child(filename)
-        await imageRef.put(imageBlob).catch(err => {throw new Error(err)})
+        await imageRef.put(imageBlob).catch(err => {throw new Error(err.message)})
         return imageRef.getDownloadURL()
     }
     // IndexedDB

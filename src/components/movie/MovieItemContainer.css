@@ -1,7 +1,15 @@
 
 .MovieItemContainer {
-    /* max-width: var(--thumnail-width);
-    justify-self: center; */
+    height: 100%;
+    min-height: var(--thumnail-height);
+
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+}
+
+.MovieItemContainer > * {
+    flex: 1;
 }
 
 .MovieItemContainer .MovieForm {
