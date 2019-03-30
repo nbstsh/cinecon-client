@@ -1,0 +1,7 @@
+.ColorPicker {
+
+}
+
+.ColorPicker > span {
+    cursor: pointer;
+}
