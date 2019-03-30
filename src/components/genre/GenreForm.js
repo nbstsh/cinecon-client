@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TextInput from '../common/TextInput'
 import ErrorMessage from '../common/ErrorMessage'
 import './GenreForm.css'
+import ColorPicker from '../common/ColorPicker'
 import manager from '../../modules/genre-manager'
 const DEFAULT_COLOR = '#ffffff'
 
@@ -25,6 +26,9 @@ class GenreForm extends Component {
         const key = e.target.name
         const value = e.target.value
         this.setState((state) => state[key] = value)
+    }
+    setColor = (color) => {
+        this.setState({ color })
     }
     handleSubmit = (e) => {
         e.preventDefault()
@@ -52,13 +56,11 @@ class GenreForm extends Component {
                     value={this.state.name} 
                     handleChange={this.handleChange} 
                     placeholder='ジャンル名' />
-                <input 
-                    type='color' 
-                    name='color' 
-                    value={this.state.color}
-                    onChange={this.handleChange}/>
+                <ColorPicker 
+                    setColor={this.setColor}
+                    currentColor={this.state.color}/>
 
-                <input type="submit" value=""></input>
+                {/* <input type="submit" value=""></input> */}
                 <button>
                     <svg className="">
                         <use xlinkHref="img/symbol-defs.svg#icon-check"></use>

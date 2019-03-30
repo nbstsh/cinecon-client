@@ -7,7 +7,7 @@
     padding:  1rem;
     padding-left: 2rem;
     position: relative;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .GenreForm > .ErrorMessage {
@@ -49,11 +49,11 @@
     fill: #fff;
 }
 
-.GenreForm >  * {
+/* .GenreForm >  * {
     z-index: 2;
-}
+} */
 
-.GenreForm > input[type='submit'] {
+/* .GenreForm > input[type='submit'] {
     position: absolute;
     top: 0;
     left: 0;
@@ -63,6 +63,9 @@
     background-color: transparent;
     z-index: 1;
     cursor: pointer;
-}
+} */
 
+.GenreForm > .modal-wrap {
+    z-index: 10000;
+}
 
