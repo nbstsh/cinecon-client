@@ -7,7 +7,7 @@
     z-index: 1000;
 }
 
-.MovieFormModal .CreateBtn {
+.MovieFormModal > .CreateBtn {
     width: 7rem;
     height: 7rem;
     padding: 2rem;
@@ -20,12 +20,18 @@
     margin: 0 3rem 1.5rem 0;
 }
 
-.MovieFormModal .CreateBtn:hover {
+@media only screen and (max-width: 37.5em) {
+    .MovieFormModal > .CreateBtn {
+        margin: 0 2rem 1.5rem 0;
+    }
+}
+
+.MovieFormModal > .CreateBtn:hover {
     transform: translateY(-10%);
     box-shadow: 0 1rem 1rem #00000f1f;
 }
 
-.MovieFormModal .CreateBtn:active {
+.MovieFormModal > .CreateBtn:active {
     transform: translateY(0);
     box-shadow: none;
 }
@@ -35,29 +41,15 @@
 }
 
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 31.25em) {
 
     .MovieFormModal .modal {
-       padding: 0;
+        padding: 0;
     }
     
     .MovieFormModal .MovieForm {
         padding: 3rem;
-        min-height: 100vh;
-    }
-    .MovieFormModal .MovieForm h2 {
-        /* flex: 0 0 15vh;
-        display: flex;
-        align-items: center; */
-    }
-
-    .MovieFormModal .MovieForm form {
-        /* flex: 0 0 80vh; */
-    }
-
-    .MovieFormModal .MovieFormBtns {
-        /* padding-top: 5vh;
-        padding-bottom: 5vh; */
+        /* min-height: 100vh; */
     }
 }
 

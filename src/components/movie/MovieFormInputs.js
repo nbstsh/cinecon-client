@@ -11,16 +11,16 @@ const MovieFormInputs = ({ id, movie, handleChange }) => {
                 name='title'
                 value={title} 
                 onChange={handleChange} 
-                placeholder='title' />
+                placeholder='タイトル' />
 
-            <label>director</label>
+            <label>監督</label>
             <input 
                 type="text" 
                 name='director' 
                 value={director} 
                 onChange={handleChange} />
 
-            <label>releaseYear</label>
+            <label>公開年</label>
             <input 
                 type="number" 
                 name='releaseYear' 
@@ -28,7 +28,7 @@ const MovieFormInputs = ({ id, movie, handleChange }) => {
                 onChange={handleChange} 
                 min='1900' />
 
-            <label>runningTime</label>
+            <label>上映時間</label>
             <input 
                 type="number" 
                 name='runningTime' 
@@ -36,14 +36,14 @@ const MovieFormInputs = ({ id, movie, handleChange }) => {
                 onChange={handleChange}
                 min='1' />
             
-            <label>starring</label>
+            <label>主演</label>
             <input 
                 type="text" 
                 name='starring'
                 value={starring} 
                 onChange={handleChange} />
 
-            <label>country</label>
+            <label>国</label>
             <input 
                 type="text" 
                 name='country'

@@ -25,7 +25,7 @@ class SelectGenres extends Component {
 
                 <GenresDisplay 
                     genres={this.props.genres}
-                    placeholder='genre' />
+                    placeholder='ジャンル' />
                 <GenreCheckboxContainer 
                     selectedGenres={this.props.genres}
                     handleChange={this.props.handleChange} />

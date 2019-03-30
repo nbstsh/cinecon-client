@@ -63,6 +63,13 @@
     margin: 0 3rem 3rem 0;
 }
 
+
+@media only screen and (max-width: 37.5em) {
+    .MovieSearchFieldContainer .SearchBtn {
+        margin: 0 2rem 3rem 0;
+    }
+}
+
 .MovieSearchFieldContainer .SearchBtn .icon {
     animation: fadeIn .2s;
 }

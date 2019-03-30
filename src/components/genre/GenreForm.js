@@ -51,7 +51,7 @@ class GenreForm extends Component {
                     name='name'
                     value={this.state.name} 
                     handleChange={this.handleChange} 
-                    placeholder='genre name' />
+                    placeholder='ジャンル名' />
                 <input 
                     type='color' 
                     name='color' 

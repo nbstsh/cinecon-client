@@ -63,48 +63,48 @@ class MovieSearchField extends Component {
                     name="title" 
                     value={title} 
                     handleChange={this.handleChange} 
-                    placeholder="title" />
+                    placeholder="タイトル" />
                 <TextInput 
                     name="director" 
                     value={director} 
                     handleChange={this.handleChange} 
-                    placeholder="director" />
+                    placeholder="監督" />
                 <NumberInput 
                     name="releaseYear.min" 
                     value={releaseYear.min} 
                     handleChange={this.handleRangeChange} 
-                    placeholder="releaseYear min" />
+                    placeholder="〜年公開から" />
                 <NumberInput 
                     name="releaseYear.max" 
                     value={releaseYear.max} 
                     handleChange={this.handleRangeChange} 
-                    placeholder="releaseYear max" />
+                    placeholder="〜年公開まで" />
                 <Select 
                     name='genres'
                     value={genres}
                     options={options}
                     handleChange={this.handleChange}
-                    label='genre'/> 
+                    label='ジャンル'/> 
                 <NumberInput 
                     name="runningTime.min" 
                     value={runningTime.min} 
                     handleChange={this.handleRangeChange} 
-                    placeholder="runningTime min" />
+                    placeholder="〜時間以上" />
                 <NumberInput 
                     name="runningTime.max" 
                     value={runningTime.max} 
                     handleChange={this.handleRangeChange} 
-                    placeholder="runningTime max" />
+                    placeholder="〜時間以内" />
                 <TextInput 
                     name="starring" 
                     value={starring} 
                     handleChange={this.handleChange} 
-                    placeholder="starring" />
+                    placeholder="主演" />
                 <TextInput 
                     name="country" 
                     value={country} 
                     handleChange={this.handleChange} 
-                    placeholder="country" />
+                    placeholder="国" />
 
                 <button onClick={this.handleResetClick}>リセット</button>
             </div>

@@ -7,3 +7,10 @@
     padding: 5rem 3rem;
     margin-bottom: 20rem;
 }
+
+
+@media only screen and (max-width: 37.5em) {
+    .MovieList {
+        padding: 3rem 2rem;
+    }
+}

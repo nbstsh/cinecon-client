@@ -4,6 +4,8 @@
     border: 1px solid var(--color-grey-light-4);
     animation: MovieItemShow .3s;
     cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .MovieItem figure {

@@ -59,23 +59,23 @@ class MovieItem extends Component {
                 
                 <ul onClick={this.hideDetail}>
                     <li>
-                        <label>director</label>
+                        <label>監督</label>
                         <span>{director}</span>
                     </li>
                     <li>
-                        <label>releaseYear</label>
+                        <label>公開年</label>
                         <span>{releaseYear}</span>
                     </li>
                     <li>
-                        <label>runningTime</label>
+                        <label>上映時間</label>
                         <span>{runningTime}</span>
                     </li>
                     <li>
-                        <label>starring</label>
+                        <label>主演</label>
                         <span>{starring}</span>
                     </li>
                     <li>
-                        <label>country</label>
+                        <label>国</label>
                         <span>{country}</span>
                     </li>
                 </ul>
