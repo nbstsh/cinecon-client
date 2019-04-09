@@ -16,7 +16,6 @@ const AudienceSeats = () => {
 
     let zDistance = 15;
     let yDistance = 0;
-    let count = 0;
 
     const rows = rowArray.map(row => {
         const style = {
@@ -24,8 +23,6 @@ const AudienceSeats = () => {
         }
         zDistance -= zDiff
         yDistance += yDiff
-        count++;
-
         return (
             <div className='SeatsRow' style={style}>
                 {row}

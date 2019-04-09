@@ -17,13 +17,6 @@ class MovieDetailContainer extends Component {
         }
     } 
     componentDidMount() {
-        this.initIsAdmin()
-        userManager.on(userManager.UPDATE_EVENT, this.initIsAdmin)
-    }
-    componentWillUnmount() {
-        userManager.off(userManager.UPDATE_EVENT, this.initIsAdmin)
-    }
-    initIsAdmin = () => {
         this.setState({ isAdmin: userManager.isAdminUser() })
     }
     showMovieForm = () => {

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import MovieItem from './MovieItem'
-import MovieDetailContainer from './MovieDetailContainer'
 import './MovieItemContainer.css'
-import MovieTheater from '../movie-theater/MovieTheater'
 import MovieForm from './MovieForm'
 
 class MovieItemContainer extends Component {

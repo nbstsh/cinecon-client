@@ -1,5 +1,5 @@
 import EventEmitter from 'events'
-import { getRequest, postRequest, postFormDataRequest, putRequest, deleteRequest, handleResponse } from './request'
+import { getRequest, postRequest, putRequest, deleteRequest, handleResponse } from './request'
 import createIdbKeyval from './idb-keyval'
 import config from '../config/index'
 import { setFilter, needInFilteredMovies } from './movie-filter'

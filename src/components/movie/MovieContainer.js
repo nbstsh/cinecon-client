@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import movieManager from '../../modules/movie-manager'
-import MovieSearchField from './MovieSearchField'
 import MovieList from './MovieList'
 import MovieFormModal from './MovieFormModal'
 import MovieSearchFieldContainer from './MovieSearchFieldContainer'
@@ -16,7 +15,6 @@ class MovieContainer extends Component {
     } 
     componentDidMount() {
         movieManager.fetchAndSetMovies()
-        
         this.initIsAdmin()
         userManager.on(userManager.UPDATE_EVENT, this.initIsAdmin)
     }

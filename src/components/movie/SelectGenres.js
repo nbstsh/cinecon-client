@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import './SelectGenres.css'
 import GenresDisplay from './GenresDisplay'
 import GenreCheckboxContainer from './GenreCheckboxContainer'
-import movieManager from '../../modules/movie-manager'
-import genreManager from '../../modules/genre-manager'
 
 
 class SelectGenres extends Component {

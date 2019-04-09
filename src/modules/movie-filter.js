@@ -59,10 +59,6 @@ function isIncluded(key, val) {
     return val.toLowerCase().includes(filter[key])
 }
 
-function isSameOrEmpty(key, val) {
-    return filter[key] === '' || val === filter[key]
-}
-
 function isEmptyOrIncludes(key, val) {
     return filter[key] === '' || val.find(genre => genre._id === filter[key])
 }

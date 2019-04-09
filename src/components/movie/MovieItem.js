@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import movieManager from '../../modules/movie-manager'
-import GenreBadge from '../genre/GenreBadge'
 import GenresDisplay from './GenresDisplay'
 import EditBtn from '../common/EditBtn'
 import userManager from '../../modules/user-manager'
@@ -17,14 +16,6 @@ class MovieItem extends Component {
     componentDidMount() {
         movieManager.getMovie(this.props.id)
             .then(movie => this.setState(movie))
-
-        this.initIsAdmin()
-        userManager.on(userManager.UPDATE_EVENT, this.initIsAdmin)
-    }
-    componentWillUnmount() {
-        userManager.off(userManager.UPDATE_EVENT, this.initIsAdmin)
-    }
-    initIsAdmin = () => {
         this.setState({ isAdmin: userManager.isAdminUser() })
     }
     showDetail = () => {
@@ -44,10 +35,9 @@ class MovieItem extends Component {
         const {title, director, releaseYear, genres, runningTime, starring, country, needShowDetail, thumnail} = this.state
      
         return(
-            // <div className="MovieItem" onClick={this.props.handleClick} >
             <div className="MovieItem" data-open-detail={needShowDetail}>
                 <figure onClick={this.showDetail}>
-                    <img src={thumnail} />
+                    <img src={thumnail} alt={`thumnail for ${title}`}/>
                 </figure>
 
                 <div onClick={this.toggleDetail}>

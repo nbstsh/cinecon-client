@@ -50,15 +50,15 @@ class EditThumnail extends Component {
         const needsCurrentImage = ( !needShowThumnailVideo && !needShowThumnailUpload && !imageBlob )
         const needsUpdateImage = ( imageBlob !== null )
         const selectedStatus = { needsCurrentImage, needShowThumnailUpload, needShowThumnailVideo }
-        console.log(this.props.thumnail) 
+
         return (
             <div className='EditThumnail'>
                 {needsCurrentImage && 
-                    <img src={this.props.thumnail} />
+                    <img src={this.props.thumnail} alt='current thumnail'/>
                 }
 
                 {needsUpdateImage && 
-                    <img src={URL.createObjectURL(imageBlob)} />
+                    <img src={URL.createObjectURL(imageBlob)} alt='new thumnail' />
                 }
                 
                 {needShowThumnailVideo && 

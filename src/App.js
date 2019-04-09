@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navigation from './components/navigation/Navigation'
 import MovieContainer from './components/movie/MovieContainer'
 import GenresContainer from './components/genre/GenresContainer'
-import MovieTheater from './components/movie-theater/MovieTheater'
 import userManager from './modules/user-manager'
 
-// test
-import Test from './components/Test'
 
 class App extends Component {
     constructor(){
@@ -19,7 +15,7 @@ class App extends Component {
         }
     }
     componentDidMount() {
-        this.initIsAdmin()
+        // this.initIsAdmin()
         userManager.on(userManager.UPDATE_EVENT, this.initIsAdmin)
     }
     componentWillUnmount() {
@@ -48,9 +44,7 @@ class App extends Component {
                     <MovieContainer />
                     )}
                 </div>
-
-
-                 {/* <MovieTheater needMousemove={true} /> */}
+                
             </div>
         )
     }

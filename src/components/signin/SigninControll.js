@@ -28,9 +28,11 @@ class SigninControll extends ModalControll {
             firebase.auth().signOut()
         }
         userManager.signoutUser()
+        window.location.reload()
     }
     handleAfterSingin = () => {
         this.closeModal()
+        window.location.reload()
     }
     render() {
         const { isSignedIn, needShowSigninTab} = this.state
