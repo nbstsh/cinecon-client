@@ -17,7 +17,10 @@ class GenreItem extends Component {
     }
     handleClickDeleteBtn = (event) => {
         event.stopPropagation()
-        this.props.handleClickDeleteBtn()
+        
+        if (window.confirm('本当に削除しますか？')) {
+            this.props.handleClickDeleteBtn()
+        }
     }
     render() {
         const style = { backgroundColor: this.state.color } 

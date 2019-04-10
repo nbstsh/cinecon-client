@@ -60,7 +60,6 @@ class GenreForm extends Component {
                     setColor={this.setColor}
                     currentColor={this.state.color}/>
 
-                {/* <input type="submit" value=""></input> */}
                 <button>
                     <svg className="">
                         <use xlinkHref="img/symbol-defs.svg#icon-check"></use>

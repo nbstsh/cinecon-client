@@ -1,9 +1,19 @@
-.DeleteBtn{
+ .DeleteBtn {
     display: inline-block;
-    width: 1em;
-    height: 1em;
-    stroke-width: 0;
-    stroke: currentColor;
-    fill: currentColor;
+    position: relative;
+
+    width: 3rem;
+    height: 3rem;
+    padding: 1rem;
+    background-color: var(--color-primary-dark-1);
+    color: var(--color-grey-light-1);
+    border-radius: 10rem;
     cursor: pointer;
+}
+
+.DeleteBtn .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import movieManager from '../../modules/movie-manager'
 import GenresDisplay from './GenresDisplay'
 import EditBtn from '../common/EditBtn'
+import DeleteBtn from '../common/DeleteBtn'
 import userManager from '../../modules/user-manager'
 import './MovieItem.css'
 
@@ -31,6 +32,12 @@ class MovieItem extends Component {
         event.stopPropagation()
         this.props.handleEditBtnClick()
     }
+    handleDeleteBtnClick = (event) => {
+        event.stopPropagation()
+        if (window.confirm('本当に削除しますか?')) {
+            movieManager.deleteMovie(this.props.id)
+        }
+    }
     render() {
         const {title, director, releaseYear, genres, runningTime, starring, country, needShowDetail, thumnail} = this.state
      
@@ -44,6 +51,9 @@ class MovieItem extends Component {
                     <h3>{title}</h3>
                     {this.state.isAdmin && 
                         <EditBtn handleClick={this.handleEditBtnClick}/>
+                    }
+                    {this.state.isAdmin && 
+                        <DeleteBtn handleClick={this.handleDeleteBtnClick} />
                     }
                 </div>
                 
