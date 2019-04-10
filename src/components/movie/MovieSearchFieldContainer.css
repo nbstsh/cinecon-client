@@ -66,6 +66,8 @@
 
 @media only screen and (max-width: 37.5em) {
     .MovieSearchFieldContainer .SearchBtn {
+        width: 6rem;
+        height: 6rem;
         margin: 0 2rem 3rem 0;
     }
 }

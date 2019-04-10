@@ -7,6 +7,12 @@
     z-index: 1000;
 }
 
+@media only screen and (max-width: 37.5em) {
+    .MovieFormModal {
+        bottom: 8rem;
+    }
+} 
+  
 .MovieFormModal > .CreateBtn {
     width: 7rem;
     height: 7rem;
@@ -18,10 +24,12 @@
     transition: all .3s;
 
     margin: 0 3rem 1.5rem 0;
-}
+}  
 
 @media only screen and (max-width: 37.5em) {
     .MovieFormModal > .CreateBtn {
+        width: 6rem;
+        height: 6rem;
         margin: 0 2rem 1.5rem 0;
     }
 }
